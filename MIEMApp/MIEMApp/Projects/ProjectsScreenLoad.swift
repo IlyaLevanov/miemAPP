@@ -12,6 +12,7 @@ private let padding = Brandbook.Paddings.normal
 final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
 
+  private unowned let wireframe: Wireframe
   var controller: UIViewController {
     self
   }
@@ -21,8 +22,10 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   var model: [ProjectsListModel]?
   var types: [String]?
   var status: [String]?
+  var vacancies: Bool?
   
-  init(bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
+  init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
+    self.wireframe = wireframe
     self.bottomInset = bottomInset
     self.refreshAction = refreshAction
     super.init(nibName: nil, bundle: nil)
@@ -60,6 +63,16 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     return CGSize(width: UIScreen.main.bounds.width - padding, height: 350)
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print("select")
+    print(indexPath)
+    print(model![indexPath.row])
+    let moreVC = MoreProjectScreenLoad(id: model![indexPath.row].id)
+    self.modalPresentationStyle = .popover
+    self.present(moreVC, animated: true, completion: nil)
+    
+  }
+  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListProjectsGalleryCell.reusedId, for: indexPath) as! ListProjectsGalleryCell
     let currentProject: ProjectsListModel?
@@ -93,10 +106,18 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   @objc
   func open_filter() {
     
-    let filterViewController = FilterViewController(bottomInset: self.bottomInset, types: self.types ?? [], status: self.status ?? [])
+    let filterViewController = FilterViewController(bottomInset: self.bottomInset, types: self.types ?? [], status: self.status ?? [], parentVC: self)
 //    self.modalPresentationStyle = .overCurrentContext
     self.modalPresentationStyle = .popover
     self.present(filterViewController, animated: false, completion: nil)
+  }
+  
+  func filter(type: String, status: String, vacancy: Bool) {
+    print("fffilter")
+    print(type)
+    print(status)
+    print(vacancy)
+    
   }
   
   
@@ -126,6 +147,8 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
 
     
   }
+  
+
   
   
   private func measureFrameForText(_ text: String) -> CGRect{
