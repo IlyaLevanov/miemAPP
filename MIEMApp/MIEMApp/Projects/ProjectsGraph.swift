@@ -12,14 +12,14 @@ final class ProjectsGraph {
   private let projectsLoad: ProjectsScreenLoad
   private let projectsDataSource: ProjectsDataSource
   
-  init(wireframe: Wireframe,
+  init(
     bottomInset: Variable<CGFloat>,
     user: Variable<User>,
     token: Property<String>
   ) {
     projectsDataSource = ProjectsDataSource(user: user, token: token)
     
-    projectsLoad = ProjectsScreenLoad(wireframe: wireframe, bottomInset: bottomInset, refreshAction: projectsDataSource.setNeedsUpdate)
+    projectsLoad = ProjectsScreenLoad(bottomInset: bottomInset, refreshAction: projectsDataSource.setNeedsUpdate)
     screen = Screen(id: .projectsScreen, payload: projectsLoad)
     projectsDataSource.setOnUpdate { [unowned self] in
       self.projectsLoad.model = $0
