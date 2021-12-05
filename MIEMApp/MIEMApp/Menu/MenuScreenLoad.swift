@@ -146,7 +146,7 @@ private extension MenuItemKind {
       )
     case .projects:
       return MenuItemModel(
-        icon: Brandbook.Images.Icons.projectsMenuIcon,
+        icon: Brandbook.Images.Icons.userMenuIcon,
         title: "Проекты",
         action: {
           wireframe.pushProjectListScreen()
