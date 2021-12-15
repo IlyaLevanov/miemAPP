@@ -21,6 +21,11 @@
 		61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */; };
 		61BFCB69275C0E750023A6DA /* MoewProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB68275C0E750023A6DA /* MoewProjectDataSource.swift */; };
 		61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */; };
+		61DA00B1276A1CA00057B4FE /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA00B0276A1CA00057B4FE /* StackContainerView.swift */; };
+		61DA00B4276A1CE60057B4FE /* SwipeCardsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA00B3276A1CE60057B4FE /* SwipeCardsDataSource.swift */; };
+		61DA00B7276A1D170057B4FE /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA00B6276A1D170057B4FE /* SwipeCardView.swift */; };
+		61DA00BA276A1DB00057B4FE /* CardDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA00B9276A1DB00057B4FE /* CardDataModel.swift */; };
+		61DA00BD276A1E2D0057B4FE /* LikedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DA00BC276A1E2D0057B4FE /* LikedViewController.swift */; };
 		61DE936B261F2D8600DAC912 /* ProfileScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936A261F2D8600DAC912 /* ProfileScreenLoad.swift */; };
 		61DE936D261F2D9A00DAC912 /* ProfileGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936C261F2D9A00DAC912 /* ProfileGraph.swift */; };
 		61DE936F261F2DB200DAC912 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936E261F2DB200DAC912 /* ProfileDataSource.swift */; };
@@ -109,6 +114,11 @@
 		61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectScreenLoad.swift; sourceTree = "<group>"; };
 		61BFCB68275C0E750023A6DA /* MoewProjectDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoewProjectDataSource.swift; sourceTree = "<group>"; };
 		61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectGraph.swift; sourceTree = "<group>"; };
+		61DA00B0276A1CA00057B4FE /* StackContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		61DA00B3276A1CE60057B4FE /* SwipeCardsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsDataSource.swift; sourceTree = "<group>"; };
+		61DA00B6276A1D170057B4FE /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
+		61DA00B9276A1DB00057B4FE /* CardDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataModel.swift; sourceTree = "<group>"; };
+		61DA00BC276A1E2D0057B4FE /* LikedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedViewController.swift; sourceTree = "<group>"; };
 		61DE936A261F2D8600DAC912 /* ProfileScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenLoad.swift; sourceTree = "<group>"; };
 		61DE936C261F2D9A00DAC912 /* ProfileGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGraph.swift; sourceTree = "<group>"; };
 		61DE936E261F2DB200DAC912 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
@@ -216,7 +226,10 @@
 		613AC21D2736CB6B00CCCC40 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */,
+				61DA00BB276A1E150057B4FE /* Controller */,
+				61DA00B8276A1D9B0057B4FE /* Model */,
+				61DA00B5276A1D040057B4FE /* View */,
+				61DA00B2276A1CCC0057B4FE /* Protocols */,
 			);
 			path = Tinder;
 			sourceTree = "<group>";
@@ -263,6 +276,40 @@
 				61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */,
 			);
 			path = MoreProjectInfo;
+			sourceTree = "<group>";
+		};
+		61DA00B2276A1CCC0057B4FE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				61DA00B3276A1CE60057B4FE /* SwipeCardsDataSource.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		61DA00B5276A1D040057B4FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				61DA00B0276A1CA00057B4FE /* StackContainerView.swift */,
+				61DA00B6276A1D170057B4FE /* SwipeCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		61DA00B8276A1D9B0057B4FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				61DA00B9276A1DB00057B4FE /* CardDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		61DA00BB276A1E150057B4FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */,
+				61DA00BC276A1E2D0057B4FE /* LikedViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		61DE9367261F2D5900DAC912 /* User */ = {
@@ -682,6 +729,7 @@
 				65E5094225FE48840080B04C /* TutorialView.swift in Sources */,
 				61BFCB69275C0E750023A6DA /* MoewProjectDataSource.swift in Sources */,
 				652F9EC525ABAF3100707999 /* DatePickerView.swift in Sources */,
+				61DA00B7276A1D170057B4FE /* SwipeCardView.swift in Sources */,
 				652F9ECD25B7522C00707999 /* DateExtensions.swift in Sources */,
 				614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */,
 				65E5094525FE5B3C0080B04C /* UIFontExtensions.swift in Sources */,
@@ -702,6 +750,7 @@
 				613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */,
 				6583E0D52561E166006DCAB8 /* TabBar.swift in Sources */,
 				6583E0C725616CCD006DCAB8 /* ScreenRouter.swift in Sources */,
+				61DA00BA276A1DB00057B4FE /* CardDataModel.swift in Sources */,
 				652F9EB825AA73E300707999 /* TimetableGraph.swift in Sources */,
 				61DE9373261F2DF100DAC912 /* ApplicationModel.swift in Sources */,
 				61667B28273290B5005D4DAF /* ProjectsGraph.swift in Sources */,
@@ -719,6 +768,7 @@
 				652F9EBF25AB7BD300707999 /* TimetableDataSource.swift in Sources */,
 				61DE9377261F2E2900DAC912 /* ProjectCollectionView.swift in Sources */,
 				652F9F7E25BDBE5D00707999 /* CameraListScreenLoad.swift in Sources */,
+				61DA00BD276A1E2D0057B4FE /* LikedViewController.swift in Sources */,
 				652F9F6725BDB0CE00707999 /* RecordGraph.swift in Sources */,
 				652F9F7D25BDBE5D00707999 /* CameraItemCell.swift in Sources */,
 				652F9F6A25BDB10100707999 /* VMixGraph.swift in Sources */,
@@ -735,6 +785,7 @@
 				61DE936B261F2D8600DAC912 /* ProfileScreenLoad.swift in Sources */,
 				61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */,
 				652F9F3E25B8C43D00707999 /* TouchGestureRecognizer.swift in Sources */,
+				61DA00B4276A1CE60057B4FE /* SwipeCardsDataSource.swift in Sources */,
 				652F9EA025A8AEE400707999 /* MenuItemCell.swift in Sources */,
 				65E5093F25FE281E0080B04C /* TutorialViewModel.swift in Sources */,
 				65E5093C25FE27C30080B04C /* TutorialViewController.swift in Sources */,
@@ -743,6 +794,7 @@
 				61ED911A27404C61006BEE2F /* PaddingLabel.swift in Sources */,
 				61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */,
 				650CDA7D2561530F00BA927A /* BottomSheetViewController.swift in Sources */,
+				61DA00B1276A1CA00057B4FE /* StackContainerView.swift in Sources */,
 				652F9F7925BDBE5D00707999 /* CameraListHeaders.swift in Sources */,
 				6583E0E92562FCD3006DCAB8 /* Brandbook.swift in Sources */,
 				652F9EB225AA73BE00707999 /* TimetableModel.swift in Sources */,

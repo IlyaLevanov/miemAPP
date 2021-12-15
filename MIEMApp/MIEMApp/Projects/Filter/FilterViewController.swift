@@ -332,7 +332,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   
   
   private func openTinderView() {
-    let tinderViewController = TinderViewController(model: (self.parentVC?.model) ?? [])
+    let tinderViewController = TinderViewController()
     tinderViewController.view.backgroundColor = .brown
     self.modalPresentationStyle = .popover
     self.present(tinderViewController, animated: true, completion: nil)
