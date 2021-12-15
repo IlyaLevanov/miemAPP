@@ -24,10 +24,15 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   var status: [String]?
   var vacancies: Bool?
   
+  var type_filter: String?
+  var status_filter: String?
+  var vacancies_filter: Bool?
+  
   var collectionView: UICollectionView?
 
   var isFiltering = false
   var filteredProjects = [ProjectsListModel]()
+  var isFilter = false
   
   init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
     self.wireframe = wireframe
@@ -66,27 +71,63 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     }
   }
   
-  func updateSearchResults(for searchController: UISearchController) {
-    
-    let searchText = searchController.searchBar.text!
-    if !searchText.isEmpty {
-      isFiltering = true
-      filteredProjects.removeAll()
-      for project in model! {
-        
-        let idToString = String(project.id)
-        
-        if project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText) {
-          filteredProjects.append(project)
+    func updateSearchResults(for searchController: UISearchController) {
+      
+      let searchText = searchController.searchBar.text!
+      if !searchText.isEmpty {
+        if isFilter {
+          isFiltering = true
+          filteredProjects.removeAll()
+          for project in model! {
+            
+            let idToString = String(project.id)
+            
+            if vacancies_filter == true && vacancies_filter != nil {
+              
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) && project.vacancies > 0 || project.vacancies > 0 && (project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой" || project.vacancies > 0 && (project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой" || project.vacancies > 0 && status_filter == "Любой" && type_filter == "Любой"){
+                filteredProjects.append(project)
+              }
+              
+            } else {
+              
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) || ((project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой") || ((project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой") || (status_filter == "Любой" && type_filter == "Любой")) {
+                filteredProjects.append(project)
+              }
+            }
+          }
+          
+        } else {
+          
+          isFiltering = true
+          filteredProjects.removeAll()
+          for project in model! {
+            
+            let idToString = String(project.id)
+            
+            if vacancies_filter == true && vacancies_filter != nil {
+              
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) {
+                filteredProjects.append(project)
+              }
+              
+            } else {
+              
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) {
+                filteredProjects.append(project)
+              }
+              
+            }
+          }
+          
         }
+        
       }
-    } else {
-      isFiltering = false
-      filteredProjects.removeAll()
-      filteredProjects = model!
+  //      isFiltering = false
+  //      filteredProjects.removeAll()
+  //      filteredProjects = model!
+
+      collectionView?.reloadData()
     }
-    collectionView?.reloadData()
-  }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     isFiltering = false
@@ -165,10 +206,56 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   }
   
   func filter(type: String, status: String, vacancy: Bool) {
-    print("fffilter")
-    print(type)
-    print(status)
-    print(vacancy)
+  
+    self.type_filter = type
+    self.status_filter = status
+    self.vacancies_filter = vacancy
+    
+    isFilter = true
+    isFiltering = true
+    filteredProjects.removeAll()
+    for project in model! {
+      
+      if vacancy {
+       
+        if (project.typeDesc == type && project.statusDesc == status) && project.vacancies > 0 {
+          filteredProjects.append(project)
+        } else {
+            if project.vacancies > 0 && (project.typeDesc != type && project.statusDesc == status) && type == "Любой"{
+              filteredProjects.append(project)
+            } else {
+              if project.vacancies > 0 && (project.typeDesc == type && project.statusDesc != status) && status_filter == "Любой" {
+                filteredProjects.append(project)
+              } else {
+                if project.vacancies > 0 && status == "Любой" && type == "Любой" {
+                  filteredProjects.append(project)
+                }
+              }
+            }
+          }
+       
+      } else {
+        
+        if (project.typeDesc == type && project.statusDesc == status) {
+          filteredProjects.append(project)
+        } else {
+            if (project.typeDesc != type && project.statusDesc == status) && type == "Любой"{
+              filteredProjects.append(project)
+            } else {
+              if (project.typeDesc == type && project.statusDesc != status) && status == "Любой" {
+                filteredProjects.append(project)
+              } else {
+                if status == "Любой" && type == "Любой" {
+                  filteredProjects.append(project)
+                }
+              }
+            }
+          }
+        
+      }
+    }
+    
+    collectionView?.reloadData()
     
   }
   

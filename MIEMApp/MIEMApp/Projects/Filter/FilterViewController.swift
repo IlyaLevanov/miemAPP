@@ -8,7 +8,7 @@
 import UIKit
 import BEMCheckBox
 
-class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, BEMCheckBoxDelegate {
   
   
   private let bottomInset: Variable<CGFloat>
@@ -17,10 +17,12 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   var vacancyFlag: Bool?
   var types = [String]()
   var status = [String]()
-  var isType: Bool?
+  var isType: Bool? //for picker
   let parentVC: ProjectsScreenLoad?
   
 
+  var group:BEMCheckBoxGroup!
+  
   init(bottomInset: Variable<CGFloat>, types: [String], status: [String], parentVC: ProjectsScreenLoad) {
     self.bottomInset = bottomInset
     self.types = types
@@ -33,6 +35,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     picker.delegate = self
     picker.dataSource = self
     setUp()
+    initialize()
   }
   
   required init?(coder: NSCoder) {
@@ -132,6 +135,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     return checkbox
   }()
   
+  
   let vacancyLable: UILabel = {
     let label = UILabel()
     label.text = "С вакансиями"
@@ -153,7 +157,9 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     return button
   }()
   
-  
+  func initialize() {
+    vacancyCheckBox.delegate = self
+  }
   
   @objc
   func typePickerHandled() {
@@ -235,6 +241,13 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     controller.view.frame = CGRect(x: 0, y:UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350)
   }
   
+  func didTap(_ checkBox: BEMCheckBox) {
+    if vacancyFlag ?? true {
+      self.vacancyFlag = false
+    } else {
+      self.vacancyFlag = true
+    }
+  }
 
   
   func setUp() {
@@ -313,11 +326,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   }
   
   func filter(){
-    if vacancyCheckBox.isEnabled {
-      self.vacancyFlag = true
-    } else {
-      self.vacancyFlag = false
-    }
+    self.didTap(vacancyCheckBox)
     self.parentVC!.filter(type: self.selectedType ?? "Любой", status: selectedStatus ?? "Любой", vacancy: vacancyFlag ?? false)
   }
   
@@ -338,3 +347,4 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 }
 private let padding = Brandbook.Paddings.normal
 private let small = Brandbook.Paddings.small
+
