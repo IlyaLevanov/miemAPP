@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class ListProjectsGalleryCell: UICollectionViewCell {
   
@@ -29,8 +30,11 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
       label.textAlignment = NSTextAlignment.left
       label.backgroundColor = .clear
+    
+    
       return label
   }()
+
   
   let headLabel: UILabel = {
       let label = UILabel()
@@ -106,6 +110,7 @@ class ListProjectsGalleryCell: UICollectionViewCell {
     addSubview(vacanciesLabel)
     addSubview(managerTxt)
     addSubview(typeTxt)
+    addSubview(nameLabel)
     
       idLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
       idLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
@@ -113,6 +118,7 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       nameLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: small_padding).isActive = true
       nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
       nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+
     
       statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
       statusLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
@@ -139,17 +145,20 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       typeLabel.leftAnchor.constraint(equalTo: typeTxt.rightAnchor, constant: small_padding).isActive = true
     
 //    ListProjectsGalleryCell.self.height = (measureFrameForText(idLabel.text ?? "").height + measureFrameForText(nameLabel.text ?? "").height + measureFrameForText(statusLabel.text ?? "").height + measureFrameForText(vacanciesLabel.text ?? "").height + measureFrameForText(managerTxt.text ?? "").height + measureFrameForText(headLabel.text ?? "").height + measureFrameForText(typeTxt.text ?? "").height + measureFrameForText(typeLabel.text ?? "").height + 7*padding + small_padding + 15)
+    
   }
   
   var height: CGFloat?
   
   override func layoutSubviews() {
     super.layoutSubviews()
+    
     self.clipsToBounds = false
     self.layer.cornerRadius = 5
     self.layer.shadowRadius = 5
     layer.shadowOffset = CGSize(width: 3, height: 3)
     layer.shadowOpacity = 0.2
+    
     
   }
   

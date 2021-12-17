@@ -11,4 +11,5 @@ target 'MIEMApp' do
   pod 'EzPopup'
   pod 'AppAuth'
   pod 'BEMCheckBox'
+  pod "TinyConstraints"
 end

@@ -7,7 +7,7 @@
 
 import UIKit
 import EzPopup
-
+import TinyConstraints
 
 class ProfileScreenLoad: UIViewController, ScreenPayload {
 var controller: UIViewController {
@@ -246,7 +246,8 @@ var controller: UIViewController {
     profileStatus.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding).isActive = true
     profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
     profileStatus.widthAnchor.constraint(equalToConstant: measureFrameForText(profileStatus.text ?? "").width + padding).isActive = true
-    profileStatus.heightAnchor.constraint(equalToConstant: measureFrameForText(profileStatus.text ?? "").height + padding/2).isActive = true
+//    profileStatus.heightAnchor.constraint(equalToConstant: measureFrameForText(profileStatus.text ?? "").height + padding/2).isActive = true
+    profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding/2).isActive = true
     
     containerView.addSubview(nameLabel)
     nameLabel.topAnchor.constraint(equalTo: profileStatus.bottomAnchor, constant: padding/2).isActive = true
@@ -291,7 +292,8 @@ var controller: UIViewController {
     projLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 50).isActive = true
     projLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
     projLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(projLabel.text ?? "").width + padding).isActive = true
-    projLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(projLabel.text ?? "").height+padding).isActive = true
+//    projLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(projLabel.text ?? "").height+padding).isActive = true
+    projLabel.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: projLabel.text, font: projLabel.font, width:  projLabel.frame.width).height).isActive = true
     projLabel.backgroundColor = .clear
     
     if modelProject != nil {
@@ -323,7 +325,8 @@ var controller: UIViewController {
       applLabel.topAnchor.constraint(equalTo: projectView.bottomAnchor, constant: 100).isActive = true
       applLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
       applLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).width + padding).isActive = true
-      applLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).height+10).isActive = true
+//      applLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).height+10).isActive = true
+      applLabel.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: applLabel.text, font: applLabel.font, width:  applLabel.frame.width).height).isActive = true
       applLabel.backgroundColor = .clear
       
       if applicationInfo {
@@ -341,7 +344,8 @@ var controller: UIViewController {
         labelNoInfoApplication.topAnchor.constraint(equalTo: applLabel.bottomAnchor, constant: 3*padding).isActive = true
         labelNoInfoApplication.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
         labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width).isActive = true
-        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
+//        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
+        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoApplication.text, font: labelNoInfoApplication.font, width:  labelNoInfoApplication.frame.width).height).isActive = true
       }
     }
     else {
@@ -349,13 +353,15 @@ var controller: UIViewController {
       labelNoInfoProject.topAnchor.constraint(equalTo: projLabel.bottomAnchor, constant: 3*padding).isActive = true
       labelNoInfoProject.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
       labelNoInfoProject.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoProject.text!).width).isActive = true
-      labelNoInfoProject.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoProject.text!).height).isActive = true
+//      labelNoInfoProject.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoProject.text!).height).isActive = true
+      labelNoInfoProject.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoProject.text, font: labelNoInfoProject.font, width:  labelNoInfoProject.frame.width).height).isActive = true
       
       stackView.addArrangedSubview(applLabel)
       applLabel.topAnchor.constraint(equalTo: labelNoInfoProject.bottomAnchor, constant: 100).isActive = true
       applLabel.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
       applLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).width + padding).isActive = true
-      applLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).height).isActive = true
+//      applLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(applLabel.text!).height).isActive = true
+      applLabel.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: applLabel.text, font: applLabel.font, width:  applLabel.frame.width).height).isActive = true
       
       if applicationInfo {
         stackView.addArrangedSubview(applView)
@@ -372,7 +378,8 @@ var controller: UIViewController {
         labelNoInfoApplication.topAnchor.constraint(equalTo: applLabel.bottomAnchor, constant: 3*padding).isActive = true
         labelNoInfoApplication.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
         labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width).isActive = true
-        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
+//        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
+        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoApplication.text, font: labelNoInfoApplication.font, width:  labelNoInfoApplication.frame.width).height).isActive = true
       }
       print("end setup")
     }
@@ -414,7 +421,6 @@ var controller: UIViewController {
       UIApplication.shared.open(url)
     }
   }
-  
   @objc
   func refresh() {
     
@@ -495,8 +501,26 @@ var controller: UIViewController {
   }
   
 
-
   
 }
 private let padding = Brandbook.Paddings.normal
+
+
+extension ProfileScreenLoad {
+  static func height(text: String?, font: UIFont, width: CGFloat) -> CGRect {
+      var currentHeight: CGRect!
+      
+      var label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+      label.text = text
+      label.font = font
+      label.numberOfLines = 0
+      label.sizeToFit()
+      label.lineBreakMode = .byWordWrapping
+    currentHeight = label.frame
+      label.removeFromSuperview()
+      
+      return currentHeight
+  }
+
+}
 

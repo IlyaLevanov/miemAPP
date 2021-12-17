@@ -47,7 +47,7 @@ final class AppGraph {
       user: settings.user.asVariable()
     )
     vmixGraph = VMixGraph(bottomInset: tabBarController.tabBarHeight)
-    projectsGraph = ProjectsGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
+    projectsGraph = ProjectsGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     authGraph = AuthGraph(
       wireframe: wireframe,

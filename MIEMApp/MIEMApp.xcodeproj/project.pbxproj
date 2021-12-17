@@ -18,6 +18,9 @@
 		61667B2C273294E5005D4DAF /* ProjectsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */; };
 		618EC715263C423B002D59A4 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618EC714263C423B002D59A4 /* ProfileModel.swift */; };
 		61A29B48261F2E93007D974E /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A29B47261F2E93007D974E /* ProjectCell.swift */; };
+		61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */; };
+		61BFCB69275C0E750023A6DA /* MoewProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB68275C0E750023A6DA /* MoewProjectDataSource.swift */; };
+		61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */; };
 		61DE936B261F2D8600DAC912 /* ProfileScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936A261F2D8600DAC912 /* ProfileScreenLoad.swift */; };
 		61DE936D261F2D9A00DAC912 /* ProfileGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936C261F2D9A00DAC912 /* ProfileGraph.swift */; };
 		61DE936F261F2DB200DAC912 /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DE936E261F2DB200DAC912 /* ProfileDataSource.swift */; };
@@ -103,6 +106,9 @@
 		61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsDataSource.swift; sourceTree = "<group>"; };
 		618EC714263C423B002D59A4 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		61A29B47261F2E93007D974E /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectScreenLoad.swift; sourceTree = "<group>"; };
+		61BFCB68275C0E750023A6DA /* MoewProjectDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoewProjectDataSource.swift; sourceTree = "<group>"; };
+		61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectGraph.swift; sourceTree = "<group>"; };
 		61DE936A261F2D8600DAC912 /* ProfileScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenLoad.swift; sourceTree = "<group>"; };
 		61DE936C261F2D9A00DAC912 /* ProfileGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGraph.swift; sourceTree = "<group>"; };
 		61DE936E261F2DB200DAC912 /* ProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 		61667B262732908B005D4DAF /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				61BFCB65275BD15E0023A6DA /* MoreProjectInfo */,
 				61ED0934274531D1006EAE4A /* Filter */,
 				613AC21D2736CB6B00CCCC40 /* Tinder */,
 				61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */,
@@ -246,6 +253,16 @@
 				61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */,
 			);
 			path = Projects;
+			sourceTree = "<group>";
+		};
+		61BFCB65275BD15E0023A6DA /* MoreProjectInfo */ = {
+			isa = PBXGroup;
+			children = (
+				61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */,
+				61BFCB68275C0E750023A6DA /* MoewProjectDataSource.swift */,
+				61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */,
+			);
+			path = MoreProjectInfo;
 			sourceTree = "<group>";
 		};
 		61DE9367261F2D5900DAC912 /* User */ = {
@@ -663,6 +680,7 @@
 				6583E0EF2562FE7D006DCAB8 /* TabBarModelBuilder.swift in Sources */,
 				61ED09332744FB52006EAE4A /* ListProjectsGalleryCell.swift in Sources */,
 				65E5094225FE48840080B04C /* TutorialView.swift in Sources */,
+				61BFCB69275C0E750023A6DA /* MoewProjectDataSource.swift in Sources */,
 				652F9EC525ABAF3100707999 /* DatePickerView.swift in Sources */,
 				652F9ECD25B7522C00707999 /* DateExtensions.swift in Sources */,
 				614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */,
@@ -671,6 +689,7 @@
 				61A29B48261F2E93007D974E /* ProjectCell.swift in Sources */,
 				65E5092225F444930080B04C /* AuthServices.swift in Sources */,
 				6537D0472598FAEC00079201 /* SessionManagerBuilder.swift in Sources */,
+				61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */,
 				618EC715263C423B002D59A4 /* ProfileModel.swift in Sources */,
 				6537D0372598D6E600079201 /* Variable+Property.swift in Sources */,
 				614D5EE125ACBD0A0065AD1E /* VMixScreenLoad.swift in Sources */,
@@ -714,6 +733,7 @@
 				652F9EB525AA73D100707999 /* TimetableItemCell.swift in Sources */,
 				61DE9379261F2E4700DAC912 /* ProjectModel.swift in Sources */,
 				61DE936B261F2D8600DAC912 /* ProfileScreenLoad.swift in Sources */,
+				61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */,
 				652F9F3E25B8C43D00707999 /* TouchGestureRecognizer.swift in Sources */,
 				652F9EA025A8AEE400707999 /* MenuItemCell.swift in Sources */,
 				65E5093F25FE281E0080B04C /* TutorialViewModel.swift in Sources */,

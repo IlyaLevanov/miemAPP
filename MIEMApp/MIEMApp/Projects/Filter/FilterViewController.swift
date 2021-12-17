@@ -14,15 +14,18 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   private let bottomInset: Variable<CGFloat>
   var selectedType: String?
   var selectedStatus: String?
+  var vacancyFlag: Bool?
   var types = [String]()
   var status = [String]()
   var isType: Bool?
+  let parentVC: ProjectsScreenLoad?
   
 
-  init(bottomInset: Variable<CGFloat>, types: [String], status: [String]) {
+  init(bottomInset: Variable<CGFloat>, types: [String], status: [String], parentVC: ProjectsScreenLoad) {
     self.bottomInset = bottomInset
     self.types = types
     self.status = status
+    self.parentVC = parentVC
 //    self.types = ["прогр", "нир"]
 //    self.status = ["готов"]
   
@@ -227,14 +230,15 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
   }
   
-
-  
  
   override func viewWillLayoutSubviews() {
     controller.view.frame = CGRect(x: 0, y:UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350)
   }
   
+
+  
   func setUp() {
+    
     
     controller.view.backgroundColor = .white
     controller.view.layer.cornerRadius = 16
@@ -282,11 +286,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     vacancyLable.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -padding).isActive = true
     vacancyLable.heightAnchor.constraint(equalToConstant: 30).isActive = true
     
-    
-    
-    
-    
-    
+
     controller.view.addSubview(tinderButton)
     tinderButton.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor, constant: -bottomInset.value).isActive = true
     tinderButton.heightAnchor.constraint(equalToConstant: self.measureFrameForText("Hello").height + padding).isActive = true
@@ -309,12 +309,21 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   
   @objc
   func showResults() {
-    
+    self.dismiss(animated: false, completion: (self.filter))
+  }
+  
+  func filter(){
+    if vacancyCheckBox.isEnabled {
+      self.vacancyFlag = true
+    } else {
+      self.vacancyFlag = false
+    }
+    self.parentVC!.filter(type: self.selectedType ?? "Любой", status: selectedStatus ?? "Любой", vacancy: vacancyFlag ?? false)
   }
   
   
   private func openTinderView() {
-    let tinderViewController = TinderViewController()
+    let tinderViewController = TinderViewController(model: (self.parentVC?.model) ?? [])
     tinderViewController.view.backgroundColor = .brown
     self.modalPresentationStyle = .popover
     self.present(tinderViewController, animated: true, completion: nil)
