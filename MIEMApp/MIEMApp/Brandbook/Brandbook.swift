@@ -54,12 +54,13 @@ enum Brandbook {
     }
     
     enum CameraTutorial {
-      static let page1 = UIImage(imageLiteralResourceName: "Page1")
-      static let page2 = UIImage(imageLiteralResourceName: "Page2")
-      static let page3 = UIImage(imageLiteralResourceName: "Page3")
-      static let page4 = UIImage(imageLiteralResourceName: "Page4")
-      static let page5 = UIImage(imageLiteralResourceName: "Page5")
-      static let page67 = UIImage(imageLiteralResourceName: "Page67")
+      
+      static let page1 = UIImage(imageLiteralResourceName: "page1")
+      static let page2 = UIImage(imageLiteralResourceName: "page2")
+      static let page3 = UIImage(imageLiteralResourceName: "page3")
+      static let page4 = UIImage(imageLiteralResourceName: "page4")
+      static let page5 = UIImage(imageLiteralResourceName: "page5")
+      static let page67 = UIImage(imageLiteralResourceName: "page67")
     }
     
     static let appLogo = UIImage(imageLiteralResourceName: "AppLogo")
