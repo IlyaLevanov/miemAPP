@@ -15,6 +15,11 @@ class LikedViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
         print(likedCardsData)
+        print("kek")
+//      for project in likedCardsData {
+//        print(project)
+//      }
+      print(likedCardsData[0])
     }
     
 }

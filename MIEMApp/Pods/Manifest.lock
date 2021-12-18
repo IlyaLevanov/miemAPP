@@ -19,6 +19,7 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
+  - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - BEMCheckBox
   - EzPopup
   - GoogleSignIn
+  - TinyConstraints
 
 SPEC REPOS:
   trunk:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - TinyConstraints
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
@@ -45,7 +48,8 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: c78775e22c305fe14da3baa91c4a29412182e430
+PODFILE CHECKSUM: 0bb308a9ccfda1d02ec7237d0e9d4207084c09c2
 
 COCOAPODS: 1.10.0
