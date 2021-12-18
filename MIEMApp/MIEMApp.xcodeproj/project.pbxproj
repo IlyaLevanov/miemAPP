@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		364103503FF82B3F090F2C88 /* Pods_MIEMApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CB8EDF93A598E58B4E45740 /* Pods_MIEMApp.framework */; };
+		575257A6276E282A00B9CA35 /* ListLikedGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575257A5276E282A00B9CA35 /* ListLikedGalleryCell.swift */; };
 		6134A62D2573ED00009D8933 /* AboutScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */; };
 		613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */; };
 		614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614939E426B008350068A0EA /* ApplicationMoreInfo.swift */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		154192C2FBDFCBE240CA26F0 /* Pods-MIEMApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MIEMApp.debug.xcconfig"; path = "Target Support Files/Pods-MIEMApp/Pods-MIEMApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3CB8EDF93A598E58B4E45740 /* Pods_MIEMApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIEMApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		575257A5276E282A00B9CA35 /* ListLikedGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLikedGalleryCell.swift; sourceTree = "<group>"; };
 		6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreenLoad.swift; sourceTree = "<group>"; };
 		613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderViewController.swift; sourceTree = "<group>"; };
 		614939E426B008350068A0EA /* ApplicationMoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMoreInfo.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			children = (
 				613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */,
 				61DA00BC276A1E2D0057B4FE /* LikedViewController.swift */,
+				575257A5276E282A00B9CA35 /* ListLikedGalleryCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				575257A6276E282A00B9CA35 /* ListLikedGalleryCell.swift in Sources */,
 				65E5092625F44ADC0080B04C /* User.swift in Sources */,
 				652F9F8825BDC8D200707999 /* CameraListModel.swift in Sources */,
 				65E5093525F5B62E0080B04C /* RecordModel.swift in Sources */,
