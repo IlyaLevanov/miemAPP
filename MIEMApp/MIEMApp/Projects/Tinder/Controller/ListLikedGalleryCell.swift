@@ -16,6 +16,8 @@ class ListLikedGalleryCell: UICollectionViewCell {
   var requirementsStackView = UIStackView()
   var count = 0
   
+ 
+  
   let idLabel: UILabel = {
       let label = UILabel()
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
@@ -24,8 +26,11 @@ class ListLikedGalleryCell: UICollectionViewCell {
       return label
   }()
   
-  let nameLabel: UILabel = {
-      let label = UILabel()
+  let nameLabel: UITextView = {
+      let label = UITextView()
+      label.isEditable = false
+      label.showsVerticalScrollIndicator = false
+      label.showsHorizontalScrollIndicator = false
       label.textColor = .black
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
@@ -67,55 +72,22 @@ class ListLikedGalleryCell: UICollectionViewCell {
     addSubview(nameLabel)
     addSubview(vacancyLabel)
     addSubview(vacancyLbl)
-    addSubview(requirementsTxt)
-    addSubview(requirementsStackView)
-    
-      idLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
-      idLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+
+    idLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
+    idLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
       
-      nameLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: small_padding).isActive = true
-      nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
-      nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    nameLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: small_padding).isActive = true
+    nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
+    nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
     
-      vacancyLbl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: padding).isActive = true
-      vacancyLbl.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    vacancyLbl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: padding).isActive = true
+    vacancyLbl.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
 
-      vacancyLabel.topAnchor.constraint(equalTo: vacancyLbl.bottomAnchor, constant: 5).isActive = true
-      vacancyLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-      vacancyLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
+    vacancyLabel.topAnchor.constraint(equalTo: vacancyLbl.bottomAnchor, constant: 5).isActive = true
+    vacancyLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    vacancyLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
     
-      requirementsTxt.topAnchor.constraint(equalTo: vacancyLabel.bottomAnchor, constant: padding).isActive = true
-      requirementsTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-    
-    for requirement in dataSource?.vacancy_disciplines ?? [] {
-        count += 1
-        if count > 3 {
-            break
-        }
-        let requirementLabel = UILabel()
-        requirementLabel.text = "\(requirement)"
-        requirementLabel.backgroundColor = .white
-        requirementLabel.textColor = .systemBlue
-        requirementLabel.layer.cornerRadius = 10
-        requirementLabel.layer.borderColor = UIColor.systemBlue.cgColor
-        requirementLabel.layer.borderWidth = 2.0
-        requirementLabel.textAlignment = .center
-        requirementLabel.font = UIFont.systemFont(ofSize: 18)
-        requirementLabel.numberOfLines = 0
-        requirementLabel.adjustsFontSizeToFitWidth = true
-        requirementsStackView.addArrangedSubview(requirementLabel)
-        
-    }
-    
-      requirementsStackView.axis = .vertical
-      requirementsStackView.distribution = .fillEqually
-      requirementsStackView.alignment = .fill
-      requirementsStackView.spacing = 5
 
-      requirementsStackView.translatesAutoresizingMaskIntoConstraints = false
-      requirementsStackView.topAnchor.constraint(equalTo: requirementsTxt.bottomAnchor).isActive = true
-      requirementsStackView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-  
   }
   
   var height: CGFloat?

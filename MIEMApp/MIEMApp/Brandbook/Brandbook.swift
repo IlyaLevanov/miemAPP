@@ -25,6 +25,7 @@ enum Brandbook {
     static let blueStatus = UIColor(red: 65/255, green: 129/255, blue: 230/255, alpha: 1)
     static let greenStatus = UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 0.50)
     static let greenBackround = UIColor(red: 196/255, green: 225/255, blue: 154/255, alpha: 0.30)
+    static let darkGreen = UIColor(red: 49/255, green: 87/255, blue: 52/255, alpha: 1)
     
   }
   

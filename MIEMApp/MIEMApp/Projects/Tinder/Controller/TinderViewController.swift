@@ -12,7 +12,7 @@ class TinderViewController: UIViewController {
 
     //MARK: - Properties
     
-     var viewModelData: [CardDataModel] = []
+    var viewModelData: [CardDataModel] = []
     var stackContainer: StackContainerView!
   
   
