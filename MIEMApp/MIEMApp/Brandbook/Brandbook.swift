@@ -45,10 +45,11 @@ enum Brandbook {
       static let vmixMenuIcon = UIImage(imageLiteralResourceName: "VmixMenuIcon")
       static let aboutMenuIcon = UIImage(imageLiteralResourceName: "AboutMenuIcon")
       static let userMenuIcon = UIImage(imageLiteralResourceName: "UserMenuIcon")
-       static let projectsMenuIcon = UIImage(imageLiteralResourceName: "ProjectsMenuIcon")
+      static let projectsMenuIcon = UIImage(imageLiteralResourceName: "ProjectsMenuIcon")
       
       static let closeIcon = UIImage(imageLiteralResourceName: "CloseIcon").withRenderingMode(.alwaysTemplate)
       
+      static let userProfileIcon = UIImage(imageLiteralResourceName: "UserProfileIcon")
       static let emailIcon = UIImage(imageLiteralResourceName: "EmailIcon").withRenderingMode(.alwaysTemplate)
       static let departIcon = UIImage(imageLiteralResourceName: "DepartmentIcon").withRenderingMode(.alwaysTemplate)
     }

@@ -404,7 +404,7 @@ var controller: UIViewController {
       
     }
       else {
-      self.profileImageView.image = Brandbook.Images.Icons.closeIcon
+      self.profileImageView.image = Brandbook.Images.Icons.userProfileIcon
     }
   }
   
