@@ -183,7 +183,8 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         cell.backgroundColor = .white
         
         
-        cell.nameLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(currentProject?.nameRus ?? "").height + 3*padding).isActive = true
+//        cell.nameLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(currentProject?.nameRus ?? "").height + 3*padding).isActive = true
+    cell.nameLabel.heightAnchor.constraint(equalToConstant: ProjectsScreenLoad.height(text: cell.nameLabel.text, font: cell.nameLabel.font!, width: cell.frame.width).height).isActive = true
         
         return cell
   }
@@ -200,7 +201,6 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   func open_filter() {
     
     let filterViewController = FilterViewController(bottomInset: self.bottomInset, types: self.types ?? [], status: self.status ?? [], parentVC: self)
-//    self.modalPresentationStyle = .overCurrentContext
     self.modalPresentationStyle = .popover
     self.present(filterViewController, animated: false, completion: nil)
   }
@@ -297,4 +297,19 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   
   
   
+}
+extension ProjectsScreenLoad {
+
+  static func height(text: String?, font: UIFont, width: CGFloat) -> CGRect {
+      var currentHeight: CGRect!
+
+      var textView  = UITextView(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+      textView.text = text
+      textView.font = font
+      textView.sizeToFit()
+      currentHeight = textView.frame
+
+      return currentHeight
+  }
+
 }
