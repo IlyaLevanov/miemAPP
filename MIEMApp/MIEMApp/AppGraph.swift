@@ -18,7 +18,6 @@ final class AppGraph {
   private let timetableGraph: TimetableGraph
   private let controlGraph: ControlGraph
   private let recordGraph: RecordGraph
-  private let vmixGraph: VMixGraph
   private let profileGraph: ProfileGraph
   private let projectsGraph: ProjectsGraph
   
@@ -46,7 +45,6 @@ final class AppGraph {
       bottomInset: tabBarController.tabBarHeight,
       user: settings.user.asVariable()
     )
-    vmixGraph = VMixGraph(bottomInset: tabBarController.tabBarHeight)
     projectsGraph = ProjectsGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     authGraph = AuthGraph(
@@ -82,7 +80,6 @@ final class AppGraph {
       controlGraph.cameraScreen,
       controlGraph.listScreen,
       recordGraph.screen,
-      vmixGraph.screen,
       projectsGraph.screen,
       profileGraph.screen,
       Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut))
