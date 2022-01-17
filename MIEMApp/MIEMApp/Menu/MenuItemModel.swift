@@ -8,7 +8,6 @@
 import UIKit
 
 public enum MenuItemKind: Int {
-  case vmix
   case control
   case about
   case profile

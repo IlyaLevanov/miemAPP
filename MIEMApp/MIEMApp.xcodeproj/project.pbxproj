@@ -12,7 +12,6 @@
 		6134A62D2573ED00009D8933 /* AboutScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */; };
 		613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */; };
 		614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614939E426B008350068A0EA /* ApplicationMoreInfo.swift */; };
-		614D5EE125ACBD0A0065AD1E /* VMixScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614D5EE025ACBD0A0065AD1E /* VMixScreenLoad.swift */; };
 		614D5EE425AEF6560065AD1E /* RecordScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */; };
 		61667B28273290B5005D4DAF /* ProjectsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B27273290B5005D4DAF /* ProjectsGraph.swift */; };
 		61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */; };
@@ -63,7 +62,6 @@
 		652F9F4625B9B8A800707999 /* CrosshairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F4525B9B8A500707999 /* CrosshairView.swift */; };
 		652F9F4C25BA12E300707999 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F4B25BA12E300707999 /* Button.swift */; };
 		652F9F6725BDB0CE00707999 /* RecordGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F6625BDB0CE00707999 /* RecordGraph.swift */; };
-		652F9F6A25BDB10100707999 /* VMixGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F6925BDB10100707999 /* VMixGraph.swift */; };
 		652F9F7925BDBE5D00707999 /* CameraListHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F7125BDBE5C00707999 /* CameraListHeaders.swift */; };
 		652F9F7B25BDBE5D00707999 /* CameraListGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F7325BDBE5C00707999 /* CameraListGraph.swift */; };
 		652F9F7C25BDBE5D00707999 /* CameraListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9F7425BDBE5C00707999 /* CameraListDataSource.swift */; };
@@ -106,7 +104,6 @@
 		6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreenLoad.swift; sourceTree = "<group>"; };
 		613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderViewController.swift; sourceTree = "<group>"; };
 		614939E426B008350068A0EA /* ApplicationMoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMoreInfo.swift; sourceTree = "<group>"; };
-		614D5EE025ACBD0A0065AD1E /* VMixScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMixScreenLoad.swift; sourceTree = "<group>"; };
 		614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScreenLoad.swift; sourceTree = "<group>"; tabWidth = 2; };
 		61667B27273290B5005D4DAF /* ProjectsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsGraph.swift; sourceTree = "<group>"; };
 		61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsScreenLoad.swift; sourceTree = "<group>"; };
@@ -159,7 +156,6 @@
 		652F9F4525B9B8A500707999 /* CrosshairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairView.swift; sourceTree = "<group>"; };
 		652F9F4B25BA12E300707999 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		652F9F6625BDB0CE00707999 /* RecordGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGraph.swift; sourceTree = "<group>"; };
-		652F9F6925BDB10100707999 /* VMixGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMixGraph.swift; sourceTree = "<group>"; };
 		652F9F7025BDBE5C00707999 /* CameraListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraListModel.swift; sourceTree = "<group>"; };
 		652F9F7125BDBE5C00707999 /* CameraListHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraListHeaders.swift; sourceTree = "<group>"; };
 		652F9F7325BDBE5C00707999 /* CameraListGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraListGraph.swift; sourceTree = "<group>"; };
@@ -234,15 +230,6 @@
 				61DA00B2276A1CCC0057B4FE /* Protocols */,
 			);
 			path = Tinder;
-			sourceTree = "<group>";
-		};
-		614D5EDF25ACBCC90065AD1E /* VMix */ = {
-			isa = PBXGroup;
-			children = (
-				614D5EE025ACBD0A0065AD1E /* VMixScreenLoad.swift */,
-				652F9F6925BDB10100707999 /* VMixGraph.swift */,
-			);
-			path = VMix;
 			sourceTree = "<group>";
 		};
 		614D5EE225AEF6450065AD1E /* Record */ = {
@@ -384,7 +371,6 @@
 				65E5093A25FE275E0080B04C /* Tutorials */,
 				65E5090E25F3DDD90080B04C /* Auth */,
 				614D5EE225AEF6450065AD1E /* Record */,
-				614D5EDF25ACBCC90065AD1E /* VMix */,
 				652F9ED925B7926100707999 /* Control */,
 				652F9EAD25AA737200707999 /* Timetable */,
 				61667B262732908B005D4DAF /* Projects */,
@@ -744,7 +730,6 @@
 				61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */,
 				618EC715263C423B002D59A4 /* ProfileModel.swift in Sources */,
 				6537D0372598D6E600079201 /* Variable+Property.swift in Sources */,
-				614D5EE125ACBD0A0065AD1E /* VMixScreenLoad.swift in Sources */,
 				61667B2C273294E5005D4DAF /* ProjectsDataSource.swift in Sources */,
 				652F9F4C25BA12E300707999 /* Button.swift in Sources */,
 				652F9EC825B72FBC00707999 /* TouchDetectingView.swift in Sources */,
@@ -775,7 +760,6 @@
 				61DA00BD276A1E2D0057B4FE /* LikedViewController.swift in Sources */,
 				652F9F6725BDB0CE00707999 /* RecordGraph.swift in Sources */,
 				652F9F7D25BDBE5D00707999 /* CameraItemCell.swift in Sources */,
-				652F9F6A25BDB10100707999 /* VMixGraph.swift in Sources */,
 				65E5094825FE67250080B04C /* CameraTutorialPages.swift in Sources */,
 				61ED0936274531E3006EAE4A /* FilterViewController.swift in Sources */,
 				6583E0DD2561F0DA006DCAB8 /* Wireframe.swift in Sources */,

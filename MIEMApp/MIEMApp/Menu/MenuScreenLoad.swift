@@ -112,14 +112,6 @@ extension MenuScreenLoad: ScrollOffsetProviding {
 private extension MenuItemKind {
   func makeModel(wireframe: Wireframe) -> MenuItemModel {
     switch self {
-    case .vmix:
-      return MenuItemModel(
-        icon: Brandbook.Images.Icons.vmixMenuIcon,
-        title: "VMix",
-        action: {
-          wireframe.showVmixScreen()
-        }
-      )
     case .control:
       return MenuItemModel(
         icon: Brandbook.Images.Icons.controlMenuIcon,

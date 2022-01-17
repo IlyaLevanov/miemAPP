@@ -43,7 +43,6 @@ enum Brandbook {
       static let zoomInIcon = UIImage(imageLiteralResourceName: "ZoomInIcon").withRenderingMode(.alwaysTemplate)
       
       static let controlMenuIcon = UIImage(imageLiteralResourceName: "AppLogo")
-      static let vmixMenuIcon = UIImage(imageLiteralResourceName: "VmixMenuIcon")
       static let aboutMenuIcon = UIImage(imageLiteralResourceName: "AboutMenuIcon")
       static let userMenuIcon = UIImage(imageLiteralResourceName: "UserMenuIcon")
       static let projectsMenuIcon = UIImage(imageLiteralResourceName: "ProjectsMenuIcon")
