@@ -57,7 +57,7 @@ final class AuthScreenLoad: UIViewController, ScreenPayload {
     signInButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding).isActive = true
     signInButton.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
     
-    let signInButtonCabinet = Button("Авторизоваться через личный кабинет")
+    let signInButtonCabinet = Button("Авторизоваться")
     signInButtonCabinet.addTarget(self, action: #selector(onSignInCabClicked), for: .touchUpInside)
     signInButtonCabinet.translatesAutoresizingMaskIntoConstraints = false
     controller.view.addSubview(signInButtonCabinet)

@@ -149,7 +149,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     } else {
       id = model![indexPath.row].id
     }
-    let moreVC = MoreProjectScreenLoad(id: id)
+    let moreVC = MoreProjectScreenLoad()
     self.modalPresentationStyle = .popover
     self.present(moreVC, animated: true, completion: nil)
     

@@ -56,7 +56,8 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
 
     let lableBottom = UILabel()
     let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "🤡"
-    lableBottom.text = "Версия 1.0 (\(build))"
+    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "🤡"
+    lableBottom.text = "Версия \(version) (\(build))"
     lableBottom.font = lableBottom.font.withSize(Brandbook.TextSize.normal)
     lableBottom.textColor = Brandbook.Colors.grey
     lableBottom.translatesAutoresizingMaskIntoConstraints = false
