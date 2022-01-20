@@ -72,10 +72,19 @@ class MoreProjectScreenLoad: UIViewController {
     var linksStackView = UIStackView()
     var vacanciesLabel = UILabel()
     var vacanciesStackView = UIStackView()
+  
+    let id: Int
 
-
-
-
+    init(id: Int) {
+      self.id = id
+      super.init(nibName: nil, bundle: nil)
+      
+    }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +128,7 @@ class MoreProjectScreenLoad: UIViewController {
         idLabel.textAlignment = .left
         idLabel.font = UIFont.systemFont(ofSize: 18)
         idLabel.numberOfLines = 0
-        idLabel.text = "#207"
+        idLabel.text = String(id)
         
         idLabel.translatesAutoresizingMaskIntoConstraints = false
         idLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
@@ -405,7 +414,7 @@ class MoreProjectScreenLoad: UIViewController {
 
         for i in 0..<vacancyNames.count {
           
-            let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i])
+            let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i], id: id)
             vacanciesStackView.addArrangedSubview(vacancyView)
             vacancyView.clipsToBounds = true
             vacancyView.backgroundColor = .white
@@ -444,6 +453,8 @@ class VacancyView: UIView {
     
     var mandatorySkills = [""]
     var desirableSkills = [""]
+  
+    var id: Int
 
     var vacancyNameLabel: UILabel = {
         let label = UILabel()
@@ -511,7 +522,8 @@ class VacancyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(mandatorySkills: [String], desirableSkills: [String]) {
+  init(mandatorySkills: [String], desirableSkills: [String], id: Int) {
+        self.id = id
         super.init(frame: CGRect.zero)
         self.mandatorySkills = mandatorySkills
         self.desirableSkills = desirableSkills
@@ -605,9 +617,12 @@ class VacancyView: UIView {
     }
 
     //есть заглушка
-    @objc func didTapRegisterButton(sender : AnyObject) {
-        if let url = URL(string: "http://www.google.com"){
-            UIApplication.shared.open(url) }
+    @objc func didTapRegisterButton() {
+      
+      guard let url = URL(string: "https://cabinet.miem.hse.ru/#/project/\(id)/vacancies") else {return}
+      
+      UIApplication.shared.open(url)
+      
     }
         
 }
