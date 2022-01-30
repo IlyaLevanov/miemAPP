@@ -19,6 +19,9 @@ struct ProjectsListModel: Decodable, Equatable {
   let head: String
   let typeDesc: String
   let vacancies: Int
+  let vacancyData: [String]
+  let team: [String]
+  
 }
 
 final class ProjectsDataSource {
@@ -86,6 +89,7 @@ final class ProjectsDataSource {
     
       var projectsListModel = [ProjectsListModel]()
       projectsListModel = parsedResponse.data
+      print(projectsListModel)
       
       self.onUpdate?(projectsListModel)
       self.onUpdateTypes?(self.types)

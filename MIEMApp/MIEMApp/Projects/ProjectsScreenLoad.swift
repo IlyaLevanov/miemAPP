@@ -141,17 +141,51 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print(indexPath)
-    print(model![indexPath.row])
+    
     let id: Int
+    let nameRus: String
+    let vacancyData: [String]
+    let team: [String]
+    let status: String
+  
     if isFiltering {
       id = filteredProjects[indexPath.row].id
+      nameRus = filteredProjects[indexPath.row].nameRus
+      vacancyData = filteredProjects[indexPath.row].vacancyData
+      team = filteredProjects[indexPath.row].team
+      status = filteredProjects[indexPath.row].statusDesc
     } else {
       id = model![indexPath.row].id
+      nameRus = model![indexPath.row].nameRus
+      vacancyData = model![indexPath.row].vacancyData
+      team = model![indexPath.row].team
+      status = model![indexPath.row].statusDesc
     }
-    let moreVC = MoreProjectScreenLoad(id: id)
+    
+    let moreProjectDataSource = MoreProjectDataSource(id: id)
+    moreProjectDataSource.setNeedsUpdate()
+    let moreProjectScreeLoad = MoreProjectScreenLoad(refreshAction: moreProjectDataSource.setNeedsUpdate, id: id)
+    
+    moreProjectDataSource.setOnUpdateHeader(onUpdate: {
+      print("model in update=\($0)")
+      moreProjectScreeLoad.modelHeader = $0 })
+    
+    moreProjectDataSource.setOnUpdateBody(onUpdate: {
+      moreProjectScreeLoad.modelBody = $0
+    })
+    
+    moreProjectDataSource.setOnUpdateVacancy(onUpdate: { moreProjectScreeLoad.modelVacancy = $0
+      
+    })
+    
+    moreProjectDataSource.setOnUpdateTeam(onUpdate: {
+      moreProjectScreeLoad.modelTeam = $0
+    })
+    
+    
+    
     self.modalPresentationStyle = .popover
-    self.present(moreVC, animated: true, completion: nil)
+    self.present(moreProjectScreeLoad, animated: true, completion: moreProjectScreeLoad.reloadViews)
     
   }
   

@@ -1,45 +1,3 @@
-////
-////  MoreProjectInfo.swift
-////  MIEMApp
-////
-////  Created by Melanie Kofman on 04.12.2021.
-////
-//
-//import UIKit
-//
-//class MoreProjectScreenLoad: UIViewController {
-//  var controller: UIViewController {
-//    self
-//  }
-//
-//  let idLabel: UILabel = {
-//    let label = UILabel()
-//    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal)
-//    label.textColor = UIColor.black
-//    label.translatesAutoresizingMaskIntoConstraints = false
-//    return label
-//  }()
-//
-//  let id: Int
-//
-//  init(id: Int) {
-//    self.id = id
-//    super.init(nibName: nil, bundle: nil)
-//    setUpComponents()
-//  }
-//
-//  required init?(coder: NSCoder) {
-//    fatalError("init(coder:) has not been implemented")
-//  }
-//
-//  func setUpComponents() {
-//    controller.view.backgroundColor = .blue
-//    controller.view.addSubview(idLabel)
-//    idLabel.topAnchor.constraint(equalTo: controller.view.topAnchor, constant: 16).isActive = true
-//    idLabel.text = String(id)
-//  }
-//}
-
 
 //
 //  ViewController.swift
@@ -52,6 +10,9 @@ import UIKit
 import Foundation
 
 class MoreProjectScreenLoad: UIViewController {
+  
+
+  
   var controller: UIViewController {
       self
     }
@@ -73,10 +34,22 @@ class MoreProjectScreenLoad: UIViewController {
     var vacanciesLabel = UILabel()
     var vacanciesStackView = UIStackView()
   
+    var modelHeader: ProjectHeaderModel?
+    var modelBody: ProjectBodyModel?
+    var modelVacancy: [VacancyInfoModel]?
+    var modelTeam: ProjectMemberResponseModel?
+  
+  
+    private let refreshAction: () -> Void
+    
+
+  
     let id: Int
 
-    init(id: Int) {
+  
+  init(refreshAction: @escaping () -> Void, id: Int) {
       self.id = id
+      self.refreshAction = refreshAction
       super.init(nibName: nil, bundle: nil)
       
     }
@@ -84,7 +57,6 @@ class MoreProjectScreenLoad: UIViewController {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,12 +77,18 @@ class MoreProjectScreenLoad: UIViewController {
         configureLinksStackView()
         configureVacanciesLabel()
         configureVacanciesStackView()
+      
+      scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
+      scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+      scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: vacanciesStackView.bottomAnchor).isActive = true
     }
 
     func configureScrollView(){
+      
         view.addSubview(scrollView)
         scrollView.backgroundColor = .white
-        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 2200)
+//      MARK: change
+//        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 2500)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -119,6 +97,28 @@ class MoreProjectScreenLoad: UIViewController {
         scrollView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0).isActive = true
         guide.bottomAnchor.constraint(equalToSystemSpacingBelow: scrollView.bottomAnchor, multiplier: 1.0).isActive = true
     }
+  
+  func reloadViews() {
+      
+      controller.reloadInputViews()
+      configureScrollView()
+      configureIdLabel()
+      configureProjectNameLabel()
+      configureSatusLabel()
+      configureMailButton()
+      configureTeamLabel()
+      configureStackView()
+      configureInfoLabel()
+      configureAimLabel()
+      configureAimTextLabelLabel()
+      configureAnnotationLabel()
+      configureAnnotationTextLabelLabel()
+      configureLinksLabel()
+      configureLinksStackView()
+      configureVacanciesLabel()
+      configureVacanciesStackView()
+    
+  }
     
     //есть заглушка
     func configureIdLabel() {
@@ -128,7 +128,7 @@ class MoreProjectScreenLoad: UIViewController {
         idLabel.textAlignment = .left
         idLabel.font = UIFont.systemFont(ofSize: 18)
         idLabel.numberOfLines = 0
-        idLabel.text = String(id)
+        idLabel.text = modelHeader?.number
         
         idLabel.translatesAutoresizingMaskIntoConstraints = false
         idLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
@@ -144,7 +144,7 @@ class MoreProjectScreenLoad: UIViewController {
         projectName.textAlignment = .left
         projectName.font = UIFont.boldSystemFont(ofSize: 20)
         projectName.numberOfLines = 0
-        projectName.text = "Программно-аппаратный комплекс проведения входного контроля источников вторичного электропитания"
+        projectName.text = modelHeader?.nameRus
         
         projectName.translatesAutoresizingMaskIntoConstraints = false
         projectName.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
@@ -162,7 +162,7 @@ class MoreProjectScreenLoad: UIViewController {
         statusLabel.numberOfLines = 1
         statusLabel.layer.masksToBounds = true
         statusLabel.layer.cornerRadius = 4
-        statusLabel.text = "Рабочий"
+        statusLabel.text = modelHeader?.statusLabel
         
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
@@ -175,7 +175,7 @@ class MoreProjectScreenLoad: UIViewController {
     func configureMailButton() {
         scrollView.addSubview(mailButton)
         mailButton.backgroundColor = .white
-        mailButton.setTitle("207@miem.hse.ru", for: .normal)
+        mailButton.setTitle(modelHeader?.googleGroup, for: .normal)
         mailButton.setTitleColor(.systemBlue, for: .normal)
         mailButton.contentHorizontalAlignment = .left
         mailButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -203,6 +203,10 @@ class MoreProjectScreenLoad: UIViewController {
         teamLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20).isActive = true
         teamLabel.topAnchor.constraint(equalTo: mailButton.bottomAnchor, constant: 15).isActive = true
     }
+  
+  private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+  }
     
     //есть заглушка
     func configureStackView(){
@@ -212,20 +216,56 @@ class MoreProjectScreenLoad: UIViewController {
         stackView.distribution = .equalSpacing
         stackView.spacing = 15
 
-        let arrayOfNames = ["Павел Королев", "Тимур Кармеев"]
-        let arrayOfDescriptions = ["Руководитель проекта", "Инженер-схемотехник"]
+        var arrayOfNames = [String]()
+        var arrayOfDescriptions = [String]()
+        var arrayOfPics = [String]()
+
+      if let model = modelTeam {
+        for i in model.leaders {
+          arrayOfNames.append(i.first_name + " " + i.last_name)
+        }
+        for i in model.activeMembers {
+          arrayOfNames.append(i.first_name + " " + i.last_name)
+        }
+        for i in model.leaders {
+          arrayOfDescriptions.append(i.role)
+        }
+        for i in model.activeMembers {
+          arrayOfDescriptions.append(i.role)
+        }
+        for i in model.leaders {
+          arrayOfPics.append(i.pic)
+        }
+        for i in model.activeMembers {
+          arrayOfPics.append(i.pic)
+        }
+      }
 
         for i in 0..<arrayOfNames.count {
             let stackViewIn = UIStackView()
             stackView.addArrangedSubview(stackViewIn)
             stackViewIn.axis = .horizontal
             stackViewIn.spacing = 10
-            
-            let image = UIImage(named: "avatar.png")
-            let imageView = UIImageView(image: image)
-            stackViewIn.addArrangedSubview(imageView)
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
-            imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.15).isActive = true
+          
+          let url_img = URL(string: arrayOfPics[i])
+          if let url = url_img {
+            getData(from: url) { data, response, error in
+              guard let data = data, error == nil else { return }
+              DispatchQueue.main.async() { [weak self] in
+                
+                
+                let image = UIImage(data: data)
+                let imageView = UIImageView(image: image)
+                imageView.contentMode = .scaleAspectFill
+                imageView.layer.cornerRadius = 30
+                imageView.clipsToBounds = true
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                stackViewIn.addArrangedSubview(imageView)
+                imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+                imageView.widthAnchor.constraint(equalTo: self?.scrollView.widthAnchor ?? self?.controller.view.widthAnchor as! NSLayoutDimension, multiplier: 0.15).isActive = true
+              }
+            }
+          }
 
             
             let stackViewInfo = UIStackView()
@@ -296,7 +336,7 @@ class MoreProjectScreenLoad: UIViewController {
         aimTextLabel.textAlignment = .left
         aimTextLabel.font = UIFont.systemFont(ofSize: 15)
         aimTextLabel.numberOfLines = 0
-        aimTextLabel.text = "Повышение эффективности проведения входного контроля источников вторичного электропитания."
+        aimTextLabel.text = modelBody?.target
         
         aimTextLabel.translatesAutoresizingMaskIntoConstraints = false
         aimTextLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
@@ -327,7 +367,7 @@ class MoreProjectScreenLoad: UIViewController {
         annotationTextLabel.textAlignment = .left
         annotationTextLabel.font = UIFont.systemFont(ofSize: 15)
         annotationTextLabel.numberOfLines = 0
-        annotationTextLabel.text = "На сегодняшний момент, на мировом рынке имеется более 50% источников вторичного электропитания (ИВЭП) несоответствующего качества. Зачастую заявленные производителем параметры и характеристики (электрические, тепловые) не соответствуют реалиям. Поэтому установка такого «некачественного» ИВЭП в состав радиотехнического устройства может привести к его выходу из строя. К тому же, на рынке отсутствуют эффективные программно-аппаратные комплексы, позволяющие проводить входной контроль ИВЭП. В рамках выполнения проекта разрабатывается программно-аппаратный комплекс, который включает в себя два основных компонента: контрольно-измерительный модуль (КИМ) и персональный компьютер (ПК). Первый компонент необходим для измерения характеристик и параметров ИВЭП, формирования управляющих сигналов, коммутации каналов нагрузочных токов, а также для обеспечения передачи данных на ПК. Второй компонент необходим для анализа электрических параметров источников вторичного электропитания и формирования тестовых воздействий в виде электрической нагрузки. Проект подразумевает использование разрабатываемого программно-аппаратного комплекса в качестве лабораторного стенда для проведения практических занятий по дисциплине «Измерение и контроль параметров электронных компонентов и средств».Объект исследования: импульсный источник вторичного электропитания."
+        annotationTextLabel.text = modelBody?.annotation
         
         annotationTextLabel.translatesAutoresizingMaskIntoConstraints = false
         annotationTextLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
@@ -358,13 +398,11 @@ class MoreProjectScreenLoad: UIViewController {
         linksStackView.distribution = .equalSpacing
         linksStackView.spacing = 2
         
-        let myDict = ["Google": "https://www.google.com/",
-                      "Google1": "https://www.google.com/",
-                      "Google2": "https://www.google.com/",
-                      "Google3": "https://www.google.com/",
-                      "Google4": "https://www.google.com/"]
+      let myDict = ["Wiki": modelHeader?.wiki,
+                    "Zulip": modelHeader?.chat]
         
         for (name, link) in myDict {
+          if link != nil {
             let linkButton = UIButton()
             linksStackView.addArrangedSubview(linkButton)
             linkButton.backgroundColor = .white
@@ -374,7 +412,7 @@ class MoreProjectScreenLoad: UIViewController {
             linkButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             linkButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
             linkButton.addTarget(self, action: #selector(didTapLinkButton), for: .touchDown)
-
+          }
         }
 
         linksStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -406,15 +444,21 @@ class MoreProjectScreenLoad: UIViewController {
         vacanciesStackView.distribution = .equalSpacing
         vacanciesStackView.spacing = 5
         
-        let vacancyNames = ["Системный программист", "Системный программист"]
-        let mandatorySkillsArray = [["Знание языка С/С++", "Общее понимание архитектуры микроконтроллеров"],
-                                    ["Знание языка С/С++", "Общее понимание архитектуры микроконтроллеров"]]
-        let desirableSkillsArray = [["Опыт в программировании микроконтроллеров ЗТМ32", "Понимание основ цифровой электроники", "Знание операционной системы Linux"],
-                                    ["Опыт в программировании микроконтроллеров ЗТМ32", "Понимание основ цифровой электроники", "Знание операционной системы Linux"]]
+        var vacancyNames = [String]()
+        var mandatorySkillsArray = [[String]]()
+        var desirableSkillsArray = [[String]]()
 
+      
+      if let model = modelVacancy {
+        for i in model {
+          vacancyNames.append(i.role)
+          mandatorySkillsArray.append(i.disciplines)
+          desirableSkillsArray.append(i.additionally)
+        }
+      }
         for i in 0..<vacancyNames.count {
           
-            let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i], id: id)
+          let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i], id: modelHeader?.id ?? 0)
             vacanciesStackView.addArrangedSubview(vacancyView)
             vacancyView.clipsToBounds = true
             vacancyView.backgroundColor = .white
@@ -441,9 +485,9 @@ class MoreProjectScreenLoad: UIViewController {
     
     //есть заглушка
     @objc func didTapLinkButton(sender : AnyObject) {
-        if let url = URL(string: "http://www.google.com"){
-            UIApplication.shared.open(url) }
-    }
+      if let url = URL(string: modelHeader?.chat ?? modelHeader?.wiki ?? ""){
+          UIApplication.shared.open(url)
+        }
     
 }
 
@@ -625,4 +669,5 @@ class VacancyView: UIView {
       
     }
         
+}
 }
