@@ -112,14 +112,14 @@ extension MenuScreenLoad: ScrollOffsetProviding {
 private extension MenuItemKind {
   func makeModel(wireframe: Wireframe) -> MenuItemModel {
     switch self {
-    case .control:
-      return MenuItemModel(
-        icon: Brandbook.Images.Icons.controlMenuIcon,
-        title: "Управление камерами",
-        action: {
-          wireframe.showControlScreen()
-        }
-      )
+//    case .control:
+//      return MenuItemModel(
+//        icon: Brandbook.Images.Icons.controlMenuIcon,
+//        title: "Управление камерами",
+//        action: {
+//          wireframe.showControlScreen()
+//        }
+//      )
     case .about:
       return MenuItemModel(
         icon: Brandbook.Images.Icons.aboutMenuIcon,
@@ -151,4 +151,4 @@ private extension MenuItemKind {
 
 private let menuItemCellIdentifier = "MenuItemCellIdentifier"
 private let padding = Brandbook.Paddings.normal
-private let elementsInRow: CGFloat = 4
+private let elementsInRow: CGFloat = 3

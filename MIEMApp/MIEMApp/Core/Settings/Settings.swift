@@ -18,7 +18,8 @@ public final class Settings {
   private enum Defaults {
     static let authTokenDefault = ""
     static let userDefault = User(email: "", student: true)
-    static let menuItemsDefault: [MenuItemKind] = [.control, .about, .profile]
+//    static let menuItemsDefault: [MenuItemKind] = [.control, .about, .profile]
+    static let menuItemsDefault: [MenuItemKind] = [.about, .profile]
   }
   
   public let authToken: Property<String>

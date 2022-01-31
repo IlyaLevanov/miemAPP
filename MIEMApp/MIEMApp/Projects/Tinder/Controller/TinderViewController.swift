@@ -43,8 +43,8 @@ class TinderViewController: UIViewController {
     let resetButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Сбросить", for: .normal)
-        button.setTitle("🔄", for: .normal)
+        button.setTitle("Сбросить", for: .normal)
+//        button.setTitle("🔄", for: .normal)
         button.setTitleColor(.white, for: .normal)
       button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
@@ -56,8 +56,8 @@ class TinderViewController: UIViewController {
     let likedButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Избранное", for: .normal)
-        button.setTitle("❤️", for: .normal)
+        button.setTitle("Избранное", for: .normal)
+//        button.setTitle("❤️", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
