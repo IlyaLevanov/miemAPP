@@ -127,6 +127,9 @@ private extension MenuItemKind {
         action: {
           wireframe.pushAboutScreen()
         }
+        
+        
+        
       )
     case .profile:
       return MenuItemModel(
