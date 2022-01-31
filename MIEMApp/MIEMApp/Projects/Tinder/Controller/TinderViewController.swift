@@ -20,7 +20,8 @@ class TinderViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
+      view.backgroundColor = UIColor(patternImage: Brandbook.Images.Icons.tinderBackground2)
         stackContainer = StackContainerView()
         view.addSubview(stackContainer)
         configureStackContainer()
@@ -42,9 +43,10 @@ class TinderViewController: UIViewController {
     let resetButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Сбросить", for: .normal)
+//        button.setTitle("Сбросить", for: .normal)
+        button.setTitle("🔄", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemGreen
+      button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(resetButtonAction), for: .touchDown)
@@ -54,9 +56,10 @@ class TinderViewController: UIViewController {
     let likedButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Избранное", for: .normal)
+//        button.setTitle("Избранное", for: .normal)
+        button.setTitle("❤️", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemGreen
+        button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(likedButtonAction), for: .touchDown)
