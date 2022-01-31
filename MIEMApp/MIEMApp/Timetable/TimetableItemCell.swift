@@ -82,7 +82,7 @@ final class TimetableItemCell: UICollectionViewCell {
     contentView.addSubview(mainStack)
     mainStack.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
     mainStack.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-    wrapperTimeStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1 / widthParts).isActive = true
+    wrapperTimeStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1.2 / widthParts).isActive = true
     if let lastSubview = contentView.subviews.last {
       contentView.bottomAnchor.constraint(equalTo: lastSubview.bottomAnchor, constant: 10).isActive = true
     }

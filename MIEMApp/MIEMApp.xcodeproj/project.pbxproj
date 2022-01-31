@@ -942,11 +942,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.03;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.miem.miemapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "MIEMApp dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_WORKSPACE = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s arm64e";
 			};
 			name = Debug;
 		};
@@ -967,11 +970,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.03;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.miem.miemapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "MIEMApp release";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_WORKSPACE = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s arm64e";
 			};
 			name = Release;
 		};
