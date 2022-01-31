@@ -51,6 +51,21 @@ class LikedViewController: UIViewController, UICollectionViewDelegate, UICollect
     return cell
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let id: Int
+    id = likedCardsData[indexPath.row].project_id
+    let moreProjectGraph = MoreProjectsGraph(id: id)
+    moreProjectGraph.setNeedsUpdate()
+
+    
+    
+    
+    self.modalPresentationStyle = .popover
+    
+    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
+
+  }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: UIScreen.main.bounds.width - padding, height: 200)
   }

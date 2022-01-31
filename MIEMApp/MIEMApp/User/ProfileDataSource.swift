@@ -83,8 +83,7 @@ final class ProfileDataSource {
     
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
           session.request("https://devcabinet.miem.vmnet.top/api/student_profile", method: .get, headers: headers).response { response in
-            print("profile debig print")
-            debugPrint(response)
+          
             
             guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ProfileResponse.self, from: data) else {
 
@@ -104,10 +103,7 @@ final class ProfileDataSource {
     
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
     let url = "https://devcabinet.miem.vmnet.top/api/student/projects/and/applications/my"
-    session.request(url, method: .get, headers: headers).response {
-      print("debugg")
-      debugPrint($0)
-    }
+    
     session.request(url, method: .get, headers: headers).response { response in
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ApplicationResponse.self, from: data) else {
                 return

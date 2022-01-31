@@ -162,31 +162,15 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
       status = model![indexPath.row].statusDesc
     }
     
-    let moreProjectDataSource = MoreProjectDataSource(id: id)
-    moreProjectDataSource.setNeedsUpdate()
-    let moreProjectScreeLoad = MoreProjectScreenLoad(refreshAction: moreProjectDataSource.setNeedsUpdate, id: id)
-    
-    moreProjectDataSource.setOnUpdateHeader(onUpdate: {
-      print("model in update=\($0)")
-      moreProjectScreeLoad.modelHeader = $0 })
-    
-    moreProjectDataSource.setOnUpdateBody(onUpdate: {
-      moreProjectScreeLoad.modelBody = $0
-    })
-    
-    moreProjectDataSource.setOnUpdateVacancy(onUpdate: { moreProjectScreeLoad.modelVacancy = $0
-      
-    })
-    
-    moreProjectDataSource.setOnUpdateTeam(onUpdate: {
-      moreProjectScreeLoad.modelTeam = $0
-    })
+    let moreProjectGraph = MoreProjectsGraph(id: id)
+    moreProjectGraph.setNeedsUpdate()
+
     
     
     
     self.modalPresentationStyle = .popover
-    self.present(moreProjectScreeLoad, animated: true, completion: moreProjectScreeLoad.reloadViews)
     
+    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

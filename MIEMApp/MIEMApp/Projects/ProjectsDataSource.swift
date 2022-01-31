@@ -89,7 +89,6 @@ final class ProjectsDataSource {
     
       var projectsListModel = [ProjectsListModel]()
       projectsListModel = parsedResponse.data
-      print(projectsListModel)
       
       self.onUpdate?(projectsListModel)
       self.onUpdateTypes?(self.types)

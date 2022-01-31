@@ -390,9 +390,7 @@ var controller: UIViewController {
     self.surnameLabel.text = (modelProfile?[0].items.name)?.components(separatedBy: " ")[0]
     self.emailLabel.text = modelProfile?[0].items.email
     self.departLabel.text = modelProfile?[0].items.group
-    print("model Info: ")
-    print(modelProfile?[0].status, (modelProfile?[0].items.name)?.components(separatedBy: " ")[1]
-, (modelProfile?[0].items.name)?.components(separatedBy: " ")[0],  modelProfile?[0].items.email, modelProfile?[0].items.group)
+    
   }
   
   func setImage() {

@@ -99,24 +99,27 @@ class MoreProjectScreenLoad: UIViewController {
     }
   
   func reloadViews() {
-      
-      controller.reloadInputViews()
-      configureScrollView()
-      configureIdLabel()
-      configureProjectNameLabel()
-      configureSatusLabel()
-      configureMailButton()
-      configureTeamLabel()
-      configureStackView()
-      configureInfoLabel()
-      configureAimLabel()
-      configureAimTextLabelLabel()
-      configureAnnotationLabel()
-      configureAnnotationTextLabelLabel()
-      configureLinksLabel()
-      configureLinksStackView()
-      configureVacanciesLabel()
-      configureVacanciesStackView()
+//      DispatchQueue.main.async() {
+        self.controller.reloadInputViews()
+    
+        self.configureScrollView()
+        self.configureIdLabel()
+        self.configureProjectNameLabel()
+        self.configureSatusLabel()
+        self.configureMailButton()
+        self.configureTeamLabel()
+        self.configureStackView()
+        self.configureInfoLabel()
+        self.configureAimLabel()
+        self.configureAimTextLabelLabel()
+        self.configureAnnotationLabel()
+        self.configureAnnotationTextLabelLabel()
+        self.configureLinksLabel()
+        self.configureLinksStackView()
+        self.configureVacanciesLabel()
+        self.configureVacanciesStackView()
+//    }
+    
     
   }
     
@@ -155,7 +158,6 @@ class MoreProjectScreenLoad: UIViewController {
     //есть заглушка
     func configureSatusLabel() {
         scrollView.addSubview(statusLabel)
-        statusLabel.backgroundColor = .systemGreen
         statusLabel.textColor = .white
         statusLabel.textAlignment = .center
         statusLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -163,6 +165,7 @@ class MoreProjectScreenLoad: UIViewController {
         statusLabel.layer.masksToBounds = true
         statusLabel.layer.cornerRadius = 4
         statusLabel.text = modelHeader?.statusLabel
+        decideStatusColor(statusLabel)
         
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
@@ -170,6 +173,15 @@ class MoreProjectScreenLoad: UIViewController {
         statusLabel.widthAnchor.constraint(lessThanOrEqualTo: scrollView.widthAnchor, multiplier: 0.5).isActive = true
         statusLabel.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 5).isActive = true
     }
+  
+  private func decideStatusColor(_ label: UILabel) {
+    if (label.text == ("Готов к работе")) || (label.text == ("Рабочий")){
+      label.backgroundColor = .systemGreen
+    }
+    if (label.text == ("В архиве")) {
+      label.backgroundColor = .systemGray
+    }
+  }
     
     //есть заглушка
     func configureMailButton() {
