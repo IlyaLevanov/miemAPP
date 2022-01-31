@@ -167,7 +167,7 @@ private extension UIDevice {
   static let hasNotch: Bool = {
     switch modelName {
       case "iPhone X", "iPhone XS", "iPhone XS Max", "iPhone XR", "iPhone 11", "iPhone 11 Pro", "iPhone 11 Pro Max",
-           "iPhone 12 mini", "iPhone 12", "iPhone 12 Pro", "iPhone 12 Pro Max":
+      "iPhone 12 mini", "iPhone 12", "iPhone 12 Pro", "iPhone 12 Pro Max", "iPhone 13 Pro", "iPhone 13 Pro Max", "iPhone 13 Mini", "iPhone 13":
         return true
     default:
       return false
@@ -206,6 +206,10 @@ private extension UIDevice {
     case "iPhone13,2":                              return "iPhone 12"
     case "iPhone13,3":                              return "iPhone 12 Pro"
     case "iPhone13,4":                              return "iPhone 12 Pro Max"
+    case "iPhone14,2":                              return "iPhone 13 Pro"
+    case "iPhone14,3":                              return "iPhone 13 Pro Max"
+    case "iPhone14,4":                              return "iPhone 13 Mini"
+    case "iPhone14,5":                              return "iPhone 13"
     case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
     case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad (3rd generation)"
     case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad (4th generation)"
@@ -240,3 +244,4 @@ private extension UIDevice {
     #endif
   }
 }
+

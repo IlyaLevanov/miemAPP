@@ -322,37 +322,37 @@ class RecordScreenLoad: UIViewController, UIPickerViewDelegate, UIPickerViewData
   
     containerView.addSubview(startLabel)
     startLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: padding).isActive = true
-    startLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding).isActive = true
+    startLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding-10).isActive = true
     startLabel.widthAnchor.constraint(equalToConstant: 73).isActive = true
     startLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
   
     containerView.addSubview(stopLabel)
     stopLabel.topAnchor.constraint(equalTo: startLabel.bottomAnchor, constant: padding).isActive = true
-    stopLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding).isActive = true
+    stopLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding-10).isActive = true
     stopLabel.widthAnchor.constraint(equalToConstant: 73).isActive = true
     stopLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
   
     containerView.addSubview(dateLabel)
     dateLabel.topAnchor.constraint(equalTo: stopLabel.bottomAnchor, constant: padding).isActive = true
-    dateLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding).isActive = true
+    dateLabel.leftAnchor.constraint(equalTo: roomTextField.rightAnchor, constant: padding-10).isActive = true
     dateLabel.widthAnchor.constraint(equalToConstant: 73).isActive = true
     dateLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
   
     containerView.addSubview(startTextField)
     startTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: padding).isActive = true
-    startTextField.leftAnchor.constraint(equalTo: startLabel.rightAnchor, constant: padding).isActive = true
+    startTextField.leftAnchor.constraint(equalTo: startLabel.rightAnchor, constant: padding-20).isActive = true
     startTextField.widthAnchor.constraint(equalToConstant: 150).isActive = true
     startTextField.heightAnchor.constraint(equalToConstant: 25).isActive = true
   
     containerView.addSubview(stopTextField)
     stopTextField.topAnchor.constraint(equalTo: startLabel.bottomAnchor, constant: padding).isActive = true
-    stopTextField.leftAnchor.constraint(equalTo: stopLabel.rightAnchor, constant: padding).isActive = true
+    stopTextField.leftAnchor.constraint(equalTo: stopLabel.rightAnchor, constant: padding-20).isActive = true
     stopTextField.widthAnchor.constraint(equalToConstant: 150).isActive = true
     stopTextField.heightAnchor.constraint(equalToConstant: 25).isActive = true
   
     containerView.addSubview(dateTextField)
     dateTextField.topAnchor.constraint(equalTo: stopTextField.bottomAnchor, constant: padding).isActive = true
-    dateTextField.leftAnchor.constraint(equalTo: dateLabel.rightAnchor, constant: padding).isActive = true
+    dateTextField.leftAnchor.constraint(equalTo: dateLabel.rightAnchor, constant: padding-20).isActive = true
     dateTextField.widthAnchor.constraint(equalToConstant: 150).isActive = true
     dateTextField.heightAnchor.constraint(equalToConstant: 25).isActive = true
   

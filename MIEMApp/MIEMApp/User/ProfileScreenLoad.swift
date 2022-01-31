@@ -244,8 +244,8 @@ var controller: UIViewController {
     
     containerView.addSubview(profileStatus)
     profileStatus.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding).isActive = true
-    profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
-    profileStatus.widthAnchor.constraint(equalToConstant: measureFrameForText(profileStatus.text ?? "").width + padding).isActive = true
+    profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
+    profileStatus.widthAnchor.constraint(equalToConstant: 140).isActive = true
 //    profileStatus.heightAnchor.constraint(equalToConstant: measureFrameForText(profileStatus.text ?? "").height + padding/2).isActive = true
     profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding/2).isActive = true
     
@@ -259,9 +259,9 @@ var controller: UIViewController {
     
     containerView.addSubview(chatButton)
     chatButton.topAnchor.constraint(equalTo: surnameLabel.bottomAnchor, constant: padding/2).isActive = true
-    chatButton.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
+    chatButton.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
     chatButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    chatButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    chatButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
     
     containerView.addSubview(emailIcon)
     emailIcon.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
