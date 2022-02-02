@@ -1,20 +1,20 @@
+////
+////  CameraListModel.swift
+////  MIEMApp
+////
+////  Created by Тимофей Фёдоров on 10.01.2021.
+////
 //
-//  CameraListModel.swift
-//  MIEMApp
+//import Foundation
 //
-//  Created by Тимофей Фёдоров on 10.01.2021.
+//struct RoomModel: Equatable {
+//  let room: String
+//  let cameras: [CameraItemModel]
+//}
 //
-
-import Foundation
-
-struct RoomModel: Equatable {
-  let room: String
-  let cameras: [CameraItemModel]
-}
-
-struct CameraItemModel: Decodable, Equatable {
-  let room: String
-  let rtsp: String
-  let name: String
-  let uid: String
-}
+//struct CameraItemModel: Decodable, Equatable {
+//  let room: String
+//  let rtsp: String
+//  let name: String
+//  let uid: String
+//}

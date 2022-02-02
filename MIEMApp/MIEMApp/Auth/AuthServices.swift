@@ -68,7 +68,7 @@ final class AuthServices {
       }
       self.token.value = parsedResponse.data.token
       self.user.value = user
-      self.logInCameras()
+//      self.logInCameras()
       completion(true)
     }
   }
@@ -110,7 +110,7 @@ final class AuthServices {
                 let student = self.getStatus(token: self.token.value, email: parsedResponse.email)
                 let user = User(email: parsedResponse.email, student: student)
                 self.user.value = user
-                self.logInCameras()
+//                self.logInCameras()
                 completion(true)
                 
                 
@@ -146,14 +146,14 @@ final class AuthServices {
     return isStudent
   }
 
-  private func logInCameras() {
-    let headers: HTTPHeaders = ["key": token.value]
-    session.request("http://19111.miem.vmnet.top/login_token", method: .get, headers: headers).response {
-      Logger.shared.log($0.debugDescription)
-      debugPrint($0)
-    }
-    
-  }
+//  private func logInCameras() {
+//    let headers: HTTPHeaders = ["key": token.value]
+//    session.request("http://19111.miem.vmnet.top/login_token", method: .get, headers: headers).response {
+//      Logger.shared.log($0.debugDescription)
+//      debugPrint($0)
+//    }
+//
+//  }
   
   func logOut() {
     let headers: HTTPHeaders = ["x-auth-token": token.value]
