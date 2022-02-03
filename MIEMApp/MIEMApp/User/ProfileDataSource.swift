@@ -130,15 +130,12 @@ final class ProfileDataSource {
     let url = "https://devcabinet.miem.vmnet.top/api/student/projects/and/applications/my"
     
     session.request(url, method: .get, headers: headers).response { response in
-      print("project and apl debug")
-      debugPrint(response)
+
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ApplicationResponse.self, from: data) else {
         
                 return
         }
-      print("proj info studetn")
-      print(parsedResponse.data.projects)
-      print(parsedResponse.data.archive)
+
      
       var projectData = [ProjectItemModel]()
       for i in parsedResponse.data.projects {
@@ -150,8 +147,6 @@ final class ProfileDataSource {
       }
 
       self.onUpdateProject?(projectData)
-      
-//      print(projectData)
 
 
       //applications
@@ -162,8 +157,6 @@ final class ProfileDataSource {
       }
       
       applicatoionsModel.append(ApplicationParsedModel(data: applicationData))
-      print("appl info studetn")
-      print(applicatoionsModel)
 
       self.onUpdateApplication?(applicatoionsModel)
       
@@ -228,7 +221,6 @@ final class ProfileDataSource {
       applicatoionsModel.append(ApplicationParsedModel(data: applicationData))
       self.onUpdateApplication?(applicatoionsModel)
       self.isUpdating = false
-//      ?
     }
   }
   
@@ -239,8 +231,8 @@ final class ProfileDataSource {
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(GitStatistics.self, from: data) else {
         return
       }
-      print("parsed from git")
-      print(parsedResponse.data.stat)
+//      print("parsed from git")
+//      print(parsedResponse.data.stat)
       var gitStatModel: GitStat
       gitStatModel = parsedResponse.data.stat
       self.onUpdateGitStat?(gitStatModel)

@@ -14,6 +14,9 @@ class GitCell: UICollectionViewCell {
   let nameLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = NSTextAlignment.justified
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -33,6 +36,8 @@ class GitCell: UICollectionViewCell {
     return label
   }()
   
+  
+  
   override init(frame: CGRect) {
   super.init(frame: frame)
     
@@ -50,6 +55,12 @@ class GitCell: UICollectionViewCell {
     comitNumber.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: light).isActive = true
     comitNumber.leftAnchor.constraint(equalTo: comitNumberText.rightAnchor, constant: small_padding).isActive = true
     
+    clipsToBounds = false
+    backgroundColor = Brandbook.Colors.yellowColor
+    layer.cornerRadius = 5
+    layer.shadowRadius = 5
+    layer.shadowOffset = CGSize(width: 3, height: 3)
+    layer.shadowOpacity = 0.2
     
   }
   

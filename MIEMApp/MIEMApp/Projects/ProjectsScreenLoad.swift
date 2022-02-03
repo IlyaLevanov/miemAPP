@@ -122,9 +122,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         }
         
       }
-  //      isFiltering = false
-  //      filteredProjects.removeAll()
-  //      filteredProjects = model!
+
 
       collectionView?.reloadData()
     }
@@ -165,9 +163,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     let moreProjectGraph = MoreProjectsGraph(id: id)
     moreProjectGraph.setNeedsUpdate()
 
-    
-    
-    
+  
     self.modalPresentationStyle = .popover
     
     self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
@@ -176,19 +172,11 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListProjectsGalleryCell.reusedId, for: indexPath) as! ListProjectsGalleryCell
     var currentProject: ProjectsListModel?
-
-        
         if isFiltering {
-          
           currentProject = filteredProjects[indexPath.row]
-          
         } else {
-          
           currentProject = model?[indexPath.row]
-          
         }
-        
-        
         cell.idLabel.text = "\(currentProject!.id)"
         cell.nameLabel.text = currentProject?.nameRus
         cell.headLabel.text = currentProject?.head
@@ -197,11 +185,8 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         cell.vacanciesLabel.text = ("\(currentProject!.vacancies) вакансий(я)")
         cell.managerTxt.text = "Руководитель: "
         cell.typeTxt.text = "Тип: "
-    //    cell.backgroundColor = Brandbook.Colors.greenBackround
         cell.backgroundColor = .white
         
-        
-//        cell.nameLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(currentProject?.nameRus ?? "").height + 3*padding).isActive = true
     cell.nameLabel.heightAnchor.constraint(equalToConstant: ProjectsScreenLoad.height(text: cell.nameLabel.text, font: cell.nameLabel.font!, width: cell.frame.width).height).isActive = true
         
         return cell

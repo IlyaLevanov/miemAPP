@@ -123,10 +123,6 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       managerTxt.topAnchor.constraint(equalTo: vacanciesLabel.bottomAnchor, constant: padding).isActive = true
       managerTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
 
-//      headLabel.topAnchor.constraint(equalTo: vacanciesLabel.bottomAnchor, constant: 5).isActive = true
-//      headLabel.leftAnchor.constraint(equalTo: managerTxt.rightAnchor, constant: small_padding).isActive = true
-//      headLabel.heightAnchor.constraint(equalToConstant: measureFrameForText(headLabel.text ?? "").height + light).isActive = true
-//      headLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     
       headLabel.topAnchor.constraint(equalTo: managerTxt.bottomAnchor, constant: 5).isActive = true
       headLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
@@ -138,7 +134,6 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       typeLabel.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
       typeLabel.leftAnchor.constraint(equalTo: typeTxt.rightAnchor, constant: small_padding).isActive = true
     
-//    ListProjectsGalleryCell.self.height = (measureFrameForText(idLabel.text ?? "").height + measureFrameForText(nameLabel.text ?? "").height + measureFrameForText(statusLabel.text ?? "").height + measureFrameForText(vacanciesLabel.text ?? "").height + measureFrameForText(managerTxt.text ?? "").height + measureFrameForText(headLabel.text ?? "").height + measureFrameForText(typeTxt.text ?? "").height + measureFrameForText(typeLabel.text ?? "").height + 7*padding + small_padding + 15)
   }
   
   var height: CGFloat?

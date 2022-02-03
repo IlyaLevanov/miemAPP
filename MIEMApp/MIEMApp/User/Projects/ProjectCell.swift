@@ -122,8 +122,6 @@ class ProjectCell: UICollectionViewCell {
   func setUp() {
     labelNumber.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
     labelNumber.leftAnchor.constraint(equalTo: leftAnchor, constant: padding).isActive = true
-//    labelNumber.widthAnchor.constraint(equalToConstant: measureFrameForText(self.labelNumber.text!).width + padding).isActive = true
-//    labelNumber.heightAnchor.constraint(equalToConstant: measureFrameForText(self.labelNumber.text!).height).isActive = true
     
     labelName.topAnchor.constraint(equalTo: labelNumber.bottomAnchor).isActive = true
     labelName.leftAnchor.constraint(equalTo: leftAnchor, constant: padding).isActive = true

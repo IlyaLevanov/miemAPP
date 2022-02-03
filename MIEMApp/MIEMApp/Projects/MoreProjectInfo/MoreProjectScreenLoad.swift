@@ -41,11 +41,7 @@ class MoreProjectScreenLoad: UIViewController {
   
   
     private let refreshAction: () -> Void
-    
-
-  
     let id: Int
-
   
   init(refreshAction: @escaping () -> Void, id: Int) {
       self.id = id
@@ -87,8 +83,6 @@ class MoreProjectScreenLoad: UIViewController {
       
         view.addSubview(scrollView)
         scrollView.backgroundColor = .white
-//      MARK: change
-//        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 2500)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -99,7 +93,6 @@ class MoreProjectScreenLoad: UIViewController {
     }
   
   func reloadViews() {
-//      DispatchQueue.main.async() {
         self.controller.reloadInputViews()
     
         self.configureScrollView()
@@ -118,7 +111,6 @@ class MoreProjectScreenLoad: UIViewController {
         self.configureLinksStackView()
         self.configureVacanciesLabel()
         self.configureVacanciesStackView()
-//    }
     
     
   }
