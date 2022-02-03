@@ -8,29 +8,37 @@
 import UIKit
 
 struct ProjectItemModel: Decodable, Equatable {
+  let status: String
+  let nameRus: String
+  let head: String
   let type: String
-  let number: Int?
-  let project_name: String
-  let state: String
-  let leader: String
   let team: [String]
-  let approved: Int
+  let number: String?
   let role: String
+  let hoursCount: Int
   
-  static func fetchProjects(projectsModel: [ProjectParsedModel]) -> [ProjectItemModel] {
+  
+  
+//  static func fetchProjects(projectsModel: [ProjectParsedModel]) -> [ProjectItemModel] {
+  static func fetchProjects(projectsModel: [ProjectItemModel]) -> [ProjectItemModel] {
     var projects = [ProjectItemModel]()
     for project in projectsModel {
-      for projectInfo in project.data {
-        projects.append(ProjectItemModel(type: projectInfo.type, number: projectInfo.number, project_name: projectInfo.project_name, state: projectInfo.state, leader: projectInfo.leader, team: projectInfo.team, approved: projectInfo.approved, role: projectInfo.role))
-      }
+
+      let projectInfo = project
+
+      
+//      projects.append(ProjectItemModel(status: projectInfo.status, nameRus: projectInfo.nameRus, head: projectInfo.head, type: projectInfo.type, team: projectInfo.team, number: projectInfo.number, role: projectInfo.role))
+      
+      projects.append(ProjectItemModel(status: projectInfo.status, nameRus: projectInfo.nameRus, head: projectInfo.head, type: projectInfo.type, team: projectInfo.team, number: projectInfo.number, role: projectInfo.role, hoursCount: projectInfo.hoursCount))
     }
     return projects
   }
 }
 
 struct ProjectAndApplicationModel: Decodable, Equatable {
-  let projects: ProjectParsedModel
-  let applications: ApplicationParsedModel
+  let projects: [ProjectItemModel]
+  let applications: [ApplicationItemModel]
+  let archive: [ProjectItemModel]
 }
 
 struct ProjectStaffModel: Decodable, Equatable {

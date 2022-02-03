@@ -9,12 +9,15 @@ import UIKit
 import EzPopup
 
 
-class ProfileScreenLoad: UIViewController, ScreenPayload {
+class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource {
+  
+  
 var controller: UIViewController {
   return self
 }
   private let refreshAction: () -> Void
-  var modelProject: [ProjectParsedModel]? {
+//  var modelProject: [ProjectParsedModel]? {
+  var modelProject: [ProjectItemModel]? {
     didSet {
       guard !scrollView.isDragging else {
         return
@@ -46,6 +49,10 @@ var controller: UIViewController {
       endRefresh()
     }
   }
+  
+  var modelGitStat : GitStat?
+  
+  
   private let bottomInset: Variable<CGFloat>
   
   weak var delegate: ProfileScreenLoad?
@@ -55,6 +62,7 @@ var controller: UIViewController {
     super.init(nibName: nil, bundle: nil)
   }
   
+  var collectionView: UICollectionView?
  
   
   required init?(coder: NSCoder) {
@@ -208,8 +216,18 @@ var controller: UIViewController {
     return label
   }()
 
+  let labelGitStat: UILabel = {
+    let label = UILabel()
+    label.textColor = .black
+    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.textAlignment = NSTextAlignment.left
+    label.text = "Статистика Git"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  
   func setupProfileComponents() {
-//    print("Setup Profile")
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     self.view.addSubview(scrollView)
     scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -296,6 +314,26 @@ var controller: UIViewController {
     projLabel.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: projLabel.text, font: projLabel.font, width:  projLabel.frame.width).height).isActive = true
     projLabel.backgroundColor = .clear
     
+    
+    containerView.addSubview(labelGitStat)
+    labelGitStat.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: padding).isActive = true
+    
+    labelGitStat.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
+    
+    
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionView.delegate = self
+    collectionView.dataSource = self
+    containerView.addSubview(collectionView)
+    
+    collectionView.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor, constant: padding).isActive = true
+    collectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
+    collectionView.backgroundColor = .red
+    
+    
+    
     if modelProject != nil {
       projectInfo = true
       
@@ -338,6 +376,9 @@ var controller: UIViewController {
         applView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         applView.setParent(parent: self)
         applView.set(cells: ApplicationItemModel.fetchProjects(modelApplication: modelApplication!))
+        
+        
+        
       }
       else {
         stackView.addArrangedSubview(labelNoInfoApplication)
@@ -346,6 +387,8 @@ var controller: UIViewController {
         labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width).isActive = true
 //        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
         labelNoInfoApplication.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoApplication.text, font: labelNoInfoApplication.font, width:  labelNoInfoApplication.frame.width).height).isActive = true
+      
+        
       }
     }
     else {
@@ -372,6 +415,8 @@ var controller: UIViewController {
         applView.setParent(parent: self)
         applView.set(cells: ApplicationItemModel.fetchProjects(modelApplication: modelApplication!))
         
+        
+        
       }
       else {
         stackView.addArrangedSubview(labelNoInfoApplication)
@@ -380,8 +425,21 @@ var controller: UIViewController {
         labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width).isActive = true
 //        labelNoInfoApplication.heightAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).height).isActive = true
         labelNoInfoApplication.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoApplication.text, font: labelNoInfoApplication.font, width:  labelNoInfoApplication.frame.width).height).isActive = true
+        
+       
       }
     }
+  }
+  
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GitCell.reusedId, for: indexPath) as! GitCell
+    cell.nameLabel.text = modelGitStat?.projects[indexPath.row].name
+    cell.comitNumber.text = ("\(modelGitStat?.projects[indexPath.row].commitCount)")
+    
+    return cell
+    
+    
   }
   
   func setText() {
@@ -465,15 +523,13 @@ var controller: UIViewController {
     if modelProfile == nil {
       scrollView.refreshControl?.beginRefreshing()
     }
+    controller.reloadInputViews()
   }
   
   override func viewWillLayoutSubviews() {
     refresh()
     refreshInfo()
     scrollView.reloadInputViews()
-    print("model==")
-    print(modelProfile)
-    print("reload will layut")
   }
   
   private func measureFrameForText(_ text: String) -> CGRect{
@@ -484,6 +540,15 @@ var controller: UIViewController {
   
   private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
       URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    return modelGitStat?.projects.count ?? 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: UIScreen.main.bounds.width - padding, height: 350)
   }
   
   

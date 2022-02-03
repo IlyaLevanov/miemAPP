@@ -37,22 +37,27 @@ class ProjectsCollectionView: UICollectionView, UICollectionViewDelegate, UIColl
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = dequeueReusableCell(withReuseIdentifier: ProjectCell.reuseId, for: indexPath) as! ProjectCell
-    if let number = cells[indexPath.row].number {
-      cell.labelNumber.text = String(number)
-    } else {
-      cell.labelNumber.text = ""
+    
+     if let number = cells[indexPath.row].number {
+      cell.labelNumber.text = number
     }
-    cell.labelName.text = cells[indexPath.row].project_name
-    cell.labelStatus.text = cells[indexPath.row].state
+    cell.labelName.text = cells[indexPath.row].nameRus
+    cell.labelStatus.text = cells[indexPath.row].status
     cell.labelType.text = ("Тип: " + cells[indexPath.row].type)
-    cell.labelHead.text = ("Руководитель: " + cells[indexPath.row].leader)
+    cell.labelHead.text = ("Руководитель: " + cells[indexPath.row].head)
     cell.labelRole.text = ("Роль: " + cells[indexPath.row].role)
     cell.labelPart.text = ("Участники: " + String(cells[indexPath.row].team.count))
-    cell.labelHours.text = ("Часы: " + String(cells[indexPath.row].approved))
+    
+    cell.labelHours.text = ("Часы: " + String(cells[indexPath.row].hoursCount))
+    if cells[indexPath.row].status == "В архиве" {
+      cell.labelStatus.backgroundColor = Brandbook.Colors.grey
+    }
     cell.setUp()
     
     return cell
   }
+  
+
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: 250, height: frame.height-4)

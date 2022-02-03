@@ -47,8 +47,8 @@ class ApplicationCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     cell.studentComment.text = cells[indexPath.row].studentComment
     cell.leaderComment.text = cells[indexPath.row].leaderComment
     cell.roleLabel.text = cells[indexPath.row].role
-    cell.projectNameLabel.text = cells[indexPath.row].project_name
-    cell.leaderNameLabel.text = cells[indexPath.row].leader
+    cell.projectNameLabel.text = cells[indexPath.row].nameRus
+    cell.leaderNameLabel.text = cells[indexPath.row].head
     cell.moreButton.addTarget(self, action: #selector(openApplicationMore), for: .touchUpInside)
     self.indexCell = indexPath.row
     cell.setup()
@@ -72,14 +72,14 @@ class ApplicationCollectionView: UICollectionView, UICollectionViewDelegate, UIC
   func openApplicationMore() {
 
     if self.indexCell != nil {
-      let project_name = cells[self.indexCell!].project_name
+      let project_name = cells[self.indexCell!].nameRus
       let name = cells[self.indexCell!].name
       let email = cells[self.indexCell!].email
       let studentComment = cells[self.indexCell!].studentComment
       let leaderComment = cells[self.indexCell!].leaderComment
       let group = cells[self.indexCell!].group
       let role = cells[self.indexCell!].role
-      let leader = cells[self.indexCell!].leader
+      let leader = cells[self.indexCell!].head
       parent?.open(project_name: project_name, name: name, email: email, studentComment: studentComment, leaderComment: leaderComment, group: group, role: role, leader: leader)
       }
       else {

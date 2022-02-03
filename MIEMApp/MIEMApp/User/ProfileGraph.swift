@@ -22,13 +22,16 @@ final class ProfileGraph {
     profileDataSource.setOnUpdate { [unowned self] in
     self.profileLoad.modelProfile = $0
     }
-    print("profile data source set on update")
+    
     profileDataSource.setOnUpdateProject { [unowned self] in
     self.profileLoad.modelProject = $0
     }
     profileDataSource.setOnUpdateApplication {
       [unowned self] in
       self.profileLoad.modelApplication = $0
+    }
+    profileDataSource.setOnUpdateGitStat { [unowned self] in
+      self.profileLoad.modelGitStat = $0
     }
 
   }

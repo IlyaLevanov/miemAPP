@@ -17,14 +17,14 @@ struct ApplicationItemModel: Decodable, Equatable {
   let leaderComment: String
   let group: String
   let role: String
-  let leader: String
-  let project_name: String
+  let head: String
+  let nameRus: String
   
   static func fetchProjects(modelApplication: [ApplicationParsedModel]) -> [ApplicationItemModel] {
     var applications = [ApplicationItemModel]()
     for application in modelApplication {
       for applicationInfo in application.data {
-        applications.append(ApplicationItemModel(name: applicationInfo.name, email: applicationInfo.email, studentComment: applicationInfo.studentComment, leaderComment: applicationInfo.leaderComment, group: applicationInfo.group, role: applicationInfo.role, leader: applicationInfo.leader, project_name: applicationInfo.project_name))
+        applications.append(ApplicationItemModel(name: applicationInfo.name, email: applicationInfo.email, studentComment: applicationInfo.studentComment, leaderComment: applicationInfo.leaderComment, group: applicationInfo.group, role: applicationInfo.role, head: applicationInfo.head, nameRus: applicationInfo.nameRus))
       }
     }
     return applications

@@ -59,6 +59,7 @@ final class AuthServices {
         completion(false)
         return
       }
+      debugPrint(response)
       let encodedTokenData = parsedResponse.data.token.components(separatedBy: ".")
       guard encodedTokenData.count > 1,
         let userInfo = Data(base64Encoded: base64urlToBase64(base64url: encodedTokenData[1])),
@@ -100,6 +101,7 @@ final class AuthServices {
               let header: HTTPHeaders = ["Authorization": token_header]
               self.session.request("https://profile.miem.hse.ru/auth/realms/MIEM/protocol/openid-connect/userinfo", method: .get, encoding: JSONEncodingWithoutEscapingSlashes.default, headers: header).response { response in
                 debugPrint(response)
+                
                 
                 guard let data = response.data,
                   let parsedResponse = try? JSONDecoder().decode(LogInCabinetResponse.self, from: data) else {
