@@ -26,11 +26,16 @@ class ListLikedGalleryCell: UICollectionViewCell {
       return label
   }()
   
-  let nameLabel: UITextView = {
-      let label = UITextView()
-      label.isEditable = false
-      label.showsVerticalScrollIndicator = false
-      label.showsHorizontalScrollIndicator = false
+//  let nameLabel: UITextView = {
+//      let label = UITextView()
+  let nameLabel: UILabel = {
+  let label = UILabel()
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
+//      label.isEditable = false
+//      label.showsVerticalScrollIndicator = false
+//      label.showsHorizontalScrollIndicator = false
       label.textColor = .black
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)

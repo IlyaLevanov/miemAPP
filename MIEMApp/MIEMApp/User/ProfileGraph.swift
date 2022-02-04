@@ -33,6 +33,12 @@ final class ProfileGraph {
     profileDataSource.setOnUpdateGitStat { [unowned self] in
       self.profileLoad.modelGitStat = $0
     }
+    profileDataSource.setOnUpdateAwards { [unowned self] in
+      self.profileLoad.modelAwards = $0
+      }
+    
+  
+  
 
   }
   

@@ -21,6 +21,11 @@ class ApplicationCell: UICollectionViewCell {
   
   let studentComment: UITextView = {
     let textField = UITextView()
+//  let studentComment: UILabel = {
+//  let textField = UILabel()
+//    textField.numberOfLines = 0
+//    textField.sizeToFit()
+//    textField.lineBreakMode = .byWordWrapping
     textField.backgroundColor = .clear
     textField.showsHorizontalScrollIndicator = false
     textField.showsVerticalScrollIndicator = false

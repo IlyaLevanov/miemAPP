@@ -50,6 +50,7 @@ var controller: UIViewController {
   }
   
   var modelGitStat : GitStat?
+  var modelAwards : AwardsModel?
   
   
   private let bottomInset: Variable<CGFloat>
@@ -78,6 +79,7 @@ var controller: UIViewController {
   let scrollView = UIScrollView()
   let stackView = UIStackView()
   var collectionViewGit: UICollectionView?
+  var collectionViewAwards: UICollectionView?
   
   let containerView: UIView = {
     let view = UIView()
@@ -98,6 +100,12 @@ var controller: UIViewController {
   }()
   
   let containerViewGit: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  let containerViewAwards: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -231,6 +239,16 @@ var controller: UIViewController {
     label.font = UIFont.boldSystemFont(ofSize: 18)
     label.textAlignment = NSTextAlignment.left
     label.text = "Статистика Git"
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  let labelAwards: UILabel = {
+    let label = UILabel()
+    label.textColor = .black
+    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.textAlignment = NSTextAlignment.left
+    label.text = "Достижения"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -448,7 +466,7 @@ var controller: UIViewController {
     containerViewGit.addSubview(labelGitStat)
     labelGitStat.topAnchor.constraint(equalTo: containerViewGit.topAnchor, constant: padding).isActive = true
     labelGitStat.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor, constant: padding).isActive = true
-    containerViewGit.heightAnchor.constraint(equalToConstant: 600).isActive = true
+//    containerViewGit.heightAnchor.constraint(equalToConstant: 600).isActive = true
   }
   
   private func setUpCollectionGit() {
@@ -465,8 +483,47 @@ var controller: UIViewController {
     collectionViewGit?.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor, constant: padding).isActive = true
     collectionViewGit?.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor).isActive = true
     collectionViewGit?.rightAnchor.constraint(equalTo: containerViewGit.rightAnchor).isActive = true
+//    MARK: для динамической высоты scrollView
     collectionViewGit?.bottomAnchor.constraint(equalTo: containerViewGit.bottomAnchor).isActive = true
+//    !!!!!
     collectionViewGit?.backgroundColor = .white
+    
+  }
+  
+  private func setUpAwardsContainer() {
+    stackView.addArrangedSubview(containerViewAwards)
+    containerViewAwards.translatesAutoresizingMaskIntoConstraints = false
+    containerViewAwards.topAnchor.constraint(equalTo: containerViewGit.bottomAnchor, constant: padding).isActive = true
+    containerViewAwards.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
+    containerViewAwards.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
+  }
+  
+  private func setUpAwardsLabel() {
+    containerViewAwards.addSubview(labelAwards)
+    labelAwards.topAnchor.constraint(equalTo: containerViewAwards.topAnchor, constant: padding).isActive = true
+    labelAwards.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+    containerViewAwards.heightAnchor.constraint(equalToConstant: 600).isActive = true
+    containerViewAwards.backgroundColor = .red
+  }
+  
+  private func setUpCollectionAwards() {
+//
+//    let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+//
+//        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        collectionViewAwards?.delegate = self
+//        collectionViewAwards?.dataSource = self
+//    collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
+//        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
+//
+//        containerViewAwards.addSubview(collectionViewAwards!)
+//        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor, constant: padding).isActive = true
+//        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+//        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
+//        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+//    //    !!!!!
+//        collectionViewAwards?.backgroundColor = .white
     
   }
   
@@ -494,6 +551,10 @@ var controller: UIViewController {
     setUpGitContainer()
     setUpGitLabel()
     setUpCollectionGit()
+    
+    setUpAwardsContainer()
+    setUpAwardsLabel()
+    setUpCollectionAwards()
 
   }
   

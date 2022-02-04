@@ -18,12 +18,17 @@ class ProjectCell: UICollectionViewCell {
     return label
   }()
   
-  let labelName: UITextView = {
-    let label = UITextView()
+//  let labelName: UITextView = {
+//    let label = UITextView()
+  let labelName: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.backgroundColor = .clear
-    label.isEditable = false
-    label.showsVerticalScrollIndicator = false
-    label.showsHorizontalScrollIndicator = false
+//    label.isEditable = false
+//    label.showsVerticalScrollIndicator = false
+//    label.showsHorizontalScrollIndicator = false
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.textAlignment = NSTextAlignment.left
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,24 +53,34 @@ class ProjectCell: UICollectionViewCell {
     return label
   }()
   
-  let labelHead: UITextView = {
-    let label = UITextView()
+//  let labelHead: UITextView = {
+//    let label = UITextView()
+  let labelHead: UILabel = {
+  let label = UILabel()
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.backgroundColor = .clear
-    label.isEditable = false
-    label.showsVerticalScrollIndicator = false
-    label.showsHorizontalScrollIndicator = false
+//    label.isEditable = false
+//    label.showsVerticalScrollIndicator = false
+//    label.showsHorizontalScrollIndicator = false
     label.font = UIFont.systemFont(ofSize: 17)
     label.textAlignment = NSTextAlignment.left
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  let labelRole: UITextView = {
-    let label = UITextView()
+//  let labelRole: UITextView = {
+//    let label = UITextView()
+  let labelRole: UILabel = {
+     let label = UILabel()
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.backgroundColor = .clear
-    label.isEditable = false
-    label.showsVerticalScrollIndicator = false
-    label.showsHorizontalScrollIndicator = false
+//    label.isEditable = false
+//    label.showsVerticalScrollIndicator = false
+//    label.showsHorizontalScrollIndicator = false
     label.font = UIFont.systemFont(ofSize: 17)
     label.text = "Роль: "
     label.textAlignment = NSTextAlignment.left

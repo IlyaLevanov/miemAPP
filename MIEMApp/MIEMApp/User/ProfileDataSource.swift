@@ -42,6 +42,18 @@ struct ProjectGitModel: Decodable, Equatable {
 //  let languages: [String: Int]
 }
 
+struct AwardsModel: Decodable, Equatable {
+  let data: [AwardsItemModel]
+}
+
+
+struct AwardsItemModel: Decodable, Equatable {
+  let name: String
+  let award_condition_description: String
+  let image: String
+  let progress: Int
+}
+
 final class ProfileDataSource {
   private let session = makeDefaultSession()
   private let user: Variable<User>
@@ -52,6 +64,7 @@ final class ProfileDataSource {
   private var onUpdateProject: (([ProjectItemModel]) -> Void)?
   private var onUpdateApplication: (([ApplicationParsedModel]) -> Void)?
   private var onUpdateGitStat: ((GitStat) -> Void)?
+  private var onUpdateAwards: ((AwardsModel) -> Void)?
   private var isUpdating: Bool = false
   
   init(user: Variable<User>, token: Property<String>) {
@@ -77,6 +90,12 @@ final class ProfileDataSource {
     self.onUpdateGitStat = onUpdate
   }
   
+  func setOnUpdateAwards(onUpdate: @escaping (AwardsModel) -> Void) {
+    self.onUpdateAwards = onUpdate
+  }
+  
+  
+  
   func setNeedsUpdate() {
     guard !isUpdating else {
       return
@@ -91,6 +110,7 @@ final class ProfileDataSource {
       profileInfoRequestStudent()
       applicationRequestStudent()
       getGitStatistics()
+      getUserAwards()
   
         
       }
@@ -239,6 +259,22 @@ final class ProfileDataSource {
       self.isUpdating = false
       
     }
+  }
+  
+  private func getUserAwards() {
+    let user_id = 663
+    session.request("https://devcabinet.miem.vmnet.top/public-api/badge/user/\(user_id)/progress", method: .get).response {
+          response in
+          guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(AwardsModel.self, from: data) else {
+            return
+          }
+      var awardsModel: AwardsModel
+      awardsModel = parsedResponse
+      print("award=\(awardsModel)")
+  
+          
+          
+        }
   }
   
 }
