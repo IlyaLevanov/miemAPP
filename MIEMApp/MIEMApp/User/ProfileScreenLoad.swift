@@ -466,7 +466,7 @@ var controller: UIViewController {
     containerViewGit.addSubview(labelGitStat)
     labelGitStat.topAnchor.constraint(equalTo: containerViewGit.topAnchor, constant: padding).isActive = true
     labelGitStat.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor, constant: padding).isActive = true
-//    containerViewGit.heightAnchor.constraint(equalToConstant: 600).isActive = true
+    containerViewGit.heightAnchor.constraint(equalToConstant: 400).isActive = true
   }
   
   private func setUpCollectionGit() {
@@ -480,9 +480,9 @@ var controller: UIViewController {
     collectionViewGit?.translatesAutoresizingMaskIntoConstraints = false
     
     containerViewGit.addSubview(collectionViewGit!)
-    collectionViewGit?.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor, constant: padding).isActive = true
-    collectionViewGit?.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor).isActive = true
-    collectionViewGit?.rightAnchor.constraint(equalTo: containerViewGit.rightAnchor).isActive = true
+    collectionViewGit?.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor).isActive = true
+    collectionViewGit?.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor, constant: padding).isActive = true
+    collectionViewGit?.rightAnchor.constraint(equalTo: containerViewGit.rightAnchor, constant: small).isActive = true
 //    MARK: для динамической высоты scrollView
     collectionViewGit?.bottomAnchor.constraint(equalTo: containerViewGit.bottomAnchor).isActive = true
 //    !!!!!
@@ -508,22 +508,22 @@ var controller: UIViewController {
   
   private func setUpCollectionAwards() {
 //
-//    let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .horizontal
-//
-//        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        collectionViewAwards?.delegate = self
-//        collectionViewAwards?.dataSource = self
-//    collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
-//        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
-//
-//        containerViewAwards.addSubview(collectionViewAwards!)
-//        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor, constant: padding).isActive = true
-//        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
-//        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
-//        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
-//    //    !!!!!
-//        collectionViewAwards?.backgroundColor = .white
+    let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+
+        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionViewAwards?.delegate = self
+        collectionViewAwards?.dataSource = self
+    collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
+        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
+
+        containerViewAwards.addSubview(collectionViewAwards!)
+        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor, constant: padding).isActive = true
+        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
+        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    //    !!!!!
+        collectionViewAwards?.backgroundColor = .white
     
   }
   
@@ -552,22 +552,32 @@ var controller: UIViewController {
     setUpGitLabel()
     setUpCollectionGit()
     
-    setUpAwardsContainer()
-    setUpAwardsLabel()
-    setUpCollectionAwards()
+//    setUpAwardsContainer()
+//    setUpAwardsLabel()
+//    setUpCollectionAwards()
 
   }
   
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GitCell.reusedId, for: indexPath) as! GitCell
-    cell.nameLabel.text = modelGitStat?.projects[indexPath.row].name
-    if let number = modelGitStat?.projects[indexPath.row].commitCount {
-      cell.comitNumber.text = String(number)
+    
+    if collectionView == collectionViewGit {
+      print("git cell")
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GitCell.reusedId, for: indexPath) as! GitCell
+      cell.nameLabel.text = modelGitStat?.projects[indexPath.row].name
+      if let number = modelGitStat?.projects[indexPath.row].commitCount {
+        cell.comitNumber.text = String(number)
+      }
+      return cell
     }
-    
-    return cell
-    
+    if collectionView == collectionViewAwards {
+      print("award cell")
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCell.reusedId, for: indexPath) as! AwardCell
+      return cell
+    }
+    return UICollectionViewCell()
+
+  
   }
   
   private func setText() {
@@ -662,7 +672,17 @@ var controller: UIViewController {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    switch collectionView {
+    case collectionViewGit:
       return modelGitStat?.projects.count ?? 0
+    case collectionViewAwards:
+      return modelAwards?.data.count ?? 0
+    default:
+      return 0
+    }
+//    return modelitStat?.projects.count ?? 0
+      
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
