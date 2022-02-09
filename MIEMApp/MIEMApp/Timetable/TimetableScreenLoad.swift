@@ -71,7 +71,6 @@ final class TimetableScreenLoad: UICollectionViewController, UICollectionViewDel
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("timetable open")
     collectionView.register(TimetableItemCell.self, forCellWithReuseIdentifier: timetableItemCellIdentifier)
     collectionView.register(
       TimetableSectionHeader.self,

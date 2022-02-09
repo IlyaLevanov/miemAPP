@@ -164,7 +164,7 @@ final class AuthServices {
       debugPrint($0)
     }
     token.value = ""
-    GIDSignIn.sharedInstance()?.signOut()
+    GIDSignIn.sharedInstance().signOut()
     
 //    let authorizationEndpoint = URL(string: "https://profile.miem.hse.ru/auth/realms/MIEM/protocol/openid-connect/auth")!
 //    let tokenEndpoint = URL(string: "https://profile.miem.hse.ru/auth/realms/MIEM/protocol/openid-connect/logout")!

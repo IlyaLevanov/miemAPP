@@ -6,8 +6,10 @@ target 'MIEMApp' do
   use_frameworks!
 
   # Pods for MIEMApp
-  pod 'Alamofire', '~> 5.2'
-  pod 'GoogleSignIn'
+  #pod 'Alamofire', '~> 5.2'
+  pod 'Alamofire'
+  #pod 'GoogleSignIn'
+  pod 'GoogleSignIn', '~> 5.0'
   pod 'EzPopup'
   pod 'AppAuth'
   pod 'BEMCheckBox'

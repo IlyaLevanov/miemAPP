@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.5.0)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -11,22 +11,18 @@ PODS:
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GTMAppAuth (1.1.0):
+  - GTMAppAuth (1.2.2):
     - AppAuth/Core (~> 1.4)
-    - GTMSessionFetcher (~> 1.4)
-  - GTMSessionFetcher (1.5.0):
-    - GTMSessionFetcher/Full (= 1.5.0)
-  - GTMSessionFetcher/Core (1.5.0)
-  - GTMSessionFetcher/Full (1.5.0):
-    - GTMSessionFetcher/Core (= 1.5.0)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.7.0)
   - TinyConstraints (4.0.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2)
+  - Alamofire
   - AppAuth
   - BEMCheckBox
   - EzPopup
-  - GoogleSignIn
+  - GoogleSignIn (~> 5.0)
   - TinyConstraints
 
 SPEC REPOS:
@@ -41,15 +37,15 @@ SPEC REPOS:
     - TinyConstraints
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   EzPopup: 989ac21992a82ad6d1245c747a78bf3833279ef0
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
-  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: 0bb308a9ccfda1d02ec7237d0e9d4207084c09c2
+PODFILE CHECKSUM: e9bd60ebd42daf6f94c8ff46d55eda2eb539b22c
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

@@ -558,7 +558,6 @@ var controller: UIViewController {
 
   }
   
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if collectionView == collectionViewGit {
