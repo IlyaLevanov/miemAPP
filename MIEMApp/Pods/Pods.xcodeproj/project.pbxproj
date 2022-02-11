@@ -18,6 +18,7 @@
 				A187A4CADAA938BA601766E65E7E0A0E /* PBXTargetDependency */,
 			);
 			name = GoogleSignIn;
+			productName = GoogleSignIn;
 		};
 /* End PBXAggregateTarget section */
 
@@ -363,7 +364,7 @@
 		5ADF90C1F4B0B32FCC05A4944BC57CC2 /* OIDExternalUserAgentCatalyst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDExternalUserAgentCatalyst.m; path = Source/AppAuth/iOS/OIDExternalUserAgentCatalyst.m; sourceTree = "<group>"; };
 		5BF370A859537D301C1627D09832AAC7 /* OIDFieldMapping.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDFieldMapping.m; path = Source/AppAuthCore/OIDFieldMapping.m; sourceTree = "<group>"; };
 		5C070C5403B6190C86E8FD3841C23B3C /* GTMAppAuth.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMAppAuth.h; path = GTMAppAuth/Sources/Public/GTMAppAuth/GTMAppAuth.h; sourceTree = "<group>"; };
-		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7C1F84BA98B7BB5B1B19D9E7A80EED /* OIDScopeUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDScopeUtilities.m; path = Source/AppAuthCore/OIDScopeUtilities.m; sourceTree = "<group>"; };
 		605B44ED89DD882BDAB1E951648713CF /* Pods-MIEMApp */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MIEMApp"; path = Pods_MIEMApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6085503FA522BA4C19AEF2D1BEDAB8FA /* OIDDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDDefines.h; path = Source/AppAuthCore/OIDDefines.h; sourceTree = "<group>"; };
@@ -413,7 +414,7 @@
 		991C1C424B95226E10A4ACCDBA137182 /* OIDScopes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDScopes.m; path = Source/AppAuthCore/OIDScopes.m; sourceTree = "<group>"; };
 		99FD3CC20A3F5072B372949984F8426F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		9D4E09EBE5B48180C8A48585627D4EAE /* OIDEndSessionRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDEndSessionRequest.m; path = Source/AppAuthCore/OIDEndSessionRequest.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DDEE42611D7A1B713188E3A326206AB /* RequestTaskMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestTaskMap.swift; path = Source/RequestTaskMap.swift; sourceTree = "<group>"; };
 		9DE87C3850B37E3E74E76BB32B170761 /* BEMCheckBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BEMCheckBox.release.xcconfig; sourceTree = "<group>"; };
 		9E3EC273BE578D154E0D691517414970 /* BEMCheckBoxGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BEMCheckBoxGroup.h; path = Classes/BEMCheckBoxGroup.h; sourceTree = "<group>"; };
@@ -569,7 +570,7 @@
 		018BDB7CB76E32A8B7CA0BBB9C16777E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */,
+				5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */,
 				3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */,
 				3F282D213AB9D1ECA1228C986CC9D2BA /* BEMCheckBox */,
 				7E04694284ECE7F371A4DB86CDE04DD9 /* EzPopup */,
@@ -668,7 +669,6 @@
 				051E6DBB35E5E39963B627E5E3080836 /* BEMPathManager.m */,
 				8E6DFD671D6D9D5E077F01E697C0B146 /* Support Files */,
 			);
-			name = BEMCheckBox;
 			path = BEMCheckBox;
 			sourceTree = "<group>";
 		};
@@ -692,7 +692,6 @@
 				C6EB3E722C6D086C02A0AFBD8A36E55B /* TinyEdgeInsets.swift */,
 				A2C063A1A63F0226321DB3363AC4B310 /* Support Files */,
 			);
-			name = TinyConstraints;
 			path = TinyConstraints;
 			sourceTree = "<group>";
 		};
@@ -703,7 +702,6 @@
 				9CCFE1324B09CDC856977CBFEF7856D6 /* ExternalUserAgent */,
 				E0C51ED6E22415E3C90240E153107144 /* Support Files */,
 			);
-			name = AppAuth;
 			path = AppAuth;
 			sourceTree = "<group>";
 		};
@@ -771,7 +769,6 @@
 				60D3048A9C3C35219B09A778F75D2B54 /* Resources */,
 				96447E3D8AD9456E06A3B0FBADC27D99 /* Support Files */,
 			);
-			name = GoogleSignIn;
 			path = GoogleSignIn;
 			sourceTree = "<group>";
 		};
@@ -796,7 +793,6 @@
 				C271CD4C1DB0E4FD9967E85220A39D6D /* PopupViewController.swift */,
 				DEE58B5AAAD7BBB04C034899453B37A6 /* Support Files */,
 			);
-			name = EzPopup;
 			path = EzPopup;
 			sourceTree = "<group>";
 		};
@@ -841,7 +837,6 @@
 				6F63C621D24E12C9662793EAED5F7FFF /* Validation.swift */,
 				3176DE097D30A33FD2581B7FF6C80C68 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1001,7 +996,6 @@
 				3100D557C51DAF16D2ACF79D75B0E6C2 /* GTMOAuth2KeychainCompatibility.m */,
 				87A5BF0480D6C3EE57DE952EC6C58961 /* Support Files */,
 			);
-			name = GTMAppAuth;
 			path = GTMAppAuth;
 			sourceTree = "<group>";
 		};
@@ -1011,7 +1005,6 @@
 				17C9EEB3631A0856B42FFF30A0BCE816 /* Core */,
 				C8BBAB2A24DF3BF0795705CBE4806AEB /* Support Files */,
 			);
-			name = GTMSessionFetcher;
 			path = GTMSessionFetcher;
 			sourceTree = "<group>";
 		};
@@ -1286,7 +1279,7 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire */;
+			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -2049,6 +2042,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.5;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2086,6 +2080,7 @@
 				SWIFT_VERSION = 5.5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
