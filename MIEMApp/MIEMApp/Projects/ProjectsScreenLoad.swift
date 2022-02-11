@@ -34,6 +34,13 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   var filteredProjects = [ProjectsListModel]()
   var isFilter = false
   
+  var openedOnce = false
+  var check = true
+  
+  var lastContentsOffset: CGFloat = 0
+  var offset: CGFloat = 0
+  var scrolled = false
+  
   init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
     self.wireframe = wireframe
     self.bottomInset = bottomInset
@@ -48,7 +55,6 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   }
   
   
-  
   lazy var search: UISearchController = {
       let search = UISearchController()
       search.searchBar.placeholder = "Поиск по проекту"
@@ -57,6 +63,8 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
       search.obscuresBackgroundDuringPresentation = false
       search.searchBar.sizeToFit()
       search.searchBar.searchBarStyle = .default
+
+
       search.searchBar.delegate = self
       return search
   }()
@@ -192,11 +200,64 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         return cell
   }
   
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+    if check {
+      self.lastContentsOffset = scrollView.contentOffset.y
+      offset = lastContentsOffset
+      check = false
+    }
+    
+    self.lastContentsOffset = scrollView.contentOffset.y
+    
+    if (self.lastContentsOffset != offset) {
+      scrolled = true
+    }
+    if self.lastContentsOffset == offset {
+      scrolled = false
+    }
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
-     navigationController?.setNavigationBarHidden(false, animated: animated)
+    navigationController?.setNavigationBarHidden(false, animated: animated)
     navigationItem.rightBarButtonItem = UIBarButtonItem(image: Brandbook.Images.Icons.filterIcon, style: .plain, target: self, action: #selector(open_filter))
     navigationItem.searchController = search
-   }
+    
+    if !openedOnce {
+      navigationItem.hidesSearchBarWhenScrolling = false
+      openedOnce = true
+    }
+    
+    if !scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    if scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = true
+    }
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+    
+    if !scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = true
+    } else {
+      
+      if !openedOnce {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        openedOnce = true
+      }
+      
+      if !scrolled {
+        navigationItem.hidesSearchBarWhenScrolling = false
+      }
+      
+      if scrolled {
+        navigationItem.hidesSearchBarWhenScrolling = true
+      }
+    }
+  }
   
   @objc
   func open_filter() {
@@ -252,7 +313,6 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
               }
             }
           }
-        
       }
     }
     
@@ -260,9 +320,6 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     
   }
   
-  
-  
-
   func setupComponents() {
     
     let layout = UICollectionViewFlowLayout()
