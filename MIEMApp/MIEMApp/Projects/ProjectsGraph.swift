@@ -23,6 +23,7 @@ final class ProjectsGraph {
     screen = Screen(id: .projectsScreen, payload: projectsLoad)
     projectsDataSource.setOnUpdate { [unowned self] in
       self.projectsLoad.model = $0
+      self.projectsLoad.collectionView?.reloadData()
     }
     
     projectsDataSource.setOnUpdateTypes { [unowned self] in

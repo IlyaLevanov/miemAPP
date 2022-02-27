@@ -217,6 +217,9 @@ var controller: UIViewController {
   
   let labelNoInfoProject: UILabel = {
     let label = UILabel()
+    label.numberOfLines = 1
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.text = "Нет информации."
     label.textColor = .lightGray
     label.textAlignment = NSTextAlignment.left
@@ -226,6 +229,9 @@ var controller: UIViewController {
   
   let labelNoInfoApplication: UILabel = {
     let label = UILabel()
+    label.numberOfLines = 1
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.text = "Нет информации."
     label.textColor = .lightGray
     label.textAlignment = NSTextAlignment.left
@@ -414,7 +420,7 @@ var controller: UIViewController {
     containerViewProj.addSubview(labelNoInfoProject)
     labelNoInfoProject.topAnchor.constraint(equalTo: projLabel.bottomAnchor, constant: padding).isActive = true
     labelNoInfoProject.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
-    labelNoInfoProject.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoProject.text!).width).isActive = true
+    labelNoInfoProject.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoProject.text!).width + padding).isActive = true
     labelNoInfoProject.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoProject.text, font: labelNoInfoProject.font, width:  labelNoInfoProject.frame.width).height).isActive = true
     labelNoInfoProject.bottomAnchor.constraint(equalTo: containerViewProj.bottomAnchor).isActive = true
   }
@@ -449,7 +455,7 @@ var controller: UIViewController {
     containerViewAppl.addSubview(labelNoInfoApplication)
     labelNoInfoApplication.topAnchor.constraint(equalTo: applLabel.bottomAnchor, constant: padding).isActive = true
     labelNoInfoApplication.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
-    labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width).isActive = true
+    labelNoInfoApplication.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoApplication.text!).width + padding).isActive = true
     labelNoInfoApplication.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoApplication.text, font: labelNoInfoApplication.font, width:  labelNoInfoApplication.frame.width).height).isActive = true
     labelNoInfoApplication.bottomAnchor.constraint(equalTo: containerViewAppl.bottomAnchor).isActive = true
   }
@@ -590,19 +596,26 @@ var controller: UIViewController {
   
   private func setImage() {
    
-    let url_string = modelProfile?[0].items.pic ?? ""
-    let url = URL(string: (modelProfile?[0].items.pic) ?? "")
-    let nil_str = ""
-    if (url_string != nil_str) {
-      getData(from: url!) { data, response, error in
-        guard let data = data, error == nil else { return }
-        DispatchQueue.main.async() { [weak self] in
-          self!.profileImageView.image = UIImage(data: data)
+    if let pic_url = modelProfile?[0].items.pic {
+      let url_string = "https://devcabinet.miem.vmnet.top\(pic_url)"
+      let url = URL(string: url_string)
+      if let url_pic = url {
+        getData(from: url_pic) { data, response, error in
+          guard let data = data, error == nil else {
+            DispatchQueue.main.async() { [weak self] in
+            self!.profileImageView.image = Brandbook.Images.Icons.userProfileIcon
+            }
+            return
+            
+          }
+          DispatchQueue.main.async() { [weak self] in
+            self!.profileImageView.image = UIImage(data: data)
+          }
         }
       }
-      
     }
-      else {
+    
+    else {
       self.profileImageView.image = Brandbook.Images.Icons.userProfileIcon
     }
   }
