@@ -389,7 +389,7 @@ var controller: UIViewController {
   }
   
   private func checkProjAppl() {
-    if (modelApplication == nil) || (modelApplication?.isEmpty ?? false) {
+    if (modelApplication?[0].data == nil) || (modelApplication?[0].data.isEmpty ?? false) {
       applicationInfo = false
     }
     else {
