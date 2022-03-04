@@ -12,7 +12,7 @@ private let light = Brandbook.Paddings.light
 
 class LikedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var likedCardsData: [CardDataModel] = []
+  var likedCardsData: [CardDataModel] = []
     var collectionView: UICollectionView?
     
     override func viewDidLoad() {
@@ -123,6 +123,12 @@ extension LikedViewController {
       currentHeight = textView.frame
 
       return currentHeight
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    print("here defaults")
+    LikedSettings.likedCards = likedCardsData
+    print(LikedSettings.likedCards)
   }
 
 }

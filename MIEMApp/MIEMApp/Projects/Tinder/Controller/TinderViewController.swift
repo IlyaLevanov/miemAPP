@@ -44,9 +44,8 @@ class TinderViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Сбросить", for: .normal)
-//        button.setTitle("🔄", for: .normal)
         button.setTitleColor(.white, for: .normal)
-      button.backgroundColor = Brandbook.Colors.blueColor
+        button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(resetButtonAction), for: .touchDown)
@@ -57,7 +56,6 @@ class TinderViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Избранное", for: .normal)
-//        button.setTitle("❤️", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = Brandbook.Colors.blueColor
         button.layer.cornerRadius = 10
@@ -95,10 +93,16 @@ class TinderViewController: UIViewController {
     
     @objc func resetButtonAction() {
         stackContainer.reloadData()
+      LikedSettings.clear()
     }
     @objc func likedButtonAction() {
         let vc = LikedViewController()
-        vc.likedCardsData = stackContainer.likedCardsData
+      var array = stackContainer.likedCardsData
+      if let likedDefault = LikedSettings.likedCards {
+        array = stackContainer.likedCardsData + likedDefault
+        
+      }
+      vc.likedCardsData = array
         present(vc, animated: true, completion: nil)
     }
     
