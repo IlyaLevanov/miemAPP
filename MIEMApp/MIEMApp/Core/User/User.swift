@@ -9,7 +9,7 @@ import Foundation
 
 public struct User: Codable {
   let email: String
-  let student: Bool
+  let student: String
 }
 
 public extension User {
@@ -27,7 +27,7 @@ public extension User {
     guard !isReview else {
       return "mokofman@edu.hse.ru"
     }
-    return email.components(separatedBy: "@")[0] + (student ? "@edu.hse.ru" : "@hse.ru")
+    return email.components(separatedBy: "@")[0] + (student == "Студент" ? "@edu.hse.ru" : "@hse.ru")
   }
   
 }

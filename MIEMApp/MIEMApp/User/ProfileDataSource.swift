@@ -105,7 +105,7 @@ final class ProfileDataSource {
   
   private func update() {
     isUpdating = true
-    if (user.value.student) {
+    if (user.value.student == "Студент") {
       
       profileInfoRequestStudent()
       applicationRequestStudent()
@@ -115,7 +115,7 @@ final class ProfileDataSource {
         
       }
     
-    else {
+    else if (user.value.student == "Преподаватель"){
       profileInfoRequestStaff()
       ProjectsStaff()
       ApplicationsStaff()
@@ -127,7 +127,7 @@ final class ProfileDataSource {
   private func profileInfoRequestStudent() {
     
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
-          session.request("https://devcabinet.miem.vmnet.top/api/student_profile", method: .get, headers: headers).response { response in
+    session.request("https://devcabinet.miem.vmnet.top/api/student_profile", method: .get, headers: headers).response { [self] response in
           
             
             guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ProfileResponse.self, from: data) else {
@@ -138,7 +138,7 @@ final class ProfileDataSource {
             var profileModel = [ProfileParsedModel]()
             var currentInfo: ProfileInfo
             currentInfo = parsedResponse.data[0].main
-            profileModel.append(ProfileParsedModel(status: "Студент", items: currentInfo))
+      profileModel.append(ProfileParsedModel(status: self.user.value.student, items: currentInfo))
             self.onUpdate?(profileModel)
           }
             
@@ -196,7 +196,7 @@ final class ProfileDataSource {
         var profileModel = [ProfileParsedModel]()
         var currentInfo: ProfileInfo
         currentInfo = parsedResponse.data[0].main
-        profileModel.append(ProfileParsedModel(status: "Руководитель", items: currentInfo))
+        profileModel.append(ProfileParsedModel(status: self.user.value.student, items: currentInfo))
         print(profileModel)
         self.onUpdate?(profileModel)
       }

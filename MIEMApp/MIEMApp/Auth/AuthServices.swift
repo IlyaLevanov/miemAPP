@@ -14,8 +14,10 @@ final class AuthServices {
   private struct LogInResponse: Decodable {
     struct DataResponse: Decodable {
       let token: String
+      let email: String
     }
     let data: DataResponse
+    
   }
   
   private struct LogInCabinetResponse: Decodable {
@@ -63,10 +65,12 @@ final class AuthServices {
       let encodedTokenData = parsedResponse.data.token.components(separatedBy: ".")
       guard encodedTokenData.count > 1,
         let userInfo = Data(base64Encoded: base64urlToBase64(base64url: encodedTokenData[1])),
-        let user = try? JSONDecoder().decode(User.self, from: userInfo) else {
+        let user1 = try? JSONDecoder().decode(User.self, from: userInfo) else {
         completion(false)
         return
       }
+      let student = self.getStatus(token: parsedResponse.data.token, email: parsedResponse.data.email)
+      let user = User(email: parsedResponse.data.email, student: student)
       self.token.value = parsedResponse.data.token
       self.user.value = user
 //      self.logInCameras()
@@ -112,6 +116,7 @@ final class AuthServices {
                 let student = self.getStatus(token: self.token.value, email: parsedResponse.email)
                 let user = User(email: parsedResponse.email, student: student)
                 self.user.value = user
+               // print(self.user.value.student)
 //                self.logInCameras()
                 completion(true)
                 
@@ -128,25 +133,46 @@ final class AuthServices {
        }
   }
 
-  private func getStatus(token: String, email: String) -> Bool{
+  private func getStatus(token: String, email: String) -> String{
 //    api личного кабинета не принимает токен от авторизации через лк
-    var isStudent: Bool
-    isStudent = true
+    var status: String
+    status = "Студент"
+    enum Status: String {
+      case student = "Студент"
+      case teacher = "Преподаватель"
+      case staff = "Работник офиса"
+      }
+    func returnStatus(status: Status) -> String {
+      return status.rawValue
+      }
     let url = "https://devcabinet.miem.vmnet.top/public-api/user/email/" + email
     session.request(url, method: .get).response { response in
+      print("Needed")
       debugPrint(response)
+      print("Needed")
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(StatusResponse.self, from: data) else {
         print("error in getStatus")
         return
       }
       if parsedResponse.data.isTeacher {
-        isStudent = false
+        status = returnStatus(status: .teacher)
       } else {
-        isStudent = true
+        status = returnStatus(status: .student)
       }
     }
-    return isStudent
+    return status
   }
+  
+  
+//  func parseJSON(data: Data) {
+//    let decoder = JSONDecoder()
+//    do {
+//      let decodedData = try decoder.decode(StatusResponse.self, from: data)
+//      print(decodedData.data.isTeacher)
+//    } catch {
+//      print("error in getStatus")
+//    }
+//  }
 
 //  private func logInCameras() {
 //    let headers: HTTPHeaders = ["key": token.value]
