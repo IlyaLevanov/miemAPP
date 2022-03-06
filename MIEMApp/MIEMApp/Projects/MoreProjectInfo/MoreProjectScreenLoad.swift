@@ -290,9 +290,12 @@ class MoreProjectScreenLoad: UIViewController {
             let descriptionOfParticipant = UILabel()
             stackViewInfo.addArrangedSubview(descriptionOfParticipant)
             descriptionOfParticipant.text = arrayOfDescriptions[i]
+            descriptionOfParticipant.numberOfLines = 0
+            descriptionOfParticipant.sizeToFit()
+            descriptionOfParticipant.lineBreakMode = .byWordWrapping
             descriptionOfParticipant.font = .systemFont(ofSize: 16)
             descriptionOfParticipant.adjustsFontSizeToFitWidth = true
-            descriptionOfParticipant.minimumScaleFactor = 1
+          descriptionOfParticipant.minimumScaleFactor = 1
 
         }
 
@@ -510,7 +513,7 @@ class VacancyView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         return label
     }()
     

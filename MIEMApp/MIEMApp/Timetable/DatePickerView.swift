@@ -87,7 +87,7 @@ final class DatePickerView: UIView {
       if firstPicker.date < secondPicker.date {
         onResult?((firstPicker.date, secondPicker.date))
       } else {
-        print("Выбран не верный промежуток времени")
+        print("Выбран неверный промежуток времени")
         alert()
       }
     }
@@ -111,7 +111,7 @@ func alert() {
   
   let alert = UIAlertView()
   alert.title = "Ошибка!"
-  alert.message = "Указан не правильный промежуток времени"
+  alert.message = "Указан неправильный промежуток времени"
   alert.addButton(withTitle: "ОК")
   alert.show()
 }

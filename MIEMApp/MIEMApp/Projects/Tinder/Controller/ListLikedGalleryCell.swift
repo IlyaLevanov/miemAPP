@@ -94,7 +94,6 @@ class ListLikedGalleryCell: UITableViewCell {
     vacancyLabel.topAnchor.constraint(equalTo: vacancyLbl.bottomAnchor, constant: 5).isActive = true
     vacancyLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
     vacancyLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
-    
 
   }
   

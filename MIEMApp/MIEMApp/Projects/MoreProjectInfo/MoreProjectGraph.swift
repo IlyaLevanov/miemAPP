@@ -22,18 +22,24 @@ final class MoreProjectsGraph {
     moreProjectScreeLoad = MoreProjectScreenLoad(refreshAction: moreProjectDataSource.setNeedsUpdate, id: id)
 
     moreProjectDataSource.setOnUpdateHeader(onUpdate: { [unowned self] in
-      self.moreProjectScreeLoad.modelHeader = $0 })
+      self.moreProjectScreeLoad.modelHeader = $0
+      self.moreProjectScreeLoad.controller.reloadInputViews()
+    })
     
     moreProjectDataSource.setOnUpdateBody(onUpdate: { [unowned self] in
       self.moreProjectScreeLoad.modelBody = $0
+      self.moreProjectScreeLoad.reloadViews()
     })
     
-    moreProjectDataSource.setOnUpdateVacancy(onUpdate: {  self.moreProjectScreeLoad.modelVacancy = $0
+    moreProjectDataSource.setOnUpdateVacancy(onUpdate: {
+      self.moreProjectScreeLoad.modelVacancy = $0
+      self.moreProjectScreeLoad.reloadViews()
       
     })
     
     moreProjectDataSource.setOnUpdateTeam(onUpdate: { [unowned self] in
       self.moreProjectScreeLoad.modelTeam = $0
+      self.moreProjectScreeLoad.reloadViews()
     })
 
   }

@@ -86,7 +86,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         if isFilter {
           isFiltering = true
           filteredProjects.removeAll()
-          for project in model! {
+          for project in model ?? [] {
             
             let idToString = String(project.id)
             
@@ -108,7 +108,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
           
           isFiltering = true
           filteredProjects.removeAll()
-          for project in model! {
+          for project in model ?? [] {
             
             let idToString = String(project.id)
             
@@ -276,7 +276,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     isFilter = true
     isFiltering = true
     filteredProjects.removeAll()
-    for project in model! {
+    for project in model ?? [] {
       
       if vacancy {
        
@@ -371,3 +371,4 @@ extension ProjectsScreenLoad {
   }
 
 }
+
