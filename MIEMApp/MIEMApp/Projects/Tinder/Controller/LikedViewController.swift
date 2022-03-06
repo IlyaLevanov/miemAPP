@@ -10,19 +10,23 @@ import UIKit
 private let padding = Brandbook.Paddings.normal
 private let light = Brandbook.Paddings.light
 
-class LikedViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  
+  
 
   var likedCardsData: [CardDataModel] = []
-    var collectionView: UICollectionView?
+  var tableView: UITableView?
+  var deleteIndex: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupComponents()
     }
-    
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return likedCardsData.count
   }
+  
   
   let noFavouriteLabel: UILabel = {
      let label = UILabel()
@@ -33,8 +37,10 @@ class LikedViewController: UIViewController, UICollectionViewDelegate, UICollect
      return label
    }()
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListLikedGalleryCell.reusedId, for: indexPath) as! ListLikedGalleryCell
+
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: ListLikedGalleryCell.reusedId, for: indexPath) as! ListLikedGalleryCell
     
     let currentProject = likedCardsData[indexPath.row]
 
@@ -51,23 +57,18 @@ class LikedViewController: UIViewController, UICollectionViewDelegate, UICollect
     return cell
   }
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let id: Int
     id = likedCardsData[indexPath.row].project_id
     let moreProjectGraph = MoreProjectsGraph(id: id)
     moreProjectGraph.setNeedsUpdate()
-
-    
-    
-    
     self.modalPresentationStyle = .popover
-    
-    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
 
+    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width - padding, height: 200)
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 200
   }
   
   func setupComponents() {
@@ -85,21 +86,58 @@ class LikedViewController: UIViewController, UICollectionViewDelegate, UICollect
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     self.view.backgroundColor = .white
-    collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    collectionView?.delegate = self
-    collectionView?.dataSource = self
-    collectionView?.register(ListLikedGalleryCell.self, forCellWithReuseIdentifier: ListLikedGalleryCell.reusedId)
-    collectionView?.translatesAutoresizingMaskIntoConstraints = false
-    
-    self.view.addSubview(collectionView!)
-    collectionView?.backgroundColor = .white
-    collectionView?.topAnchor.constraint(equalTo: noFavouriteLabel.bottomAnchor).isActive = true
-    collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    collectionView?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-    collectionView?.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-    collectionView?.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+
+    tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
+    tableView?.delegate = self
+    tableView?.dataSource = self
+    tableView?.register(ListLikedGalleryCell.self, forCellReuseIdentifier: ListLikedGalleryCell.reusedId)
+    tableView?.translatesAutoresizingMaskIntoConstraints = false
+
+    self.view.addSubview(tableView!)
+    tableView?.backgroundColor = .white
+    tableView?.topAnchor.constraint(equalTo: noFavouriteLabel.bottomAnchor).isActive = true
+    tableView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    tableView?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+    tableView?.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+    tableView?.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
 
     
+  }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      deleteIndex = indexPath
+      confirmDelete()
+    }
+  }
+
+  
+  func confirmDelete() {
+    let alert = UIAlertController(title: "Удалить из избранного", message: "Вы уверены, что хотите удалить проект из избранного?", preferredStyle: .actionSheet)
+    
+    let DeleteAction = UIAlertAction(title: "Удалить", style: .destructive, handler: handleDeletePlanet)
+    let CancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: cancelDeletePlanet)
+    
+    alert.addAction(DeleteAction)
+    alert.addAction(CancelAction)
+    alert.popoverPresentationController?.sourceView = self.view
+    
+    self.present(alert, animated: true, completion: nil)
+  }
+  
+  func cancelDeletePlanet(alertAction: UIAlertAction!) {
+    deleteIndex = nil
+  }
+  
+  func handleDeletePlanet(alertAction: UIAlertAction!) -> Void {
+    if let indexPath = deleteIndex {
+      tableView?.beginUpdates()
+      likedCardsData.remove(at: indexPath.row)
+      tableView?.deleteRows(at: [indexPath], with: .automatic)
+      deleteIndex = nil
+      
+      tableView?.endUpdates()
+    }
   }
   
   private func measureFrameForText(_ text: String) -> CGRect{
@@ -126,9 +164,7 @@ extension LikedViewController {
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    print("here defaults")
     LikedSettings.likedCards = likedCardsData
-    print(LikedSettings.likedCards)
   }
 
 }

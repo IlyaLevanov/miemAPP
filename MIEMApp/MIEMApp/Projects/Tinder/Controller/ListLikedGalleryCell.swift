@@ -7,14 +7,14 @@
 
 import UIKit
 
-
-class ListLikedGalleryCell: UICollectionViewCell {
+class ListLikedGalleryCell: UITableViewCell {
   
   static let reusedId = "ListLikedGalleryCell"
   
   var dataSource: CardDataModel?
   var requirementsStackView = UIStackView()
   var count = 0
+  
   
  
   
@@ -70,8 +70,11 @@ class ListLikedGalleryCell: UICollectionViewCell {
       return label
   }()
   
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+//  override init(frame: CGRect) {
+//    super.init(frame: frame)
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
     
     addSubview(idLabel)
     addSubview(nameLabel)

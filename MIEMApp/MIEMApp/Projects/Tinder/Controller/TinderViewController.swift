@@ -99,6 +99,7 @@ class TinderViewController: UIViewController {
         let vc = LikedViewController()
       var array = stackContainer.likedCardsData
       if let likedDefault = LikedSettings.likedCards {
+        
         array = stackContainer.likedCardsData + likedDefault
         
       }
