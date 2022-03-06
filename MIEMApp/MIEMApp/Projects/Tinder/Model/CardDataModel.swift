@@ -18,7 +18,7 @@ struct ApiResponse: Decodable {
     
 }
 
-struct CardDataModel: Decodable, Encodable {
+struct CardDataModel: Decodable, Encodable, Equatable {
     
     var project_id: Int
     var project_name_rus: String

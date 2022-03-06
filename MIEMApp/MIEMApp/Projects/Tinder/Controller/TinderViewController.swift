@@ -95,12 +95,21 @@ class TinderViewController: UIViewController {
         stackContainer.reloadData()
       LikedSettings.clear()
     }
+  
     @objc func likedButtonAction() {
-        let vc = LikedViewController()
+      let vc = LikedViewController()
       var array = stackContainer.likedCardsData
+      var uniqueCards: [CardDataModel] = []
+      
       if let likedDefault = LikedSettings.likedCards {
         
-        array = stackContainer.likedCardsData + likedDefault
+        for element in stackContainer.likedCardsData {
+          if !likedDefault.contains(where: { $0 == element }) {
+            uniqueCards.append(element)
+          }
+        }
+        
+        array = uniqueCards + likedDefault
         
       }
       vc.likedCardsData = array
