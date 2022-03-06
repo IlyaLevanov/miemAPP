@@ -18,7 +18,7 @@ struct ApiResponse: Decodable {
     
 }
 
-struct CardDataModel: Decodable {
+struct CardDataModel: Decodable, Encodable, Equatable {
     
     var project_id: Int
     var project_name_rus: String
@@ -36,6 +36,7 @@ struct CardDataModel: Decodable {
         self.vacancy_role = vacancy_role
         self.vacancy_disciplines = vacancy_disciplines
     }
+  
     
 }
 

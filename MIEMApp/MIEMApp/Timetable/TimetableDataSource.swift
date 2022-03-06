@@ -9,9 +9,7 @@ import Alamofire
 import Foundation
 
 private struct TimetableResponse: Decodable {
-//  let Count: Int
   let Lessons: [TimetableItemModel]
-  
 }
 
 struct TimetableItemModel: Decodable, Equatable {
@@ -59,19 +57,24 @@ final class TimetableDataSource {
   
   private func update() {
     isUpdating = true
-//    let recieverType = (user.value.student || user.value.isReview) ? 1 : 1
-//    let url1 = "https://www.hse.ru/api/timetable/lessons?email=\(user.value.hseEmail)&\(makeDates())&receiverType=\(recieverType)"
-    let url = "https://ruz.hse.ru/api/schedule/student/?email=\(user.value.hseEmail)&\(makeDates())&lng=1"
-
-    
+    var status = user.value.hseEmail.components(separatedBy: "@")[1]
+    switch status {
+    case "edu.hse.ru":
+      status = "student"
+    case "hse.ru":
+      status = "lecturer"
+    default:
+      status = "person"
+    }
+    let url = "https://ruz.hse.ru/api/schedule/\(status)/?email=\(user.value.hseEmail)&\(makeDates())&lng=1"
     session.request(url).response { response in
       
       
       guard let data = response.data,
-        let parsedResponse = try? JSONDecoder().decode([TimetableItemModel].self, from: data) else {
-        self.isUpdating = false
-        return
-      }
+            let parsedResponse = try? JSONDecoder().decode([TimetableItemModel].self, from: data) else {
+              self.isUpdating = false
+              return
+            }
       var dayModels = [TimetableDayModel]()
       
       
@@ -99,7 +102,6 @@ final class TimetableDataSource {
   
   private func makeDates() -> String {
     let format = "yyyy-MM-dd"
-//    return "fromDate=\(dates.0.string(format: format))&toDate=\(dates.1.string(format: format))"
     return "start=\(dates.0.string(format: format))&finish=\(dates.1.string(format: format))"
   }
 }
@@ -110,7 +112,6 @@ private extension String {
     dateFormatter.calendar = Calendar(identifier: .iso8601)
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-//    dateFormatter.dateFormat = "yyyy.MM.dd"
     dateFormatter.dateFormat = "yyyy-MM-dd"
     return dateFormatter.date(from: self)
   }
