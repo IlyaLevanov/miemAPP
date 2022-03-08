@@ -51,7 +51,8 @@ struct AwardsItemModel: Decodable, Equatable {
   let name: String
   let award_condition_description: String
   let image: String
-  let progress: Int
+  let progress: Double
+//  let progress: Float
 }
 
 final class ProfileDataSource {
@@ -66,6 +67,8 @@ final class ProfileDataSource {
   private var onUpdateGitStat: ((GitStat) -> Void)?
   private var onUpdateAwards: ((AwardsModel) -> Void)?
   private var isUpdating: Bool = false
+  private var showAwards: Bool = true
+  private var userId: Int = 0
   
   init(user: Variable<User>, token: Property<String>) {
     self.user = user
@@ -106,11 +109,16 @@ final class ProfileDataSource {
   private func update() {
     isUpdating = true
     if (user.value.student) {
-      
+      print("start")
       profileInfoRequestStudent()
       applicationRequestStudent()
       getGitStatistics()
-      getUserAwards()
+      if showAwards {
+        print("show")
+        print("self.user.id = \(self.userId)")
+        getUserAwards(user_id: self.userId)
+      }
+      
   
         
       }
@@ -125,15 +133,20 @@ final class ProfileDataSource {
   }
   
   private func profileInfoRequestStudent() {
-    
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
           session.request("https://devcabinet.miem.vmnet.top/api/student_profile", method: .get, headers: headers).response { response in
           
-            
+            print("here")
+            debugPrint(response)
             guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ProfileResponse.self, from: data) else {
 
               return
             }
+            
+            self.showAwards = parsedResponse.data[0].main.showAchievements
+            print("user_id = \(parsedResponse.data[0].main.studentId)")
+            self.userId = parsedResponse.data[0].main.studentId
+            print("self user_id = \(self.userId)")
            
             var profileModel = [ProfileParsedModel]()
             var currentInfo: ProfileInfo
@@ -261,16 +274,21 @@ final class ProfileDataSource {
     }
   }
   
-  private func getUserAwards() {
-    let user_id = 663
+  private func getUserAwards(user_id: Int) {
+    print("https://devcabinet.miem.vmnet.top/public-api/badge/user/\(user_id)/progress")
     session.request("https://devcabinet.miem.vmnet.top/public-api/badge/user/\(user_id)/progress", method: .get).response {
           response in
+      print("debug")
+      debugPrint(response)
           guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(AwardsModel.self, from: data) else {
+            print("error here")
             return
           }
       var awardsModel: AwardsModel
       awardsModel = parsedResponse
       print("award=\(awardsModel)")
+      self.onUpdateAwards?(awardsModel)
+      self.isUpdating = false
   
           
           

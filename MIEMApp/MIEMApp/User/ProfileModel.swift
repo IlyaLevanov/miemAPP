@@ -16,6 +16,8 @@ struct ProfileInfo: Decodable, Equatable {
   let name: String
   let chatLink: String
   let pic: String
+  let showAchievements: Bool
+  let studentId: Int
 }
 
 struct ProfileParsedModel: Equatable {

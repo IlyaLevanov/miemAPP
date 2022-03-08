@@ -21,20 +21,26 @@ final class ProfileGraph {
     screen = Screen(id: .profileScreen, payload: profileLoad)
     profileDataSource.setOnUpdate { [unowned self] in
     self.profileLoad.modelProfile = $0
+      
     }
     
     profileDataSource.setOnUpdateProject { [unowned self] in
     self.profileLoad.modelProject = $0
+      
     }
     profileDataSource.setOnUpdateApplication {
       [unowned self] in
       self.profileLoad.modelApplication = $0
+      
     }
     profileDataSource.setOnUpdateGitStat { [unowned self] in
       self.profileLoad.modelGitStat = $0
     }
     profileDataSource.setOnUpdateAwards { [unowned self] in
       self.profileLoad.modelAwards = $0
+      self.profileLoad.collectionViewAwards?.reloadData()
+      self.profileLoad.scrollView.reloadInputViews()
+      print("reloaded")
       }
     
   

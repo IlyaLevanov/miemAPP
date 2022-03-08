@@ -76,6 +76,7 @@ var controller: UIViewController {
 
   var projectInfo = true
   var applicationInfo = true
+  var awardsInfo = true
   let scrollView = UIScrollView()
   let stackView = UIStackView()
   var collectionViewGit: UICollectionView?
@@ -259,6 +260,18 @@ var controller: UIViewController {
     return label
   }()
   
+  let labelNoInfoAwards: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 1
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
+    label.text = "Нет информации."
+    label.textColor = .lightGray
+    label.textAlignment = NSTextAlignment.left
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
   private func setUpScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(scrollView)
@@ -345,10 +358,75 @@ var controller: UIViewController {
     
   }
   
+  private func setUpAwardsContainer() {
+    stackView.addArrangedSubview(containerViewAwards)
+    containerViewAwards.translatesAutoresizingMaskIntoConstraints = false
+    containerViewAwards.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
+    containerViewAwards.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
+    containerViewAwards.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
+    containerViewAwards.heightAnchor.constraint(equalToConstant: 400).isActive = true
+  }
+  
+  private func setUpAwardsLabel() {
+    containerViewAwards.addSubview(labelAwards)
+    labelAwards.topAnchor.constraint(equalTo: containerViewAwards.topAnchor, constant: padding).isActive = true
+    labelAwards.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+    
+  }
+  
+  private func setUpCollectionAwards() {
+//    if awardsInfo {
+//      setUpCollectionViewAwards()
+//    } else {
+//      setUpNoAwardsLabel()
+//    }
+    setUpCollectionViewAwards()
+  }
+  
+  private func setUpCollectionViewAwards() {
+//
+    let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+
+        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionViewAwards?.delegate = self
+        collectionViewAwards?.dataSource = self
+        collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
+        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
+
+        containerViewAwards.addSubview(collectionViewAwards!)
+        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor).isActive = true
+        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
+        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    //    !!!!!
+    
+  }
+  
+  private func checkAwardsModel() {
+    if (modelAwards == nil) || (modelAwards?.data.isEmpty ?? false) {
+      awardsInfo = false
+    }
+    else {
+      awardsInfo = true
+    }
+  }
+  
+  private func setUpNoAwardsLabel() {
+    containerViewAwards.addSubview(labelNoInfoAwards)
+    labelNoInfoAwards.topAnchor.constraint(equalTo: labelAwards.bottomAnchor, constant: padding).isActive = true
+    labelNoInfoAwards.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
+    labelNoInfoAwards.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoAwards.text!).width + padding).isActive = true
+    labelNoInfoAwards.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoAwards.text, font: labelNoInfoAwards.font, width:  labelNoInfoAwards.frame.width).height).isActive = true
+//    labelNoInfoAwards.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    
+  }
+  
   private func setUpProjContainer() {
     stackView.addArrangedSubview(containerViewProj)
     containerViewProj.translatesAutoresizingMaskIntoConstraints = false
-    containerViewProj.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
+//    containerViewProj.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
+    containerViewProj.topAnchor.constraint(equalTo: containerViewAwards.bottomAnchor, constant: padding).isActive = true
     containerViewProj.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
     containerViewProj.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
   }
@@ -496,42 +574,7 @@ var controller: UIViewController {
     
   }
   
-  private func setUpAwardsContainer() {
-    stackView.addArrangedSubview(containerViewAwards)
-    containerViewAwards.translatesAutoresizingMaskIntoConstraints = false
-    containerViewAwards.topAnchor.constraint(equalTo: containerViewGit.bottomAnchor, constant: padding).isActive = true
-    containerViewAwards.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
-    containerViewAwards.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
-  }
-  
-  private func setUpAwardsLabel() {
-    containerViewAwards.addSubview(labelAwards)
-    labelAwards.topAnchor.constraint(equalTo: containerViewAwards.topAnchor, constant: padding).isActive = true
-    labelAwards.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
-    containerViewAwards.heightAnchor.constraint(equalToConstant: 600).isActive = true
-    containerViewAwards.backgroundColor = .red
-  }
-  
-  private func setUpCollectionAwards() {
-//
-    let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
 
-        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionViewAwards?.delegate = self
-        collectionViewAwards?.dataSource = self
-    collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
-        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
-
-        containerViewAwards.addSubview(collectionViewAwards!)
-        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor, constant: padding).isActive = true
-        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
-        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
-        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
-    //    !!!!!
-        collectionViewAwards?.backgroundColor = .white
-    
-  }
   
   func setupProfileComponents() {
     setUpScrollView()
@@ -541,6 +584,11 @@ var controller: UIViewController {
     setText()
     setImage()
     setUpInsideContainerView()
+    
+    setUpAwardsContainer()
+    setUpAwardsLabel()
+//    checkAwardsModel()
+    setUpCollectionAwards()
     
     setUpProjContainer()
     setUpProjLabel()
@@ -558,9 +606,7 @@ var controller: UIViewController {
     setUpGitLabel()
     setUpCollectionGit()
     
-//    setUpAwardsContainer()
-//    setUpAwardsLabel()
-//    setUpCollectionAwards()
+
 
   }
   
@@ -578,6 +624,13 @@ var controller: UIViewController {
     if collectionView == collectionViewAwards {
       print("award cell")
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCell.reusedId, for: indexPath) as! AwardCell
+      cell.nameLabel.text = modelAwards?.data[indexPath.row].name
+      if let pic_url_base64 = modelAwards?.data[indexPath.row].image {
+        let image = UIImage(base64: pic_url_base64)
+        cell.awardImageView.image = image
+      }
+      cell.progressLabel.text = "\(modelAwards?.data[indexPath.row].progress)"
+      cell.descriptionLabel.text = modelAwards?.data[indexPath.row].award_condition_description
       return cell
     }
     return UICollectionViewCell()
@@ -693,12 +746,10 @@ var controller: UIViewController {
     default:
       return 0
     }
-//    return modelitStat?.projects.count ?? 0
-      
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width - padding, height: 350)
+    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
   }
   
   

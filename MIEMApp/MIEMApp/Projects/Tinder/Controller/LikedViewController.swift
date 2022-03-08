@@ -115,8 +115,8 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func confirmDelete() {
     let alert = UIAlertController(title: "Удалить из избранного", message: "Вы уверены, что хотите удалить проект из избранного?", preferredStyle: .actionSheet)
     
-    let DeleteAction = UIAlertAction(title: "Удалить", style: .destructive, handler: handleDeletePlanet)
-    let CancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: cancelDeletePlanet)
+    let DeleteAction = UIAlertAction(title: "Удалить", style: .destructive, handler: handleDeleteProject)
+    let CancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: cancelDeleteProject)
     
     alert.addAction(DeleteAction)
     alert.addAction(CancelAction)
@@ -125,11 +125,11 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     self.present(alert, animated: true, completion: nil)
   }
   
-  func cancelDeletePlanet(alertAction: UIAlertAction!) {
+  func cancelDeleteProject(alertAction: UIAlertAction!) {
     deleteIndex = nil
   }
   
-  func handleDeletePlanet(alertAction: UIAlertAction!) -> Void {
+  func handleDeleteProject(alertAction: UIAlertAction!) -> Void {
     if let indexPath = deleteIndex {
       tableView?.beginUpdates()
       likedCardsData.remove(at: indexPath.row)
@@ -137,6 +137,8 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
       deleteIndex = nil
       
       tableView?.endUpdates()
+      LikedSettings.likedCards = likedCardsData
+      
     }
   }
   
