@@ -20,6 +20,7 @@ final class AppGraph {
 //  private let recordGraph: RecordGraph
   private let profileGraph: ProfileGraph
   private let projectsGraph: ProjectsGraph
+  private let sandboxGraph: SandboxGraph
   
   init() {
     screenRouter = ScreenRouter(rootController: MainController(tabController: tabBarController))
@@ -46,6 +47,8 @@ final class AppGraph {
 //      user: settings.user.asVariable()
 //    )
     projectsGraph = ProjectsGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
+    sandboxGraph = SandboxGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
+//    profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     authGraph = AuthGraph(
       wireframe: wireframe,
@@ -56,6 +59,7 @@ final class AppGraph {
         unowned timetableGraph,
         unowned profileGraph,
         unowned projectsGraph,
+        unowned sandboxGraph,
 //        unowned controlGraph,
         unowned settings,
         unowned tabBarController,
@@ -66,6 +70,7 @@ final class AppGraph {
         profileGraph.setNeedsUpdate()
 //        controlGraph.setNeedsUpdate()
         projectsGraph.setNeedsUpdate()
+        sandboxGraph.setNeedsUpdate()
         
         tabBarController.setItems(makeTabBarItems(wireframe: wireframe, isReview: settings.user.value.isReview))
         tabBarController.selectItem(at: 0)
@@ -81,6 +86,7 @@ final class AppGraph {
 //      controlGraph.listScreen,
 //      recordGraph.screen,
       projectsGraph.screen,
+      sandboxGraph.screen,
       profileGraph.screen,
       Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut))
     ])

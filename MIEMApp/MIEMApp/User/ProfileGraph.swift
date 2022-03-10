@@ -39,8 +39,8 @@ final class ProfileGraph {
     profileDataSource.setOnUpdateAwards { [unowned self] in
       self.profileLoad.modelAwards = $0
       self.profileLoad.collectionViewAwards?.reloadData()
-      self.profileLoad.scrollView.reloadInputViews()
-      print("reloaded")
+//      self.profileLoad.setupProfileComponents()
+
       }
     
   

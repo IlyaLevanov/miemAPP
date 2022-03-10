@@ -19,7 +19,7 @@ public final class Settings {
     static let authTokenDefault = ""
     static let userDefault = User(email: "", student: true)
 //    static let menuItemsDefault: [MenuItemKind] = [.control, .about, .profile]
-    static let menuItemsDefault: [MenuItemKind] = [.about, .profile]
+    static let menuItemsDefault: [MenuItemKind] = [.about, .profile, .projects]
   }
   
   public let authToken: Property<String>

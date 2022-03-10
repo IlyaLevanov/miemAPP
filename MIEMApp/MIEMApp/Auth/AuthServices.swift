@@ -69,6 +69,7 @@ final class AuthServices {
       }
       self.token.value = parsedResponse.data.token
       self.user.value = user
+      
 //      self.logInCameras()
       completion(true)
     }
@@ -100,6 +101,7 @@ final class AuthServices {
               let token_header = "Bearer " + self.token.value
               let header: HTTPHeaders = ["Authorization": token_header]
               self.session.request("https://profile.miem.hse.ru/auth/realms/MIEM/protocol/openid-connect/userinfo", method: .get, encoding: JSONEncodingWithoutEscapingSlashes.default, headers: header).response { response in
+                print("cabinet response")
                 debugPrint(response)
                 
                 
@@ -108,10 +110,13 @@ final class AuthServices {
               completion(false)
                   return
                 }
-                
+//                print("authState=\(authState.debugDescription)")
+//                self.token.value = (authState.lastTokenResponse?.accessToken)!
+//                print("token=\(self.token.value)")
                 let student = self.getStatus(token: self.token.value, email: parsedResponse.email)
                 let user = User(email: parsedResponse.email, student: student)
                 self.user.value = user
+                
 //                self.logInCameras()
                 completion(true)
                 

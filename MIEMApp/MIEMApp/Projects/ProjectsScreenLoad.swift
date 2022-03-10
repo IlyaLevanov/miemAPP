@@ -220,7 +220,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.setNavigationBarHidden(false, animated: animated)
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: Brandbook.Images.Icons.filterIcon, style: .plain, target: self, action: #selector(open_filter))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: Brandbook.Images.Icons.filterIcon1, style: .done, target: self, action: #selector(open_filter))
     navigationItem.searchController = search
     
     if !openedOnce {

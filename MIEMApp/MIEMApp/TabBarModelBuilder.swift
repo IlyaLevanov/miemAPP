@@ -16,16 +16,20 @@ func makeTabBarItems(wireframe: Wireframe, isReview: Bool) -> [TabBar.Item] {
       TabBar.Item(title: "Меню", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
         wireframe.toggleMenu()
       }, isSelectable: false),
+      TabBar.Item(title: "Профиль", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
+        wireframe.showProfileScreen()
+      }, isSelectable: false)
     ]
     : [
       TabBar.Item(title: "Расписание", image: Brandbook.Images.Icons.timetabelTabBarIcon, action: { [wireframe] in
         wireframe.showTimetableScreen()
       }, isSelectable: true),
-//      TabBar.Item(title: "Запись", image: Brandbook.Images.Icons.recordTabBarIcon, action: { [wireframe] in
-//        wireframe.showRecordScreen()
-//      }, isSelectable: true),
+
       TabBar.Item(title: "Меню", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
         wireframe.toggleMenu()
       }, isSelectable: false),
+      TabBar.Item(title: "Профиль", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
+        wireframe.showProfileScreen()
+      }, isSelectable: false)
     ]
 }

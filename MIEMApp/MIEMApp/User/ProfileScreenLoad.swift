@@ -587,7 +587,7 @@ var controller: UIViewController {
     
     setUpAwardsContainer()
     setUpAwardsLabel()
-//    checkAwardsModel()
+    checkAwardsModel()
     setUpCollectionAwards()
     
     setUpProjContainer()

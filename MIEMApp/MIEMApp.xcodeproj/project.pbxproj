@@ -10,10 +10,14 @@
 		364103503FF82B3F090F2C88 /* Pods_MIEMApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CB8EDF93A598E58B4E45740 /* Pods_MIEMApp.framework */; };
 		575257A6276E282A00B9CA35 /* ListLikedGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575257A5276E282A00B9CA35 /* ListLikedGalleryCell.swift */; };
 		6118B1BD27AB2DEB00835160 /* GitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118B1BC27AB2DEB00835160 /* GitCell.swift */; };
+		611C97BD27DA00EA006CCD40 /* SandboxScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C97BC27DA00EA006CCD40 /* SandboxScreenLoad.swift */; };
+		611C97BF27DA00F7006CCD40 /* SandboxGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C97BE27DA00F7006CCD40 /* SandboxGraph.swift */; };
+		611C97C127DA0107006CCD40 /* SandboxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C97C027DA0107006CCD40 /* SandboxDataSource.swift */; };
 		6134A62D2573ED00009D8933 /* AboutScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */; };
 		613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */; };
 		614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614939E426B008350068A0EA /* ApplicationMoreInfo.swift */; };
 		614D5EE425AEF6560065AD1E /* RecordScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */; };
+		6163C33927DA37720047D22B /* SandboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163C33827DA37720047D22B /* SandboxCell.swift */; };
 		61667B28273290B5005D4DAF /* ProjectsGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B27273290B5005D4DAF /* ProjectsGraph.swift */; };
 		61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */; };
 		61667B2C273294E5005D4DAF /* ProjectsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */; };
@@ -106,10 +110,14 @@
 		3CB8EDF93A598E58B4E45740 /* Pods_MIEMApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MIEMApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		575257A5276E282A00B9CA35 /* ListLikedGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLikedGalleryCell.swift; sourceTree = "<group>"; };
 		6118B1BC27AB2DEB00835160 /* GitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCell.swift; sourceTree = "<group>"; };
+		611C97BC27DA00EA006CCD40 /* SandboxScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxScreenLoad.swift; sourceTree = "<group>"; };
+		611C97BE27DA00F7006CCD40 /* SandboxGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxGraph.swift; sourceTree = "<group>"; };
+		611C97C027DA0107006CCD40 /* SandboxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxDataSource.swift; sourceTree = "<group>"; };
 		6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreenLoad.swift; sourceTree = "<group>"; };
 		613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderViewController.swift; sourceTree = "<group>"; };
 		614939E426B008350068A0EA /* ApplicationMoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMoreInfo.swift; sourceTree = "<group>"; };
 		614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScreenLoad.swift; sourceTree = "<group>"; tabWidth = 2; };
+		6163C33827DA37720047D22B /* SandboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxCell.swift; sourceTree = "<group>"; };
 		61667B27273290B5005D4DAF /* ProjectsGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsGraph.swift; sourceTree = "<group>"; };
 		61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsScreenLoad.swift; sourceTree = "<group>"; };
 		61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsDataSource.swift; sourceTree = "<group>"; };
@@ -227,6 +235,17 @@
 				6118B1BC27AB2DEB00835160 /* GitCell.swift */,
 			);
 			path = Git;
+			sourceTree = "<group>";
+		};
+		611C97BB27DA00CB006CCD40 /* Sandbox */ = {
+			isa = PBXGroup;
+			children = (
+				611C97BC27DA00EA006CCD40 /* SandboxScreenLoad.swift */,
+				611C97BE27DA00F7006CCD40 /* SandboxGraph.swift */,
+				611C97C027DA0107006CCD40 /* SandboxDataSource.swift */,
+				6163C33827DA37720047D22B /* SandboxCell.swift */,
+			);
+			path = Sandbox;
 			sourceTree = "<group>";
 		};
 		6134A62B2573ECE0009D8933 /* About */ = {
@@ -400,6 +419,7 @@
 				652F9ED925B7926100707999 /* Control */,
 				652F9EAD25AA737200707999 /* Timetable */,
 				61667B262732908B005D4DAF /* Projects */,
+				611C97BB27DA00CB006CCD40 /* Sandbox */,
 				652F9E9825A8AE9F00707999 /* Menu */,
 				6537D0322598D69700079201 /* Core */,
 				6134A62B2573ECE0009D8933 /* About */,
@@ -764,6 +784,7 @@
 				652F9EC825B72FBC00707999 /* TouchDetectingView.swift in Sources */,
 				61DE9375261F2E0900DAC912 /* ApplicationCell.swift in Sources */,
 				652F9EA425A9D50900707999 /* MenuGraph.swift in Sources */,
+				611C97BF27DA00F7006CCD40 /* SandboxGraph.swift in Sources */,
 				652F9EDF25B7980F00707999 /* VideoView.swift in Sources */,
 				61B3C5ED27D696CB00784589 /* UIImageExtensions.swift in Sources */,
 				613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */,
@@ -778,6 +799,7 @@
 				652F9F9625BDD35E00707999 /* ControlGraph.swift in Sources */,
 				65E5091125F3DF790080B04C /* AuthGraph.swift in Sources */,
 				6583E0D92561EB8B006DCAB8 /* AppGraph.swift in Sources */,
+				6163C33927DA37720047D22B /* SandboxCell.swift in Sources */,
 				652F9EDB25B7927B00707999 /* CameraScreenLoad.swift in Sources */,
 				652F9F4625B9B8A800707999 /* CrosshairView.swift in Sources */,
 				6583E0D02561C34D006DCAB8 /* TabBarController.swift in Sources */,
@@ -814,6 +836,7 @@
 				61ED911A27404C61006BEE2F /* PaddingLabel.swift in Sources */,
 				61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */,
 				650CDA7D2561530F00BA927A /* BottomSheetViewController.swift in Sources */,
+				611C97BD27DA00EA006CCD40 /* SandboxScreenLoad.swift in Sources */,
 				61DA00B1276A1CA00057B4FE /* StackContainerView.swift in Sources */,
 				652F9F7925BDBE5D00707999 /* CameraListHeaders.swift in Sources */,
 				6583E0E92562FCD3006DCAB8 /* Brandbook.swift in Sources */,
@@ -824,6 +847,7 @@
 				6583E0C325616C56006DCAB8 /* ScreenPayload.swift in Sources */,
 				652F9E9D25A8AEC600707999 /* MenuItemModel.swift in Sources */,
 				652F9EA925A9D78300707999 /* MenuDataSource.swift in Sources */,
+				611C97C127DA0107006CCD40 /* SandboxDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

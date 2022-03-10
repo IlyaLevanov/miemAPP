@@ -289,8 +289,6 @@ final class ProfileDataSource {
       print("award=\(awardsModel)")
       self.onUpdateAwards?(awardsModel)
       self.isUpdating = false
-  
-          
           
         }
   }

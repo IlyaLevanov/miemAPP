@@ -18,4 +18,5 @@ enum ScreenId {
   case authScreen
   case profileScreen
   case projectsScreen
+  case sandboxScreen
 }

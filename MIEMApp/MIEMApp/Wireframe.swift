@@ -62,6 +62,10 @@ final class Wireframe {
     pushScreen(with: .projectsScreen, animated: true)
   }
   
+  func pushSandboxScreen() {
+    pushScreen(with: .sandboxScreen, animated: true)
+  }
+  
   func pushAuthScreen() {
     isAuthScreenOpened = true
     pushScreen(with: .authScreen, animated: false)

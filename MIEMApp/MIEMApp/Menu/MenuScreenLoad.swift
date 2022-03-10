@@ -144,6 +144,14 @@ private extension MenuItemKind {
           wireframe.pushProjectListScreen()
 //          wireframe.showProjectsScreen()
       })
+      
+    case .sandbox:
+      return MenuItemModel (
+        icon: Brandbook.Images.Icons.projectsMenuIcon,
+        title: "Песочница проектов",
+        action: {
+          wireframe.pushSandboxScreen()
+        })
     }
   }
   

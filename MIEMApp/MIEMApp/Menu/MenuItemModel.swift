@@ -12,6 +12,7 @@ public enum MenuItemKind: Int {
   case about
   case profile
   case projects
+  case sandbox
 }
 
 struct MenuItemModel {

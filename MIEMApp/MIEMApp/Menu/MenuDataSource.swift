@@ -39,7 +39,7 @@ final class MenuDataSource {
   
   private func update() {
     isUpdating = true
-    menuItems.value = user.value.isReview ? [.about] : [.profile, .projects, .about]
+    menuItems.value = user.value.isReview ? [.about] : [.profile, .projects, .about, .sandbox]
     onUpdate?(menuItems.value)
     isUpdating = false
   }
