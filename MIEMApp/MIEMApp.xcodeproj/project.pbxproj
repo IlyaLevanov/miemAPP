@@ -15,6 +15,7 @@
 		611C97C127DA0107006CCD40 /* SandboxDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C97C027DA0107006CCD40 /* SandboxDataSource.swift */; };
 		6134A62D2573ED00009D8933 /* AboutScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */; };
 		613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */; };
+		6145F17127DFE41D00033C04 /* SandboxStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145F17027DFE41D00033C04 /* SandboxStatus.swift */; };
 		614939E526B008350068A0EA /* ApplicationMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614939E426B008350068A0EA /* ApplicationMoreInfo.swift */; };
 		614D5EE425AEF6560065AD1E /* RecordScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */; };
 		6163C33927DA37720047D22B /* SandboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163C33827DA37720047D22B /* SandboxCell.swift */; };
@@ -115,6 +116,7 @@
 		611C97C027DA0107006CCD40 /* SandboxDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxDataSource.swift; sourceTree = "<group>"; };
 		6134A62C2573ED00009D8933 /* AboutScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreenLoad.swift; sourceTree = "<group>"; };
 		613AC21E2736CB7E00CCCC40 /* TinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderViewController.swift; sourceTree = "<group>"; };
+		6145F17027DFE41D00033C04 /* SandboxStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxStatus.swift; sourceTree = "<group>"; };
 		614939E426B008350068A0EA /* ApplicationMoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMoreInfo.swift; sourceTree = "<group>"; };
 		614D5EE325AEF6560065AD1E /* RecordScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordScreenLoad.swift; sourceTree = "<group>"; tabWidth = 2; };
 		6163C33827DA37720047D22B /* SandboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxCell.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				611C97BE27DA00F7006CCD40 /* SandboxGraph.swift */,
 				611C97C027DA0107006CCD40 /* SandboxDataSource.swift */,
 				6163C33827DA37720047D22B /* SandboxCell.swift */,
+				6145F17027DFE41D00033C04 /* SandboxStatus.swift */,
 			);
 			path = Sandbox;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				61ED911A27404C61006BEE2F /* PaddingLabel.swift in Sources */,
 				61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */,
 				650CDA7D2561530F00BA927A /* BottomSheetViewController.swift in Sources */,
+				6145F17127DFE41D00033C04 /* SandboxStatus.swift in Sources */,
 				611C97BD27DA00EA006CCD40 /* SandboxScreenLoad.swift in Sources */,
 				61DA00B1276A1CA00057B4FE /* StackContainerView.swift in Sources */,
 				652F9F7925BDBE5D00707999 /* CameraListHeaders.swift in Sources */,
