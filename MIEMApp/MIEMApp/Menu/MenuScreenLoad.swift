@@ -147,7 +147,7 @@ private extension MenuItemKind {
       
     case .sandbox:
       return MenuItemModel (
-        icon: Brandbook.Images.Icons.projectsMenuIcon,
+        icon: Brandbook.Images.Icons.sandboxProjectIcon,
         title: "Песочница проектов",
         action: {
           wireframe.pushSandboxScreen()

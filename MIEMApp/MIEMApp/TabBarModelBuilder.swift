@@ -28,7 +28,7 @@ func makeTabBarItems(wireframe: Wireframe, isReview: Bool) -> [TabBar.Item] {
       TabBar.Item(title: "Меню", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
         wireframe.toggleMenu()
       }, isSelectable: false),
-      TabBar.Item(title: "Профиль", image: Brandbook.Images.Icons.menuTabBarIcon, action: { [wireframe] in
+      TabBar.Item(title: "Профиль", image: Brandbook.Images.Icons.profileTabBarIcon, action: { [wireframe] in
         wireframe.showProfileScreen()
       }, isSelectable: false)
     ]
