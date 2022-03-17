@@ -37,7 +37,6 @@ struct MoreProjectsParsedVacancyInfo: Decodable {
 
 struct VacancyInfoModel: Decodable, Equatable {
   let role: String
-  let count: Int
   let disciplines: [String]
   let additionally: [String]
 }
