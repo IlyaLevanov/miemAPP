@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource {
+class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   private unowned let wireframe: Wireframe
   var controller: UIViewController {
@@ -19,39 +19,37 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   var filteredProjects = [ListProjectInfoModel]()
   
   lazy var search: UISearchController = {
-      let search = UISearchController()
-      search.searchBar.placeholder = "Поиск"
-//      search.searchResultsUpdater = self
-      
-//      search.obscuresBackgroundDuringPresentation = false
-      search.searchBar.sizeToFit()
-      search.searchBar.searchBarStyle = .default
-
-
-//      search.searchBar.delegate = self
-      return search
+    let search = UISearchController()
+    search.searchBar.placeholder = "Поиск"
+    //      search.searchResultsUpdater = self
+    
+    //      search.obscuresBackgroundDuringPresentation = false
+    search.searchBar.sizeToFit()
+    search.searchBar.searchBarStyle = .default
+    
+    
+    //      search.searchBar.delegate = self
+    return search
   }()
   
   private let bottomInset: Variable<CGFloat>
   init(wireframe: Wireframe, bottomInset: Variable<CGFloat>) {
     self.wireframe = wireframe
     self.bottomInset = bottomInset
-
+    
     super.init(nibName: nil, bundle: nil)
     setUpComponent()
     
-
+    
   }
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
   func setUpComponent() {
-    print("model=\(modelSandbox)")
-    self.view.backgroundColor = .red
+    self.view.backgroundColor = Brandbook.Colors.grey
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    self.view.backgroundColor = Brandbook.Colors.grey
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView?.delegate = self
     collectionView?.dataSource = self
@@ -78,12 +76,12 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
       return filteredProjects.count
     }
     else {
-    return modelSandbox?.count ?? 0
+      return modelSandbox?.count ?? 0
     }
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width - padding, height: 350)
+    return CGSize(width: UIScreen.main.bounds.width - padding, height: 250)
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -92,7 +90,7 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     let nameRus: String
     let vacancyData: Int
     let status: String
-  
+    
     if isFiltering {
       id = Int(filteredProjects[indexPath.row].number) ?? 0
       nameRus = filteredProjects[indexPath.row].nameRus
@@ -107,8 +105,8 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     
     let moreProjectGraph = MoreProjectsGraph(id: id)
     moreProjectGraph.setNeedsUpdate()
-
-  
+    
+    
     self.modalPresentationStyle = .popover
     
     self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
@@ -116,14 +114,49 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SandboxCell.reusedId, for: indexPath) as! SandboxCell
-
+    
+    
     cell.idLabel.text = modelSandbox?[indexPath.row].number
     cell.nameLabel.text = modelSandbox?[indexPath.row].nameRus
     cell.headLabel.text = modelSandbox?[indexPath.row].head
     cell.statusLabel.text = modelSandbox?[indexPath.row].statusDesc
-    cell.numVacancyLabel.text = ("\(String(describing: modelSandbox?[indexPath.row].vacancies))")
+    if let status =  modelSandbox?[indexPath.row].status {
+      cell.status = status
+      
+      switch status {
+      case SandboxStatus.new.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.turquoiseStatus
+      case SandboxStatus.revise.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.lightBlueStatus
+      case SandboxStatus.po_approved.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.greenStatus
+      case SandboxStatus.head_assigned.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.greenStatus
+      case SandboxStatus.passport_complete.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.blueStatus
+      case SandboxStatus.control_passed.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.greenStatus
+      case SandboxStatus.need_revision.rawValue:
+        cell.statusLabel.backgroundColor = Brandbook.Colors.orangeStatus
+        
+      default:
+        cell.statusLabel.backgroundColor = .white
+      }
+    }
+    
+    if let vacancy = modelSandbox?[indexPath.row].vacancies {
+      let vacancyString = String(vacancy)
+      cell.numVacancyLabel.text = (vacancyString + " вакансий(я)")
+    }
+    
+    
+    cell.managerTxt.text = "Руководитель: "
+    cell.typeTxt.text = "Тип: "
     cell.typeLabel.text = modelSandbox?[indexPath.row].typeDesc
-        return cell
+    //    cell.translatesAutoresizingMaskIntoConstraints = false
+    cell.backgroundColor = .white
+    
+    return cell
   }
   
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

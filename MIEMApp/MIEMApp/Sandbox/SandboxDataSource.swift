@@ -64,7 +64,12 @@ final class SandboxDataSource {
       }
       
       var sandboxModel = [ListProjectInfoModel]()
-      sandboxModel = parsedResponse.data
+      for element in parsedResponse.data {
+        if element.nameRus.count > 4 {
+          sandboxModel.append(element)
+        }
+      }
+//      sandboxModel = parsedResponse.data
       self.onUpdate?(sandboxModel)
       self.isUpdating = false
     }

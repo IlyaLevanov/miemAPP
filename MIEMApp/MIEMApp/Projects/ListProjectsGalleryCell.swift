@@ -137,15 +137,13 @@ class ListProjectsGalleryCell: UICollectionViewCell {
     
   }
   
-  var height: CGFloat?
-  
   override func layoutSubviews() {
     super.layoutSubviews()
     self.clipsToBounds = false
     self.layer.cornerRadius = 5
     self.layer.shadowRadius = 5
-    layer.shadowOffset = CGSize(width: 3, height: 3)
-    layer.shadowOpacity = 0.2
+    self.layer.shadowOffset = CGSize(width: 3, height: 3)
+    self.layer.shadowOpacity = 0.2
     
   }
   
