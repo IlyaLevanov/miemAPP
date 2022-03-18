@@ -56,6 +56,9 @@ enum Brandbook {
       static let emailIcon = UIImage(imageLiteralResourceName: "EmailIcon").withRenderingMode(.alwaysTemplate)
       static let departIcon = UIImage(imageLiteralResourceName: "DepartmentIcon").withRenderingMode(.alwaysTemplate)
       
+      static let profileTabBarIcon = UIImage(imageLiteralResourceName: "ProfileTabBarIcon")
+      static let sandboxProjectIcon = UIImage(imageLiteralResourceName: "SandboxProjecticon")
+      
       static let tinderBackground2 = UIImage(imageLiteralResourceName: "tinder-back-2")
     }
     
