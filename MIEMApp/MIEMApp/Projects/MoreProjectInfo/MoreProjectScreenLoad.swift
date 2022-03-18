@@ -10,8 +10,8 @@ import UIKit
 import Foundation
 
 class MoreProjectScreenLoad: UIViewController {
-  
 
+  var once = false
   
   var controller: UIViewController {
       self
@@ -111,7 +111,8 @@ class MoreProjectScreenLoad: UIViewController {
         self.configureLinksStackView()
         self.configureVacanciesLabel()
         self.configureVacanciesStackView()
-    
+        once = true
+
     
   }
     
@@ -445,6 +446,7 @@ class MoreProjectScreenLoad: UIViewController {
     
     //есть заглушка
     func configureVacanciesStackView(){
+      if !once {
         scrollView.addSubview(vacanciesStackView)
         vacanciesStackView.backgroundColor = .white
         vacanciesStackView.axis = .vertical
@@ -452,18 +454,25 @@ class MoreProjectScreenLoad: UIViewController {
         vacanciesStackView.spacing = 5
         
         var vacancyNames = [String]()
+        var countVacancies = [Int]()
         var mandatorySkillsArray = [[String]]()
         var desirableSkillsArray = [[String]]()
-
       
       if let model = modelVacancy {
         for i in model {
-          vacancyNames.append(i.role)
-          mandatorySkillsArray.append(i.disciplines)
-          desirableSkillsArray.append(i.additionally)
+          
+
+            vacancyNames.append(i.role)
+            countVacancies.append(i.count)
+            mandatorySkillsArray.append(i.disciplines)
+            desirableSkillsArray.append(i.additionally)
+//            count += 1
         }
       }
-        for i in 0..<vacancyNames.count {
+
+//      print(count)
+        
+      for i in 0..<vacancyNames.count {
           
           let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i], id: modelHeader?.id ?? 0)
             vacanciesStackView.addArrangedSubview(vacancyView)
@@ -472,7 +481,7 @@ class MoreProjectScreenLoad: UIViewController {
             vacancyView.layer.cornerRadius = 10
             vacancyView.layer.borderWidth = 2
             vacancyView.layer.borderColor = UIColor.systemBlue.cgColor
-            vacancyView.vacancyNameLabel.text = vacancyNames[i]
+            vacancyView.vacancyNameLabel.text = (vacancyNames[i]) + " - " + String(countVacancies[i])
 //            vacancyView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.25).isActive = true
         }
 
@@ -480,6 +489,7 @@ class MoreProjectScreenLoad: UIViewController {
         vacanciesStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         vacanciesStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20).isActive = true
         vacanciesStackView.topAnchor.constraint(equalTo: vacanciesLabel.bottomAnchor, constant: 5).isActive = true
+      }
     }
     
     @objc func didTapMailButton(sender: AnyObject) {
