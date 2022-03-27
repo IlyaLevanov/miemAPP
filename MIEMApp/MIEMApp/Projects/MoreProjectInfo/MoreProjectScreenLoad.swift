@@ -12,6 +12,7 @@ import Foundation
 class MoreProjectScreenLoad: UIViewController {
 
   var once = false
+  var count = 0
   
   var controller: UIViewController {
       self
@@ -215,42 +216,43 @@ class MoreProjectScreenLoad: UIViewController {
     
     //есть заглушка
     func configureStackView(){
+      if count == 0 {
         scrollView.addSubview(stackView)
         stackView.backgroundColor = .white
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 15
-
+        
         var arrayOfNames = [String]()
         var arrayOfDescriptions = [String]()
         var arrayOfPics = [String]()
-
-      if let model = modelTeam {
-        for i in model.leaders {
-          arrayOfNames.append(i.first_name + " " + i.last_name)
+        
+        if let model = modelTeam {
+          for i in model.leaders {
+            arrayOfNames.append(i.first_name + " " + i.last_name)
+          }
+          for i in model.activeMembers {
+            arrayOfNames.append(i.first_name + " " + i.last_name)
+          }
+          for i in model.leaders {
+            arrayOfDescriptions.append(i.role)
+          }
+          for i in model.activeMembers {
+            arrayOfDescriptions.append(i.role)
+          }
+          for i in model.leaders {
+            arrayOfPics.append(i.pic)
+          }
+          for i in model.activeMembers {
+            arrayOfPics.append(i.pic)
+          }
+          count = 1
         }
-        for i in model.activeMembers {
-          arrayOfNames.append(i.first_name + " " + i.last_name)
-        }
-        for i in model.leaders {
-          arrayOfDescriptions.append(i.role)
-        }
-        for i in model.activeMembers {
-          arrayOfDescriptions.append(i.role)
-        }
-        for i in model.leaders {
-          arrayOfPics.append(i.pic)
-        }
-        for i in model.activeMembers {
-          arrayOfPics.append(i.pic)
-        }
-      }
-
         for i in 0..<arrayOfNames.count {
-            let stackViewIn = UIStackView()
-            stackView.addArrangedSubview(stackViewIn)
-            stackViewIn.axis = .horizontal
-            stackViewIn.spacing = 10
+          let stackViewIn = UIStackView()
+          stackView.addArrangedSubview(stackViewIn)
+          stackViewIn.axis = .horizontal
+          stackViewIn.spacing = 10
           
           let url_img = URL(string: arrayOfPics[i])
           if let url = url_img {
@@ -271,39 +273,39 @@ class MoreProjectScreenLoad: UIViewController {
               }
             }
           }
-
-            
-            let stackViewInfo = UIStackView()
-            stackViewIn.addArrangedSubview(stackViewInfo)
-            stackViewInfo.axis = .vertical
-            stackViewInfo.distribution = .fillEqually
-            stackViewInfo.spacing = 5
-
-            let nameOfParticipant = UILabel()
-            stackViewInfo.addArrangedSubview(nameOfParticipant)
-            nameOfParticipant.text = arrayOfNames[i]
-            nameOfParticipant.numberOfLines = 1
-            nameOfParticipant.font = .boldSystemFont(ofSize: 16)
-            nameOfParticipant.adjustsFontSizeToFitWidth = true
-            nameOfParticipant.minimumScaleFactor = 1
-
-
-            let descriptionOfParticipant = UILabel()
-            stackViewInfo.addArrangedSubview(descriptionOfParticipant)
-            descriptionOfParticipant.text = arrayOfDescriptions[i]
-            descriptionOfParticipant.numberOfLines = 0
-            descriptionOfParticipant.sizeToFit()
-            descriptionOfParticipant.lineBreakMode = .byWordWrapping
-            descriptionOfParticipant.font = .systemFont(ofSize: 16)
-            descriptionOfParticipant.adjustsFontSizeToFitWidth = true
+          
+          let stackViewInfo = UIStackView()
+          stackViewIn.addArrangedSubview(stackViewInfo)
+          stackViewInfo.axis = .vertical
+          stackViewInfo.distribution = .fillEqually
+          stackViewInfo.spacing = 5
+          
+          let nameOfParticipant = UILabel()
+          stackViewInfo.addArrangedSubview(nameOfParticipant)
+          nameOfParticipant.text = arrayOfNames[i]
+          nameOfParticipant.numberOfLines = 1
+          nameOfParticipant.font = .boldSystemFont(ofSize: 16)
+          nameOfParticipant.adjustsFontSizeToFitWidth = true
+          nameOfParticipant.minimumScaleFactor = 1
+          
+          
+          let descriptionOfParticipant = UILabel()
+          stackViewInfo.addArrangedSubview(descriptionOfParticipant)
+          descriptionOfParticipant.text = arrayOfDescriptions[i]
+          descriptionOfParticipant.numberOfLines = 0
+          descriptionOfParticipant.sizeToFit()
+          descriptionOfParticipant.lineBreakMode = .byWordWrapping
+          descriptionOfParticipant.font = .systemFont(ofSize: 16)
+          descriptionOfParticipant.adjustsFontSizeToFitWidth = true
           descriptionOfParticipant.minimumScaleFactor = 1
-
+          
         }
-
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20).isActive = true
         stackView.topAnchor.constraint(equalTo: teamLabel.bottomAnchor, constant: 10).isActive = true
+      }
     }
     
     func configureInfoLabel() {
