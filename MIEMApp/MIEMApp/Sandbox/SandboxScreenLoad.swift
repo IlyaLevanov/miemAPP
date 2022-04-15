@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
-class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchResultsUpdating {
+
+  
   
   private unowned let wireframe: Wireframe
   var controller: UIViewController {
@@ -18,19 +20,13 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   var isFiltering = false
   var filteredProjects = [ListProjectInfoModel]()
   
-  lazy var search: UISearchController = {
-    let search = UISearchController()
-    search.searchBar.placeholder = "Поиск"
-    //      search.searchResultsUpdater = self
-    
-    //      search.obscuresBackgroundDuringPresentation = false
-    search.searchBar.sizeToFit()
-    search.searchBar.searchBarStyle = .default
-    
-    
-    //      search.searchBar.delegate = self
-    return search
-  }()
+  var openedOnce = false
+  var check = true
+  
+  var lastContentsOffset: CGFloat = 0
+  var offset: CGFloat = 0
+  var scrolled = false
+  
   
   private let bottomInset: Variable<CGFloat>
   init(wireframe: Wireframe, bottomInset: Variable<CGFloat>) {
@@ -42,8 +38,98 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     
     
   }
+
+  lazy var search: UISearchController = {
+      let search = UISearchController()
+      search.searchBar.placeholder = "Поиск"
+      search.searchResultsUpdater = self
+      
+      search.obscuresBackgroundDuringPresentation = false
+      search.searchBar.sizeToFit()
+      search.searchBar.searchBarStyle = .default
+
+
+      search.searchBar.delegate = self
+      return search
+  }()
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+    if check {
+      self.lastContentsOffset = scrollView.contentOffset.y
+      offset = lastContentsOffset
+      check = false
+    }
+    
+    self.lastContentsOffset = scrollView.contentOffset.y
+    
+    if (self.lastContentsOffset != offset) {
+      scrolled = true
+    }
+    if self.lastContentsOffset == offset {
+      scrolled = false
+    }
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.setNavigationBarHidden(false, animated: animated)
+    navigationItem.searchController = search
+    
+    if !openedOnce {
+      navigationItem.hidesSearchBarWhenScrolling = false
+      openedOnce = true
+    }
+    
+    if !scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    if scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = true
+    }
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+    
+    if !scrolled {
+      navigationItem.hidesSearchBarWhenScrolling = true
+    } else {
+      
+      if !openedOnce {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        openedOnce = true
+      }
+      
+      if !scrolled {
+        navigationItem.hidesSearchBarWhenScrolling = false
+      }
+      
+      if scrolled {
+        navigationItem.hidesSearchBarWhenScrolling = true
+      }
+    }
+  }
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    
+    let searchText = searchController.searchBar.text!
+    if !searchText.isEmpty {
+      
+        isFiltering = true
+        filteredProjects.removeAll()
+        for project in modelSandbox ?? [] {
+        
+            
+          if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || project.number.contains(searchText)) {
+              filteredProjects.append(project)
+            }
+            
+        }
+    }
+
+    collectionView?.reloadData()
   }
   
   func setUpComponent() {
@@ -125,12 +211,18 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SandboxCell.reusedId, for: indexPath) as! SandboxCell
     
+    var currentProject: ListProjectInfoModel?
+        if isFiltering {
+          currentProject = filteredProjects[indexPath.row]
+        } else {
+          currentProject = modelSandbox?[indexPath.row]
+        }
     
-    cell.idLabel.text = modelSandbox?[indexPath.row].number
-    cell.nameLabel.text = modelSandbox?[indexPath.row].nameRus
-    cell.headLabel.text = modelSandbox?[indexPath.row].head
-    cell.statusLabel.text = modelSandbox?[indexPath.row].statusDesc
-    if let status =  modelSandbox?[indexPath.row].status {
+    cell.idLabel.text = currentProject?.number
+    cell.nameLabel.text = currentProject?.nameRus
+    cell.headLabel.text = currentProject?.head
+    cell.statusLabel.text = currentProject?.statusDesc
+    if let status =  currentProject?.status {
       cell.status = status
       
       switch status {
