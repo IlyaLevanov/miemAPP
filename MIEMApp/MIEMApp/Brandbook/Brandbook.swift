@@ -29,6 +29,44 @@ enum Brandbook {
     static let orangeStatus = UIColor(red: 74/255, green: 237/255, blue: 237/255, alpha: 0.5)
     static let greenBackround = UIColor(red: 237/255, green: 136/255, blue: 74/255, alpha: 1.00)
     static let darkGreen = UIColor(red: 49/255, green: 87/255, blue: 52/255, alpha: 1)
+    static let system_gray3 = UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1)
+    @available(iOS 13.0, *)
+    static let dark_light = UIColor { traitCollection in
+      // 2
+      switch traitCollection.userInterfaceStyle {
+      case .dark:
+        // 3
+        return UIColor(white: 0.3, alpha: 1.0)
+      default:
+        // 4
+        return UIColor(white: 1.0, alpha: 1.0)
+      }
+    }
+    @available(iOS 13.0, *)
+    static let dark_light_text = UIColor { traitCollection in
+      // 2
+      switch traitCollection.userInterfaceStyle {
+      case .dark:
+        // 3
+        return UIColor(white: 1.0, alpha: 1.0)
+      default:
+        // 4
+        return UIColor(white: 0.0, alpha: 1.0)
+      }
+    }
+    
+    @available(iOS 13.0, *)
+    static let dark_light_text_gray = UIColor { traitCollection in
+      // 2
+      switch traitCollection.userInterfaceStyle {
+      case .dark:
+        // 3
+        return UIColor(white: 1.0, alpha: 1.0)
+      default:
+        // 4
+        return UIColor(white: 0.4, alpha: 1.0)
+      }
+    }
     
   }
   
@@ -96,5 +134,9 @@ enum Brandbook {
   
   enum LineSize {
     static let normal: CGFloat = 2
+  }
+  
+  enum Heights {
+    static let awardCell: CGFloat = 250
   }
 }

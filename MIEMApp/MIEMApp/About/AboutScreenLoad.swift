@@ -26,11 +26,20 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
   
   override func viewWillAppear(_ animated: Bool) {
     navigationController?.setNavigationBarHidden(false, animated: animated)
+    if #available(iOS 13.0, *) {
+      navigationController?.navigationBar.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
   }
   
   
   func setupAboutComponents() {
-    controller.view.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      controller.view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     controller.edgesForExtendedLayout = []
     controller.title = "О приложении"
 
@@ -44,7 +53,7 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
     imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     
-    let mainText: String = "Приложение позволяет удаленно управлять камерами в МИЭМ, добавлять новые камеры и записывать сценарии."
+    let mainText: String = "Мобильное приложение для Кабинета проектной работы МИЭМ."
     let mainLabel = UILabel()
     mainLabel.text = mainText
     mainLabel.numberOfLines = 0
@@ -53,6 +62,30 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     mainLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding).isActive = true
     mainLabel.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor, constant: padding).isActive = true
     mainLabel.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor, constant: -padding).isActive = true
+    
+    
+    
+    if #available(iOS 13, *) {
+    let switchTheme = UISwitch(frame:CGRect(x: 0, y: 0, width: 10, height: 10))
+    switchTheme.translatesAutoresizingMaskIntoConstraints = false
+    controller.view.addSubview(switchTheme)
+      switchTheme.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: Brandbook.Paddings.normal).isActive = true
+      switchTheme.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -Brandbook.Paddings.normal*2).isActive = true
+    switchTheme.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
+    switchTheme.setOn(false, animated: false)
+      
+      let labelSwitch = UILabel()
+      labelSwitch.text = "Темная тема"
+      labelSwitch.numberOfLines = 0
+      labelSwitch.translatesAutoresizingMaskIntoConstraints = false
+      controller.view.addSubview(labelSwitch)
+      labelSwitch.rightAnchor.constraint(equalTo: switchTheme.leftAnchor, constant: -Brandbook.Paddings.small).isActive = true
+      labelSwitch.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: Brandbook.Paddings.normal).isActive = true
+      labelSwitch.centerYAnchor.constraint(equalTo: switchTheme.centerYAnchor).isActive = true
+    }
+    
+    
+    
 
     let lableBottom = UILabel()
     let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "🤡"
@@ -79,6 +112,22 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
   
   @objc private func onExitBtnClicked() {
     onExitClicked()
+  }
+  
+  @objc private func switchStateDidChange(_ sender:UISwitch!) {
+    if #available(iOS 13, *) {
+      let appDelegate = UIApplication.shared.windows
+      if (sender.isOn == true){
+        appDelegate.forEach{$0.overrideUserInterfaceStyle = .dark}
+        print("UISwitch state is now ON")
+        return
+      }
+      else{
+        print("UISwitch state is now Off")
+        appDelegate.forEach{$0.overrideUserInterfaceStyle = .light}
+        return
+      }
+    }
   }
   
   @objc private func getLogs() {

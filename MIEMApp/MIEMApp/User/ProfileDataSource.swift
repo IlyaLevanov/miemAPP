@@ -39,8 +39,10 @@ struct GitStat: Decodable, Equatable {
 struct ProjectGitModel: Decodable, Equatable {
   let name: String
   let commitCount: Int
-//  let languages: [String: Int]
+//  let languages: [String:Double]
 }
+
+
 
 struct AwardsModel: Decodable, Equatable {
   let data: [AwardsItemModel]
@@ -160,15 +162,16 @@ final class ProfileDataSource {
   private func applicationRequestStudent() {
     
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
+    print("token value here \(self.token.value)")
     let url = "https://devcabinet.miem.vmnet.top/api/student/projects/and/applications/my"
     
     session.request(url, method: .get, headers: headers).response { response in
-
+debugPrint(response)
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ApplicationResponse.self, from: data) else {
-        
                 return
         }
 
+      print("parsed respose \(parsedResponse)")
      
       var projectData = [ProjectItemModel]()
       for i in parsedResponse.data.projects {
@@ -179,6 +182,7 @@ final class ProfileDataSource {
         projectData.append(i)
       }
 
+      print("projects \(projectData)")
       self.onUpdateProject?(projectData)
 
 
@@ -261,11 +265,15 @@ final class ProfileDataSource {
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
     session.request("https://devcabinet.miem.vmnet.top/api/student_statistics/git/my", method: .get, headers: headers).response {
       response in
+      print("hereGit")
+//      debugPrint(response.data?[0].)
+//      print(response.data)
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(GitStatistics.self, from: data) else {
+        print("GIT ERROR")
         return
       }
-//      print("parsed from git")
-//      print(parsedResponse.data.stat)
+      print("parsed from git")
+      print(parsedResponse.data.stat)
       var gitStatModel: GitStat
       gitStatModel = parsedResponse.data.stat
       self.onUpdateGitStat?(gitStatModel)
@@ -278,15 +286,11 @@ final class ProfileDataSource {
     print("https://devcabinet.miem.vmnet.top/public-api/badge/user/\(user_id)/progress")
     session.request("https://devcabinet.miem.vmnet.top/public-api/badge/user/\(user_id)/progress", method: .get).response {
           response in
-      print("debug")
-      debugPrint(response)
           guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(AwardsModel.self, from: data) else {
-            print("error here")
             return
           }
       var awardsModel: AwardsModel
       awardsModel = parsedResponse
-      print("award=\(awardsModel)")
       self.onUpdateAwards?(awardsModel)
       self.isUpdating = false
           

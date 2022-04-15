@@ -38,6 +38,7 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .regular)
       label.textAlignment = .left
+    label.textColor = .black
       return label
   }()
   
@@ -46,6 +47,7 @@ class ListProjectsGalleryCell: UICollectionViewCell {
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .regular)
       label.textAlignment = .right
+    label.textColor = .black
       return label
   }()
   

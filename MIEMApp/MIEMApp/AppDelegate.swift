@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     setUpWindow()
+//    themeWindow.makeKey()
     return true
   }
   

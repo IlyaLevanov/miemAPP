@@ -17,7 +17,7 @@ final class ProfileGraph {
     token: Property<String>
   ) {
      profileDataSource = ProfileDataSource(user: user, token: token)
-    profileLoad = ProfileScreenLoad(bottomInset: bottomInset, refreshAction: profileDataSource.setNeedsUpdate)
+    profileLoad = ProfileScreenLoad(bottomInset: bottomInset, refreshAction: profileDataSource.setNeedsUpdate, refreshActionAwards: profileDataSource.setNeedsUpdate)
     screen = Screen(id: .profileScreen, payload: profileLoad)
     profileDataSource.setOnUpdate { [unowned self] in
     self.profileLoad.modelProfile = $0
@@ -35,11 +35,13 @@ final class ProfileGraph {
     }
     profileDataSource.setOnUpdateGitStat { [unowned self] in
       self.profileLoad.modelGitStat = $0
+      self.profileLoad.collectionViewGit?.reloadData()
+      self.profileLoad.endRefreshGit()
     }
     profileDataSource.setOnUpdateAwards { [unowned self] in
       self.profileLoad.modelAwards = $0
       self.profileLoad.collectionViewAwards?.reloadData()
-//      self.profileLoad.setupProfileComponents()
+      self.profileLoad.endRefreshAwards()
 
       }
     

@@ -40,6 +40,7 @@ struct VacancyInfoModel: Decodable, Equatable {
   let count: Int
   let disciplines: [String]
   let additionally: [String]
+  let vacancy_id: Int
 }
 
 struct MoreProjectTeam: Decodable, Equatable {
@@ -57,6 +58,7 @@ struct HumanModel: Decodable, Equatable {
   let pic: String
   let role: String
 }
+
 
 
 final class MoreProjectDataSource {
@@ -148,7 +150,6 @@ final class MoreProjectDataSource {
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(MoreProjectsParsedVacancyInfo.self, from: data) else {
         return
       }
-    
       var vacancyProjectModel = [VacancyInfoModel]()
       vacancyProjectModel = parsedResponse.data
       self.onUpdateVacancy?(vacancyProjectModel)
@@ -172,6 +173,17 @@ final class MoreProjectDataSource {
       self.isUpdating = false
   }
   }
+  
+  func vacancyRequest(id: Int, text: String) {
+    makeVacancyRequest(id: id, text: text)
+  }
+  
+  private func makeVacancyRequest(id: Int, text: String) {
+    let url = "https://devcabinet.miem.vmnet.top/api/student/application/add"
+//    let headers: HTTPHeaders = ["x-auth-token": ]
+    
+  }
+  
   
 }
 

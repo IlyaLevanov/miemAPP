@@ -47,7 +47,12 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   }
   
   func setUpComponent() {
-    self.view.backgroundColor = Brandbook.Colors.grey
+    if #available(iOS 13.0, *) {
+      self.view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+      self.view.backgroundColor = Brandbook.Colors.grey
+    }
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -57,7 +62,12 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     collectionView?.translatesAutoresizingMaskIntoConstraints = false
     
     self.view.addSubview(collectionView!)
-    collectionView?.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      collectionView?.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+      collectionView?.backgroundColor = .white
+    }
     collectionView?.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor ?? self.view.topAnchor).isActive = true
     collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     collectionView?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
@@ -103,13 +113,13 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
       status = modelSandbox![indexPath.row].statusDesc
     }
     
-    let moreProjectGraph = MoreProjectsGraph(id: id)
-    moreProjectGraph.setNeedsUpdate()
+//    let moreProjectGraph = MoreProjectsGraph(id: id)
+//    moreProjectGraph.setNeedsUpdate()
     
     
-    self.modalPresentationStyle = .popover
+//    self.modalPresentationStyle = .popover
     
-    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
+//    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

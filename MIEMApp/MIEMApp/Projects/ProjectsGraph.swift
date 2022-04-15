@@ -19,7 +19,7 @@ final class ProjectsGraph {
   ) {
     projectsDataSource = ProjectsDataSource(user: user, token: token)
     
-    projectsLoad = ProjectsScreenLoad(wireframe: wireframe, bottomInset: bottomInset, refreshAction: projectsDataSource.setNeedsUpdate)
+    projectsLoad = ProjectsScreenLoad(wireframe: wireframe, bottomInset: bottomInset, refreshAction: projectsDataSource.setNeedsUpdate, token: token)
     screen = Screen(id: .projectsScreen, payload: projectsLoad)
     projectsDataSource.setOnUpdate { [unowned self] in
       self.projectsLoad.model = $0

@@ -13,13 +13,15 @@ final class MoreProjectsGraph {
 
   private let moreProjectScreeLoad: MoreProjectScreenLoad
   private let moreProjectDataSource: MoreProjectDataSource
+  let token: Property<String>
 
 
-    init(id: Int)
+    init(id: Int, token: Property<String>)
   {
+    self.token = token
     moreProjectDataSource = MoreProjectDataSource(id: id)
 
-    moreProjectScreeLoad = MoreProjectScreenLoad(refreshAction: moreProjectDataSource.setNeedsUpdate, id: id)
+    moreProjectScreeLoad = MoreProjectScreenLoad(refreshAction: moreProjectDataSource.setNeedsUpdate, id: id, token: self.token)
 
     moreProjectDataSource.setOnUpdateHeader(onUpdate: { [unowned self] in
       self.moreProjectScreeLoad.modelHeader = $0
@@ -41,7 +43,13 @@ final class MoreProjectsGraph {
       self.moreProjectScreeLoad.modelTeam = $0
       self.moreProjectScreeLoad.reloadViews()
     })
+    
+//    moreProjectScreeLoad.vacancyAction = vacancyRequest
 
+  }
+  
+  func vacancyRequest(id: Int, text: String) {
+    moreProjectDataSource.vacancyRequest(id: id, text: text)
   }
 
   func setNeedsUpdate() {

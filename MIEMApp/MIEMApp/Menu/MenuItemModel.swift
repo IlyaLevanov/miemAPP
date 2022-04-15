@@ -10,7 +10,6 @@ import UIKit
 public enum MenuItemKind: Int {
 //  case control
   case about
-  case profile
   case projects
   case sandbox
 }

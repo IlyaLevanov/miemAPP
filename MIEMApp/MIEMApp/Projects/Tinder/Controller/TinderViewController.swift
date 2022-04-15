@@ -14,6 +14,16 @@ class TinderViewController: UIViewController {
     
     var viewModelData: [CardDataModel] = []
     var stackContainer: StackContainerView!
+    let token: Property<String>
+  init(token: Property<String> ) {
+    self.token = token
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   
     //MARK: - Init
@@ -97,7 +107,7 @@ class TinderViewController: UIViewController {
     }
   
     @objc func likedButtonAction() {
-      let vc = LikedViewController()
+      let vc = LikedViewController(token: self.token)
       var array = stackContainer.likedCardsData
       var uniqueCards: [CardDataModel] = []
       
@@ -111,7 +121,9 @@ class TinderViewController: UIViewController {
         
         array = uniqueCards + likedDefault
         
+        
       }
+      LikedSettings.likedCards = array
       vc.likedCardsData = array
         present(vc, animated: true, completion: nil)
     }

@@ -82,7 +82,11 @@ final class TimetableScreenLoad: UICollectionViewController, UICollectionViewDel
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
       withReuseIdentifier: timetableDatesHeaderIdentifier
     )
-    collectionView.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      collectionView.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     collectionView.refreshControl = UIRefreshControl()
     collectionView.refreshControl?.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
     collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset.value, right: 0)

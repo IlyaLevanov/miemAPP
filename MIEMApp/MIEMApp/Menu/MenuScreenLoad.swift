@@ -48,7 +48,11 @@ final class MenuScreenLoad: UICollectionViewController, UICollectionViewDelegate
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.register(MenuItemCell.self, forCellWithReuseIdentifier: menuItemCellIdentifier)
-    collectionView.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      collectionView.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
   }
   
   override func viewDidLayoutSubviews() {
@@ -126,14 +130,6 @@ private extension MenuItemKind {
         title: "О приложении",
         action: {
           wireframe.pushAboutScreen()
-        }
-      )
-    case .profile:
-      return MenuItemModel(
-        icon: Brandbook.Images.Icons.userMenuIcon,
-        title: "Профиль",
-        action: {
-          wireframe.showProfileScreen()
         }
       )
     case .projects:

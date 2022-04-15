@@ -16,6 +16,7 @@ var controller: UIViewController {
   return self
 }
   private let refreshAction: () -> Void
+  private let refreshActionAwards: () -> Void
   var modelProject: [ProjectItemModel]? {
     didSet {
       guard !scrollView.isDragging else {
@@ -56,9 +57,12 @@ var controller: UIViewController {
   private let bottomInset: Variable<CGFloat>
   
   weak var delegate: ProfileScreenLoad?
-  init(bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
+  init(bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void,
+       refreshActionAwards: @escaping () -> Void
+  ) {
     self.bottomInset = bottomInset
     self.refreshAction = refreshAction
+    self.refreshActionAwards = refreshActionAwards
     super.init(nibName: nil, bundle: nil)
   }
   required init?(coder: NSCoder) {
@@ -69,7 +73,8 @@ var controller: UIViewController {
     super.viewDidLoad()
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    scrollView.addSubview(refreshControl)
+//    scrollView.addSubview(refreshControl)
+    scrollView.refreshControl = refreshControl
     setupProfileComponents()
     self.delegate = self
   }
@@ -81,33 +86,61 @@ var controller: UIViewController {
   let stackView = UIStackView()
   var collectionViewGit: UICollectionView?
   var collectionViewAwards: UICollectionView?
+  let activityViewAwards = UIActivityIndicatorView(style: .whiteLarge)
+  let activityViewGit = UIActivityIndicatorView(style: .whiteLarge)
+  
   
   let containerView: UIView = {
     let view = UIView()
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   let containerViewProj: UIView = {
     let view = UIView()
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   let containerViewAppl: UIView = {
     let view = UIView()
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   let containerViewGit: UIView = {
     let view = UIView()
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
   let containerViewAwards: UIView = {
     let view = UIView()
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -292,6 +325,11 @@ var controller: UIViewController {
     stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     stackView.axis = .vertical
+    if #available(iOS 13.0, *) {
+      stackView.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
   }
   
   private func setUpContainerView() {
@@ -364,7 +402,7 @@ var controller: UIViewController {
     containerViewAwards.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
     containerViewAwards.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
     containerViewAwards.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
-    containerViewAwards.heightAnchor.constraint(equalToConstant: 400).isActive = true
+    containerViewAwards.heightAnchor.constraint(equalToConstant: Brandbook.Heights.awardCell + 50).isActive = true
   }
   
   private func setUpAwardsLabel() {
@@ -393,15 +431,38 @@ var controller: UIViewController {
         collectionViewAwards?.dataSource = self
         collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
         collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
+    if #available(iOS 13.0, *) {
+      collectionViewAwards?.backgroundColor = Brandbook.Colors.dark_light
+//      collectionViewAwards?.backgroundColor = .blue
+    } else {
+      // Fallback on earlier versions
+    }
 
         containerViewAwards.addSubview(collectionViewAwards!)
         collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor).isActive = true
         collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
         collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
         collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    collectionViewAwards?.addSubview(activityViewAwards)
+    activityViewAwards.hidesWhenStopped = true
+    activityViewAwards.color = .gray
+    activityViewAwards.translatesAutoresizingMaskIntoConstraints = false
+    activityViewAwards.centerXAnchor.constraint(equalTo: collectionViewAwards!.centerXAnchor).isActive = true
+    activityViewAwards.centerYAnchor.constraint(equalTo: collectionViewAwards!.centerYAnchor).isActive = true
+    activityViewAwards.startAnimating()
+    
     //    !!!!!
     
   }
+  
+  func endRefreshAwards() {
+    self.activityViewAwards.stopAnimating()
+  }
+  
+  func endRefreshGit() {
+    self.activityViewGit.stopAnimating()
+  }
+  
   
   private func checkAwardsModel() {
     if (modelAwards == nil) || (modelAwards?.data.isEmpty ?? false) {
@@ -562,6 +623,11 @@ var controller: UIViewController {
     collectionViewGit?.dataSource = self
     collectionViewGit?.register(GitCell.self, forCellWithReuseIdentifier: GitCell.reusedId)
     collectionViewGit?.translatesAutoresizingMaskIntoConstraints = false
+    if #available(iOS 13.0, *) {
+      collectionViewGit?.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     
     containerViewGit.addSubview(collectionViewGit!)
     collectionViewGit?.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor).isActive = true
@@ -569,8 +635,17 @@ var controller: UIViewController {
     collectionViewGit?.rightAnchor.constraint(equalTo: containerViewGit.rightAnchor, constant: small).isActive = true
 //    MARK: для динамической высоты scrollView
     collectionViewGit?.bottomAnchor.constraint(equalTo: containerViewGit.bottomAnchor).isActive = true
+    
+    collectionViewGit?.addSubview(activityViewGit)
+    activityViewGit.hidesWhenStopped = true
+    activityViewGit.color = .gray
+    activityViewGit.translatesAutoresizingMaskIntoConstraints = false
+    activityViewGit.centerXAnchor.constraint(equalTo: collectionViewGit!.centerXAnchor).isActive = true
+    activityViewGit.centerYAnchor.constraint(equalTo: collectionViewGit!.centerYAnchor).isActive = true
+    activityViewGit.startAnimating()
+    
 //    !!!!!
-    collectionViewGit?.backgroundColor = .white
+    
     
   }
   
@@ -622,15 +697,19 @@ var controller: UIViewController {
       return cell
     }
     if collectionView == collectionViewAwards {
-      print("award cell")
+
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCell.reusedId, for: indexPath) as! AwardCell
       cell.nameLabel.text = modelAwards?.data[indexPath.row].name
       if let pic_url_base64 = modelAwards?.data[indexPath.row].image {
         let image = UIImage(base64: pic_url_base64)
         cell.awardImageView.image = image
       }
-      cell.progressLabel.text = "\(modelAwards?.data[indexPath.row].progress)"
+
       cell.descriptionLabel.text = modelAwards?.data[indexPath.row].award_condition_description
+      
+      if let data = modelAwards?.data[indexPath.row].progress {
+        cell.progressBar.setProgress(Float(data/100), animated: false)
+      }
       return cell
     }
     return UICollectionViewCell()
@@ -703,6 +782,7 @@ var controller: UIViewController {
   private func endRefresh() {
     self.scrollView.reloadInputViews()
     scrollView.refreshControl?.endRefreshing()
+    collectionViewAwards?.refreshControl?.endRefreshing()
   }
   
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -749,7 +829,19 @@ var controller: UIViewController {
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+//    if collectionView == collectionViewAwards {
+//    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+//    }
+    switch collectionView {
+    case collectionViewAwards:
+      return CGSize(width: Brandbook.Heights.awardCell, height: Brandbook.Heights.awardCell)
+    
+    case collectionViewGit:
+      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+     
+    default:
+      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+    }
   }
   
   

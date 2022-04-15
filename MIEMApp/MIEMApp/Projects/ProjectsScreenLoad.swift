@@ -41,10 +41,13 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   var offset: CGFloat = 0
   var scrolled = false
   
-  init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void) {
+  let token: Property<String>
+  
+  init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, refreshAction: @escaping () -> Void, token: Property<String>) {
     self.wireframe = wireframe
     self.bottomInset = bottomInset
     self.refreshAction = refreshAction
+    self.token = token
     super.init(nibName: nil, bundle: nil)
     
     setupComponents()
@@ -168,7 +171,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
       status = model![indexPath.row].statusDesc
     }
     
-    let moreProjectGraph = MoreProjectsGraph(id: id)
+    let moreProjectGraph = MoreProjectsGraph(id: id, token: self.token)
     moreProjectGraph.setNeedsUpdate()
 
   
@@ -185,7 +188,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
         } else {
           currentProject = model?[indexPath.row]
         }
-        cell.idLabel.text = "\(currentProject!.id)"
+        cell.idLabel.text = currentProject?.number
         cell.nameLabel.text = currentProject?.nameRus
         cell.headLabel.text = currentProject?.head
         cell.typeLabel.text = currentProject?.typeDesc
@@ -262,7 +265,7 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
   @objc
   func open_filter() {
     
-    let filterViewController = FilterViewController(bottomInset: self.bottomInset, types: self.types ?? [], status: self.status ?? [], parentVC: self)
+    let filterViewController = FilterViewController(bottomInset: self.bottomInset, types: self.types ?? [], status: self.status ?? [], parentVC: self, token: self.token)
     self.modalPresentationStyle = .popover
     self.present(filterViewController, animated: false, completion: nil)
   }
@@ -324,7 +327,11 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    self.view.backgroundColor = Brandbook.Colors.grey
+    if #available(iOS 13.0, *) {
+      self.view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView?.delegate = self
     collectionView?.dataSource = self
@@ -332,7 +339,11 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
     collectionView?.translatesAutoresizingMaskIntoConstraints = false
     
     self.view.addSubview(collectionView!)
-    collectionView?.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      collectionView?.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     collectionView?.topAnchor.constraint(equalTo: self.navigationController?.navigationBar.bottomAnchor ?? self.view.topAnchor).isActive = true
     collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     collectionView?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true

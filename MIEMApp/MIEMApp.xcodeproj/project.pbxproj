@@ -26,6 +26,9 @@
 		61A29B48261F2E93007D974E /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A29B47261F2E93007D974E /* ProjectCell.swift */; };
 		61AEE58A27D24829008C3907 /* LikedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AEE58927D24829008C3907 /* LikedSettings.swift */; };
 		61B3C5ED27D696CB00784589 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3C5EC27D696CB00784589 /* UIImageExtensions.swift */; };
+		61B6321E2803A3BA00C25827 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6321D2803A3BA00C25827 /* Color.swift */; };
+		61B632212803A45A00C25827 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B632202803A45A00C25827 /* Theme.swift */; };
+		61B632232803A5B300C25827 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B632222803A5B300C25827 /* UIWindow.swift */; };
 		61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */; };
 		61BFCB69275C0E750023A6DA /* MoreProjectDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB68275C0E750023A6DA /* MoreProjectDataSource.swift */; };
 		61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */; };
@@ -127,6 +130,9 @@
 		61A29B47261F2E93007D974E /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		61AEE58927D24829008C3907 /* LikedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedSettings.swift; sourceTree = "<group>"; };
 		61B3C5EC27D696CB00784589 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		61B6321D2803A3BA00C25827 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		61B632202803A45A00C25827 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		61B632222803A5B300C25827 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		61BFCB66275BD1770023A6DA /* MoreProjectScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectScreenLoad.swift; sourceTree = "<group>"; };
 		61BFCB68275C0E750023A6DA /* MoreProjectDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectDataSource.swift; sourceTree = "<group>"; };
 		61BFCB6A275C0E850023A6DA /* MoreProjectGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProjectGraph.swift; sourceTree = "<group>"; };
@@ -293,6 +299,14 @@
 				61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */,
 			);
 			path = Projects;
+			sourceTree = "<group>";
+		};
+		61B6321F2803A45000C25827 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				61B632202803A45A00C25827 /* Theme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		61BFCB65275BD15E0023A6DA /* MoreProjectInfo */ = {
@@ -474,6 +488,8 @@
 				65E5094425FE5B3C0080B04C /* UIFontExtensions.swift */,
 				61ED911927404C61006BEE2F /* PaddingLabel.swift */,
 				61B3C5EC27D696CB00784589 /* UIImageExtensions.swift */,
+				61B6321D2803A3BA00C25827 /* Color.swift */,
+				61B632222803A5B300C25827 /* UIWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -526,6 +542,7 @@
 		6537D0322598D69700079201 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				61B6321F2803A45000C25827 /* Theme */,
 				65E5092425F44ACB0080B04C /* User */,
 				652F9F4A25BA12D000707999 /* UI */,
 				652F9ECB25B7521800707999 /* Extensions */,
@@ -776,6 +793,7 @@
 				65E5094525FE5B3C0080B04C /* UIFontExtensions.swift in Sources */,
 				652F9EAF25AA739700707999 /* TimetableScreenLoad.swift in Sources */,
 				61A29B48261F2E93007D974E /* ProjectCell.swift in Sources */,
+				61B6321E2803A3BA00C25827 /* Color.swift in Sources */,
 				65E5092225F444930080B04C /* AuthServices.swift in Sources */,
 				6537D0472598FAEC00079201 /* SessionManagerBuilder.swift in Sources */,
 				61BFCB67275BD1770023A6DA /* MoreProjectScreenLoad.swift in Sources */,
@@ -790,6 +808,7 @@
 				611C97BF27DA00F7006CCD40 /* SandboxGraph.swift in Sources */,
 				652F9EDF25B7980F00707999 /* VideoView.swift in Sources */,
 				61B3C5ED27D696CB00784589 /* UIImageExtensions.swift in Sources */,
+				61B632212803A45A00C25827 /* Theme.swift in Sources */,
 				613AC21F2736CB7E00CCCC40 /* TinderViewController.swift in Sources */,
 				6118B1BD27AB2DEB00835160 /* GitCell.swift in Sources */,
 				6583E0D52561E166006DCAB8 /* TabBar.swift in Sources */,
@@ -820,6 +839,7 @@
 				65E5094825FE67250080B04C /* CameraTutorialPages.swift in Sources */,
 				61ED0936274531E3006EAE4A /* FilterViewController.swift in Sources */,
 				6583E0DD2561F0DA006DCAB8 /* Wireframe.swift in Sources */,
+				61B632232803A5B300C25827 /* UIWindow.swift in Sources */,
 				61DE9371261F2DDE00DAC912 /* ApplicationCollectionView.swift in Sources */,
 				652F9F7C25BDBE5D00707999 /* CameraListDataSource.swift in Sources */,
 				650CD9DD256142D000BA927A /* AppDelegate.swift in Sources */,

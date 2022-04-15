@@ -21,6 +21,7 @@ struct ProjectsListModel: Decodable, Equatable {
   let vacancies: Int
   let vacancyData: [String]
   let team: [String]
+  let number: String?
   
 }
 
@@ -69,7 +70,10 @@ final class ProjectsDataSource {
     let url = "https://devcabinet.miem.vmnet.top/public-api/projects"
     session.request(url, method: .get).response {
       response in
+      print("debug")
+      debugPrint(response)
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ProjectsParsedInfo.self, from: data) else {
+        print("new_error")
         return
       }
       var typesNotUnique = [String]()

@@ -17,7 +17,17 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
   var likedCardsData: [CardDataModel] = []
   var tableView: UITableView?
   var deleteIndex: IndexPath? = nil
-    
+  let token: Property<String>
+  
+  init(token: Property<String>) {
+    self.token = token
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupComponents()
@@ -33,7 +43,13 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
      label.translatesAutoresizingMaskIntoConstraints = false
      label.textColor = .gray
      label.text = "Вам еще не понравился ни один проект :("
-     label.backgroundColor = .clear
+    if #available(iOS 13.0, *) {
+      label.backgroundColor = Brandbook.Colors.dark_light
+      label.textColor = Brandbook.Colors.dark_light_text_gray
+    } else {
+      // Fallback on earlier versions
+      label.textColor = .gray
+    }
      return label
    }()
   
@@ -42,7 +58,9 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ListLikedGalleryCell.reusedId, for: indexPath) as! ListLikedGalleryCell
     
-    let currentProject = likedCardsData[indexPath.row]
+//    print("PROJ FROM DEFAULTS = \(LikedSettings.likedCards)")
+//    let currentProject = likedCardsData[indexPath.row]
+    let currentProject = LikedSettings.likedCards[indexPath.row]
 
     
     cell.idLabel.text = "\(currentProject.project_id)"
@@ -60,7 +78,7 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let id: Int
     id = likedCardsData[indexPath.row].project_id
-    let moreProjectGraph = MoreProjectsGraph(id: id)
+    let moreProjectGraph = MoreProjectsGraph(id: id, token: self.token)
     moreProjectGraph.setNeedsUpdate()
     self.modalPresentationStyle = .popover
 
@@ -85,7 +103,11 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
-    self.view.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      self.view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
 
     tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
     tableView?.delegate = self
@@ -94,7 +116,11 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     tableView?.translatesAutoresizingMaskIntoConstraints = false
 
     self.view.addSubview(tableView!)
-    tableView?.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      tableView?.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     tableView?.topAnchor.constraint(equalTo: noFavouriteLabel.bottomAnchor).isActive = true
     tableView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     tableView?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
@@ -138,6 +164,7 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
       tableView?.endUpdates()
       LikedSettings.likedCards = likedCardsData
+//      print("Proj after delete = \(LikedSettings.likedCards)")
       
     }
   }

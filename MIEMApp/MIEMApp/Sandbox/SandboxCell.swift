@@ -36,6 +36,7 @@ class SandboxCell: UICollectionViewCell {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .regular)
+    label.textColor = .black
     return label
   }()
   
@@ -63,6 +64,7 @@ class SandboxCell: UICollectionViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .regular)
     label.textAlignment = .right
+    label.textColor = .black
     return label
   }()
   

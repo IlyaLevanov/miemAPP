@@ -19,15 +19,18 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   var status = [String]()
   var isType: Bool? //for picker
   let parentVC: ProjectsScreenLoad?
+  let token: Property<String>
+  
   
 
   var group:BEMCheckBoxGroup!
   
-  init(bottomInset: Variable<CGFloat>, types: [String], status: [String], parentVC: ProjectsScreenLoad) {
+  init(bottomInset: Variable<CGFloat>, types: [String], status: [String], parentVC: ProjectsScreenLoad, token: Property<String>) {
     self.bottomInset = bottomInset
     self.types = types
     self.status = status
     self.parentVC = parentVC
+    self.token = token
 //    self.types = ["прогр", "нир"]
 //    self.status = ["готов"]
   
@@ -332,7 +335,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   
   
   private func openTinderView() {
-    let tinderViewController = TinderViewController()
+    let tinderViewController = TinderViewController(token: self.token)
 //    tinderViewController.view.backgroundColor = Brandbook.Colors.darkGreen
     self.modalPresentationStyle = .popover
     self.present(tinderViewController, animated: true, completion: nil)
