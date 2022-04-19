@@ -12,89 +12,89 @@ class ListProjectsGalleryCell: UICollectionViewCell {
   static let reusedId = "ListProjectsGalleryCell"
   
   let idLabel: UILabel = {
-      let label = UILabel()
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.textColor = .systemBlue
-      return label
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textColor = .systemBlue
+    return label
   }()
   
-
+  
   let nameLabel: UILabel = {
-       let label = UILabel()
-    label.numberOfLines = 0
+    let label = UILabel()
+    label.numberOfLines = 4
     label.sizeToFit()
     label.lineBreakMode = .byWordWrapping
-      label.textColor = .black
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
-      label.textAlignment = NSTextAlignment.left
-      label.backgroundColor = .clear
-      return label
+    label.textColor = .black
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .bold)
+    label.textAlignment = NSTextAlignment.left
+    label.backgroundColor = .clear
+    return label
   }()
   
   let headLabel: UILabel = {
-      let label = UILabel()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .regular)
-      label.textAlignment = .left
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.largeNormal, weight: .regular)
+    label.textAlignment = .left
     label.textColor = .black
-      return label
+    return label
   }()
   
   let typeLabel: UILabel = {
-      let label = UILabel()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .regular)
-      label.textAlignment = .right
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .regular)
+    label.textAlignment = .right
     label.textColor = .black
-      return label
+    return label
   }()
   
   let statusLabel: UILabel = {
-      let label = PaddingLabel()
-      label.padding(2,2,4,4)
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-      label.textAlignment = .right
-      label.textColor = .white
-      label.layer.masksToBounds = true
-      label.layer.cornerRadius = 10
-      label.backgroundColor = Brandbook.Colors.greenStatus
-      return label
+    let label = PaddingLabel()
+    label.padding(2,2,4,4)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+    label.textAlignment = .right
+    label.textColor = .white
+    label.layer.masksToBounds = true
+    label.layer.cornerRadius = 10
+    label.backgroundColor = Brandbook.Colors.greenStatus
+    return label
   }()
   
   let vacanciesLabel: UILabel = {
-      let label = PaddingLabel()
-      label.padding(2,2,4,4)
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-      label.textAlignment = .right
-      label.textColor = .white
-      label.layer.masksToBounds = true
-      label.layer.cornerRadius = 10
-      label.backgroundColor = Brandbook.Colors.blueStatus
-      return label
+    let label = PaddingLabel()
+    label.padding(2,2,4,4)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+    label.textAlignment = .right
+    label.textColor = .white
+    label.layer.masksToBounds = true
+    label.layer.cornerRadius = 10
+    label.backgroundColor = Brandbook.Colors.blueStatus
+    return label
   }()
   
   let managerTxt: UILabel = {
-      let label = UILabel()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .bold)
-      label.textAlignment = .right
-      label.textColor = .systemBlue
-      return label
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .bold)
+    label.textAlignment = .right
+    label.textColor = .systemBlue
+    return label
   }()
   
   let typeTxt: UILabel = {
-      let label = UILabel()
-      label.translatesAutoresizingMaskIntoConstraints = false
-      label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .bold)
-      label.textAlignment = .right
-      label.textColor = .systemBlue
-      return label
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: Brandbook.TextSize.normal, weight: .bold)
+    label.textAlignment = .right
+    label.textColor = .systemBlue
+    return label
   }()
- 
+  
   
   
   
@@ -110,32 +110,32 @@ class ListProjectsGalleryCell: UICollectionViewCell {
     addSubview(managerTxt)
     addSubview(typeTxt)
     
-      idLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
-      idLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-      
-      nameLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: small_padding).isActive = true
-      nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
-      nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    idLabel.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
+    idLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
     
-      statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
-      statusLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-
-      vacanciesLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5).isActive = true
-      vacanciesLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-
-      managerTxt.topAnchor.constraint(equalTo: vacanciesLabel.bottomAnchor, constant: padding).isActive = true
-      managerTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-
+    nameLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: small_padding).isActive = true
+    nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
+    nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
     
-      headLabel.topAnchor.constraint(equalTo: managerTxt.bottomAnchor, constant: 5).isActive = true
-      headLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-      headLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
-  
-      typeTxt.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
-      typeTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
-
-      typeLabel.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
-      typeLabel.leftAnchor.constraint(equalTo: typeTxt.rightAnchor, constant: small_padding).isActive = true
+    statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+    statusLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    
+    vacanciesLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5).isActive = true
+    vacanciesLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    
+    managerTxt.topAnchor.constraint(equalTo: vacanciesLabel.bottomAnchor, constant: padding).isActive = true
+    managerTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    
+    
+    headLabel.topAnchor.constraint(equalTo: managerTxt.bottomAnchor, constant: 5).isActive = true
+    headLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    headLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -small_padding).isActive = true
+    
+    typeTxt.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
+    typeTxt.leftAnchor.constraint(equalTo: leftAnchor, constant: light).isActive = true
+    
+    typeLabel.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
+    typeLabel.leftAnchor.constraint(equalTo: typeTxt.rightAnchor, constant: small_padding).isActive = true
     
   }
   
@@ -156,8 +156,8 @@ class ListProjectsGalleryCell: UICollectionViewCell {
   
   private func measureFrameForText(_ text: String) -> CGRect{
     let size = CGSize(width: UIScreen.main.bounds.width-padding, height: 1000)
-      let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-      return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+    let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
   }
   
   

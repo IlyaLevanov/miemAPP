@@ -39,9 +39,9 @@ final class ProjectsDataSource {
   init(
     user: Variable<User>,
     token: Property<String>) {
-    self.user = user
-    self.token = token
-  }
+      self.user = user
+      self.token = token
+    }
   
   func setOnUpdate(onUpdate: @escaping ([ProjectsListModel]) -> Void) {
     self.onUpdate = onUpdate
@@ -66,14 +66,10 @@ final class ProjectsDataSource {
   private func parseProjects() {
     self.isUpdating = true
     let headers: HTTPHeaders = ["x-auth-token": self.token.value]
-//    let url = "https://devcabinet.miem.vmnet.top/api/projects"
     let url = "https://devcabinet.miem.vmnet.top/public-api/projects"
     session.request(url, method: .get).response {
       response in
-      print("debug")
-      debugPrint(response)
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(ProjectsParsedInfo.self, from: data) else {
-        print("new_error")
         return
       }
       var typesNotUnique = [String]()
@@ -85,28 +81,20 @@ final class ProjectsDataSource {
       }
       typesNotUnique.append("Любой")
       statsNotUnique.append("Любой")
-
+      
       
       self.types = Array(Set(typesNotUnique))
       self.status = Array(Set(statsNotUnique))
-
-    
+      
       var projectsListModel = [ProjectsListModel]()
       projectsListModel = parsedResponse.data
       
       self.onUpdate?(projectsListModel)
       self.onUpdateTypes?(self.types)
       self.onUpdateStatus?(self.status)
-
+      
       self.isUpdating = false
-
-
       
     }
   }
-  
 }
-
-
-
-

@@ -14,7 +14,7 @@ final class LikedSettings {
   static var likedCards: [CardDataModel]! {
     get {
       if let data = UserDefaults.standard.value(forKey:LikedKeys.likedCards.rawValue) as? Data {
-          let likedCardsArray = try? PropertyListDecoder().decode(Array<CardDataModel>.self, from: data)
+        let likedCardsArray = try? PropertyListDecoder().decode(Array<CardDataModel>.self, from: data)
         return likedCardsArray
       } else {
         return nil
@@ -25,11 +25,11 @@ final class LikedSettings {
       let key = LikedKeys.likedCards.rawValue
       if let likedArray = newValue {
         if let property = try? PropertyListEncoder().encode(likedArray) {
-
+          
           defaults.set(property, forKey:key)
         } else {
         }
-       
+        
         UserDefaults.standard.synchronize()
       } else {
         defaults.removeObject(forKey: key)

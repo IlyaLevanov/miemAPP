@@ -12,12 +12,9 @@ final class AppGraph {
   private let tabBarController = TabBarController()
   private let wireframe: Wireframe
   private let settings = Settings()
-  
   private let authGraph: AuthGraph
   private let menuGraph: MenuGraph
   private let timetableGraph: TimetableGraph
-//  private let controlGraph: ControlGraph
-//  private let recordGraph: RecordGraph
   private let profileGraph: ProfileGraph
   private let projectsGraph: ProjectsGraph
   private let sandboxGraph: SandboxGraph
@@ -35,20 +32,8 @@ final class AppGraph {
       bottomInset: tabBarController.tabBarHeight,
       user: settings.user.asVariable()
     )
-//    controlGraph = ControlGraph(
-//      wireframe: wireframe,
-//      bottomInset: tabBarController.tabBarHeight,
-//      token: settings.authToken.asVariable(),
-//      tutorialShown: settings.camerasTutorialShown,
-//      showTutorial: wireframe.showTutorial
-//    )
-//    recordGraph = RecordGraph(
-//      bottomInset: tabBarController.tabBarHeight,
-//      user: settings.user.asVariable()
-//    )
     projectsGraph = ProjectsGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     sandboxGraph = SandboxGraph(wireframe: wireframe, bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
-//    profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     profileGraph = ProfileGraph(bottomInset: tabBarController.tabBarHeight, user: settings.user.asVariable(), token: settings.authToken)
     authGraph = AuthGraph(
       wireframe: wireframe,
@@ -60,7 +45,6 @@ final class AppGraph {
         unowned profileGraph,
         unowned projectsGraph,
         unowned sandboxGraph,
-//        unowned controlGraph,
         unowned settings,
         unowned tabBarController,
         unowned wireframe
@@ -68,23 +52,18 @@ final class AppGraph {
         menuGraph.setNeedsUpdate()
         timetableGraph.setNeedsUpdate()
         profileGraph.setNeedsUpdate()
-//        controlGraph.setNeedsUpdate()
         projectsGraph.setNeedsUpdate()
         sandboxGraph.setNeedsUpdate()
         
         tabBarController.setItems(makeTabBarItems(wireframe: wireframe, isReview: settings.user.value.isReview))
         tabBarController.selectItem(at: 0)
         wireframe.showTimetableScreen()
-//        wireframe.reloadProfile()
       }
     )
     wireframe.setUpMenu(menuScreen: menuGraph.screen)
     wireframe.setScreens([
       authGraph.screen,
       timetableGraph.screen,
-//      controlGraph.cameraScreen,
-//      controlGraph.listScreen,
-//      recordGraph.screen,
       projectsGraph.screen,
       sandboxGraph.screen,
       profileGraph.screen,

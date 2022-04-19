@@ -42,7 +42,7 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     }
     controller.edgesForExtendedLayout = []
     controller.title = "О приложении"
-
+    
     let imageView = UIImageView(frame: .zero)
     imageView.image = Brandbook.Images.appLogo
     imageView.contentMode = .scaleAspectFit
@@ -66,13 +66,13 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     
     
     if #available(iOS 13, *) {
-    let switchTheme = UISwitch(frame:CGRect(x: 0, y: 0, width: 10, height: 10))
-    switchTheme.translatesAutoresizingMaskIntoConstraints = false
-    controller.view.addSubview(switchTheme)
+      let switchTheme = UISwitch(frame:CGRect(x: 0, y: 0, width: 10, height: 10))
+      switchTheme.translatesAutoresizingMaskIntoConstraints = false
+      controller.view.addSubview(switchTheme)
       switchTheme.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: Brandbook.Paddings.normal).isActive = true
       switchTheme.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -Brandbook.Paddings.normal*2).isActive = true
-    switchTheme.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
-    switchTheme.setOn(false, animated: false)
+      switchTheme.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
+      switchTheme.setOn(false, animated: false)
       
       let labelSwitch = UILabel()
       labelSwitch.text = "Темная тема"
@@ -86,7 +86,7 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     
     
     
-
+    
     let lableBottom = UILabel()
     let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "🤡"
     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "🤡"
@@ -119,11 +119,9 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
       let appDelegate = UIApplication.shared.windows
       if (sender.isOn == true){
         appDelegate.forEach{$0.overrideUserInterfaceStyle = .dark}
-        print("UISwitch state is now ON")
         return
       }
       else{
-        print("UISwitch state is now Off")
         appDelegate.forEach{$0.overrideUserInterfaceStyle = .light}
         return
       }
@@ -135,9 +133,9 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     let message = "Логи скопированы"
     let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
     self.present(alert, animated: true)
-        
+    
     let duration: Double = 2
-        
+    
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
       alert.dismiss(animated: true)
     }

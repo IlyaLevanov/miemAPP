@@ -30,7 +30,6 @@ class TinderViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-//        view.backgroundColor = .white
       view.backgroundColor = UIColor(patternImage: Brandbook.Images.Icons.tinderBackground2)
         stackContainer = StackContainerView()
         view.addSubview(stackContainer)

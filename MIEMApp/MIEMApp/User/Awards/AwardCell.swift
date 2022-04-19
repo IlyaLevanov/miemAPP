@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 class AwardCell: UICollectionViewCell, ChartViewDelegate {
-   static let reusedId = "AwardCell"
+  static let reusedId = "AwardCell"
   
   let nameLabel: UILabel = {
     let label = UILabel()
@@ -22,13 +22,13 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
   }()
   
   let awardImageView: UIImageView = {
-      let imageView = UIImageView()
-      imageView.backgroundColor = .clear
-      imageView.contentMode = .scaleAspectFill
-      imageView.layer.cornerRadius = 70
-      imageView.clipsToBounds = true
-      imageView.translatesAutoresizingMaskIntoConstraints = false
-      return imageView
+    let imageView = UIImageView()
+    imageView.backgroundColor = .clear
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.cornerRadius = 70
+    imageView.clipsToBounds = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
   }()
   
   let progressLabel: UILabel = {
@@ -58,18 +58,14 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
-  
-//  var chartView = HorizontalBarChartView()
-//  var chartView = LineChartView()
 
-  
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(awardImageView)
     addSubview(nameLabel)
     addSubview(descriptionLabel)
     addSubview(progressBar)
-
+    
     
     awardImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding).isActive = true
     awardImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -81,16 +77,9 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
     nameLabel.topAnchor.constraint(equalTo: awardImageView.bottomAnchor, constant: light).isActive = true
     nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     
-//    chartView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 50)
-//    chartView.center = center
-//    chartView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: light).isActive = true
-
-   
-    
     descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: small_padding).isActive = true
     descriptionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: padding).isActive = true
     descriptionLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -padding).isActive = true
-    
     
     progressBar.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: small_padding).isActive = true
     progressBar.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -109,21 +98,7 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  
-//  private func setUpChart() {
-//    chartView.delegate = self
-////    chartView.drawBarShadowEnabled = false
-////    chartView.fitBars = true
-//    let chartData = BarChartDataSet(entries: [
-//      BarChartDataEntry(x: 12, y: 0),
-//      BarChartDataEntry(x: 10, y: 1),
-//      BarChartDataEntry(x: 5, y: 2)
-//    ])
-//    chartData.colors = ChartColorTemplates.pastel()
-//    chartView.data = BarChartData(dataSet: chartData)
-//  }
-  
+
 }
 private let padding = Brandbook.Paddings.normal //16
 private let small_padding = Brandbook.Paddings.small //4

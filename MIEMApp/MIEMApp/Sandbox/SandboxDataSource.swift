@@ -37,10 +37,10 @@ final class SandboxDataSource {
   init(
     user: Variable<User>,
     token: Property<String>) {
-    self.user = user
-    self.token = token
+      self.user = user
+      self.token = token
       parseSandbox()
-  }
+    }
   
   func setOnUpdate(onUpdate: @escaping (([ListProjectInfoModel])->Void)) {
     self.onUpdate = onUpdate
@@ -69,7 +69,6 @@ final class SandboxDataSource {
           sandboxModel.append(element)
         }
       }
-//      sandboxModel = parsedResponse.data
       self.onUpdate?(sandboxModel)
       self.isUpdating = false
     }

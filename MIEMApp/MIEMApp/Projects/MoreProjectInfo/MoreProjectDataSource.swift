@@ -59,16 +59,14 @@ struct HumanModel: Decodable, Equatable {
   let role: String
 }
 
-
-
 final class MoreProjectDataSource {
   private let session = makeDefaultSession()
-
+  
   private var onUpdateHeader: ((ProjectHeaderModel) -> Void)?
   private var onUpdateBody: ((ProjectBodyModel) -> Void)?
   private var onUpdateVacancy: (([VacancyInfoModel]) -> Void)?
   private var onUpdateTeam: ((ProjectMemberResponseModel) -> Void)?
-
+  
   private var isUpdating: Bool = false
   let id: Int
   
@@ -92,8 +90,6 @@ final class MoreProjectDataSource {
     self.onUpdateTeam = onUpdate
   }
   
-  
-  
   func setNeedsUpdate() {
     guard !isUpdating else {
       return
@@ -116,7 +112,7 @@ final class MoreProjectDataSource {
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(MoreProjectHeader.self, from: data) else {
         return
       }
-    
+      
       var headerProjectModel: ProjectHeaderModel
       headerProjectModel = parsedResponse.data
       self.onUpdateHeader?(headerProjectModel)
@@ -133,7 +129,7 @@ final class MoreProjectDataSource {
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(MoreProjectBody.self, from: data) else {
         return
       }
-    
+      
       var bodyProjectModel: ProjectBodyModel
       bodyProjectModel = parsedResponse.data
       self.onUpdateBody?(bodyProjectModel)
@@ -166,25 +162,12 @@ final class MoreProjectDataSource {
       guard let data = response.data, let parsedResponse = try? JSONDecoder().decode(MoreProjectTeam.self, from: data) else {
         return
       }
-    
+      
       var teamProjectModel: ProjectMemberResponseModel
       teamProjectModel = parsedResponse.data
       self.onUpdateTeam?(teamProjectModel)
       self.isUpdating = false
+    }
   }
-  }
-  
-  func vacancyRequest(id: Int, text: String) {
-    makeVacancyRequest(id: id, text: text)
-  }
-  
-  private func makeVacancyRequest(id: Int, text: String) {
-    let url = "https://devcabinet.miem.vmnet.top/api/student/application/add"
-//    let headers: HTTPHeaders = ["x-auth-token": ]
-    
-  }
-  
   
 }
-
-

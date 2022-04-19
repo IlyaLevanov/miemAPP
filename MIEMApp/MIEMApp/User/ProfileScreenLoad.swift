@@ -7,14 +7,12 @@
 
 import UIKit
 import EzPopup
-
-
 class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   
-var controller: UIViewController {
-  return self
-}
+  var controller: UIViewController {
+    return self
+  }
   private let refreshAction: () -> Void
   private let refreshActionAwards: () -> Void
   var modelProject: [ProjectItemModel]? {
@@ -73,12 +71,12 @@ var controller: UIViewController {
     super.viewDidLoad()
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-//    scrollView.addSubview(refreshControl)
+    //    scrollView.addSubview(refreshControl)
     scrollView.refreshControl = refreshControl
     setupProfileComponents()
     self.delegate = self
   }
-
+  
   var projectInfo = true
   var applicationInfo = true
   var awardsInfo = true
@@ -146,13 +144,13 @@ var controller: UIViewController {
   }()
   
   let profileImageView: UIImageView = {
-      let imageView = UIImageView()
-      imageView.backgroundColor = .clear
-      imageView.contentMode = .scaleAspectFill
-      imageView.layer.cornerRadius = 70
-      imageView.clipsToBounds = true
-      imageView.translatesAutoresizingMaskIntoConstraints = false
-      return imageView
+    let imageView = UIImageView()
+    imageView.backgroundColor = .clear
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.cornerRadius = 70
+    imageView.clipsToBounds = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
   }()
   
   let profileStatus: UILabel = {
@@ -272,7 +270,7 @@ var controller: UIViewController {
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
-
+  
   let labelGitStat: UILabel = {
     let label = UILabel()
     label.textColor = .black
@@ -306,14 +304,14 @@ var controller: UIViewController {
   }()
   
   private func setUpScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -bottomInset.value).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        scrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        scrollView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height*10).isActive = true
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(scrollView)
+    scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+    scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -bottomInset.value).isActive = true
+    scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+    scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+    scrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+    scrollView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height*10).isActive = true
   }
   
   private func setUpStackView() {
@@ -350,49 +348,49 @@ var controller: UIViewController {
   
   private func setUpInsideContainerView() {
     containerView.addSubview(profileStatus)
-       profileStatus.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding).isActive = true
-       profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
-       profileStatus.widthAnchor.constraint(equalToConstant: 140).isActive = true
-       profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding/2).isActive = true
-       
-       containerView.addSubview(nameLabel)
-       nameLabel.topAnchor.constraint(equalTo: profileStatus.bottomAnchor, constant: padding/2).isActive = true
-       nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
-       
-       containerView.addSubview(surnameLabel)
-       surnameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: padding/2).isActive = true
-       surnameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
-       
-       containerView.addSubview(chatButton)
-       chatButton.topAnchor.constraint(equalTo: surnameLabel.bottomAnchor, constant: padding/2).isActive = true
-       chatButton.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
-       chatButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-       chatButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
-       
-       containerView.addSubview(emailIcon)
-       emailIcon.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
-       emailIcon.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
-       emailIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
-       emailIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
-       
-       containerView.addSubview(departIcon)
-       departIcon.topAnchor.constraint(equalTo: emailIcon.bottomAnchor, constant: padding).isActive = true
-       departIcon.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
-       departIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
-       departIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
-       
-       containerView.addSubview(emailLabel)
-       emailLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
-       emailLabel.leftAnchor.constraint(equalTo: emailIcon.rightAnchor).isActive = true
-       emailLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(emailLabel.text ?? "").width + padding).isActive = true
-       emailLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-       
-       containerView.addSubview(departLabel)
-       departLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: padding).isActive = true
-       departLabel.leftAnchor.constraint(equalTo: departIcon.rightAnchor).isActive = true
-       departLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(departLabel.text ?? "").width + padding).isActive = true
-       departLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-       departLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+    profileStatus.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding).isActive = true
+    profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
+    profileStatus.widthAnchor.constraint(equalToConstant: 140).isActive = true
+    profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding/2).isActive = true
+    
+    containerView.addSubview(nameLabel)
+    nameLabel.topAnchor.constraint(equalTo: profileStatus.bottomAnchor, constant: padding/2).isActive = true
+    nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
+    
+    containerView.addSubview(surnameLabel)
+    surnameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: padding/2).isActive = true
+    surnameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 2*padding).isActive = true
+    
+    containerView.addSubview(chatButton)
+    chatButton.topAnchor.constraint(equalTo: surnameLabel.bottomAnchor, constant: padding/2).isActive = true
+    chatButton.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
+    chatButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    chatButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
+    
+    containerView.addSubview(emailIcon)
+    emailIcon.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
+    emailIcon.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
+    emailIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    emailIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    
+    containerView.addSubview(departIcon)
+    departIcon.topAnchor.constraint(equalTo: emailIcon.bottomAnchor, constant: padding).isActive = true
+    departIcon.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: padding).isActive = true
+    departIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    departIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    
+    containerView.addSubview(emailLabel)
+    emailLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
+    emailLabel.leftAnchor.constraint(equalTo: emailIcon.rightAnchor).isActive = true
+    emailLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(emailLabel.text ?? "").width + padding).isActive = true
+    emailLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    
+    containerView.addSubview(departLabel)
+    departLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: padding).isActive = true
+    departLabel.leftAnchor.constraint(equalTo: departIcon.rightAnchor).isActive = true
+    departLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(departLabel.text ?? "").width + padding).isActive = true
+    departLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    departLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     
   }
   
@@ -413,36 +411,36 @@ var controller: UIViewController {
   }
   
   private func setUpCollectionAwards() {
-//    if awardsInfo {
-//      setUpCollectionViewAwards()
-//    } else {
-//      setUpNoAwardsLabel()
-//    }
+    //    if awardsInfo {
+    //      setUpCollectionViewAwards()
+    //    } else {
+    //      setUpNoAwardsLabel()
+    //    }
     setUpCollectionViewAwards()
   }
   
   private func setUpCollectionViewAwards() {
-//
+    //
     let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionViewAwards?.delegate = self
-        collectionViewAwards?.dataSource = self
-        collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
-        collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
+    layout.scrollDirection = .horizontal
+    
+    collectionViewAwards = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collectionViewAwards?.delegate = self
+    collectionViewAwards?.dataSource = self
+    collectionViewAwards?.register(AwardCell.self, forCellWithReuseIdentifier: AwardCell.reusedId)
+    collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
     if #available(iOS 13.0, *) {
       collectionViewAwards?.backgroundColor = Brandbook.Colors.dark_light
-//      collectionViewAwards?.backgroundColor = .blue
+      //      collectionViewAwards?.backgroundColor = .blue
     } else {
       // Fallback on earlier versions
     }
-
-        containerViewAwards.addSubview(collectionViewAwards!)
-        collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor).isActive = true
-        collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
-        collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
-        collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    
+    containerViewAwards.addSubview(collectionViewAwards!)
+    collectionViewAwards?.topAnchor.constraint(equalTo: labelAwards.bottomAnchor).isActive = true
+    collectionViewAwards?.leftAnchor.constraint(equalTo: containerViewAwards.leftAnchor, constant: padding).isActive = true
+    collectionViewAwards?.rightAnchor.constraint(equalTo: containerViewAwards.rightAnchor).isActive = true
+    collectionViewAwards?.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
     collectionViewAwards?.addSubview(activityViewAwards)
     activityViewAwards.hidesWhenStopped = true
     activityViewAwards.color = .gray
@@ -479,14 +477,14 @@ var controller: UIViewController {
     labelNoInfoAwards.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: padding).isActive = true
     labelNoInfoAwards.widthAnchor.constraint(equalToConstant: measureFrameForText(labelNoInfoAwards.text!).width + padding).isActive = true
     labelNoInfoAwards.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: labelNoInfoAwards.text, font: labelNoInfoAwards.font, width:  labelNoInfoAwards.frame.width).height).isActive = true
-//    labelNoInfoAwards.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
+    //    labelNoInfoAwards.bottomAnchor.constraint(equalTo: containerViewAwards.bottomAnchor).isActive = true
     
   }
   
   private func setUpProjContainer() {
     stackView.addArrangedSubview(containerViewProj)
     containerViewProj.translatesAutoresizingMaskIntoConstraints = false
-//    containerViewProj.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
+    //    containerViewProj.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
     containerViewProj.topAnchor.constraint(equalTo: containerViewAwards.bottomAnchor, constant: padding).isActive = true
     containerViewProj.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
     containerViewProj.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
@@ -578,7 +576,7 @@ var controller: UIViewController {
   }
   
   private func setApplView() {
-
+    
     containerViewAppl.addSubview(applView)
     applView.translatesAutoresizingMaskIntoConstraints = false
     applView.topAnchor.constraint(equalTo: applLabel.bottomAnchor, constant: small).isActive = true
@@ -633,7 +631,7 @@ var controller: UIViewController {
     collectionViewGit?.topAnchor.constraint(equalTo: labelGitStat.bottomAnchor).isActive = true
     collectionViewGit?.leftAnchor.constraint(equalTo: containerViewGit.leftAnchor, constant: padding).isActive = true
     collectionViewGit?.rightAnchor.constraint(equalTo: containerViewGit.rightAnchor, constant: small).isActive = true
-//    MARK: для динамической высоты scrollView
+    //    MARK: для динамической высоты scrollView
     collectionViewGit?.bottomAnchor.constraint(equalTo: containerViewGit.bottomAnchor).isActive = true
     
     collectionViewGit?.addSubview(activityViewGit)
@@ -644,12 +642,12 @@ var controller: UIViewController {
     activityViewGit.centerYAnchor.constraint(equalTo: collectionViewGit!.centerYAnchor).isActive = true
     activityViewGit.startAnimating()
     
-//    !!!!!
+    //    !!!!!
     
     
   }
   
-
+  
   
   func setupProfileComponents() {
     setUpScrollView()
@@ -681,14 +679,13 @@ var controller: UIViewController {
     setUpGitLabel()
     setUpCollectionGit()
     
-
-
+    
+    
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if collectionView == collectionViewGit {
-      print("git cell")
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GitCell.reusedId, for: indexPath) as! GitCell
       cell.nameLabel.text = modelGitStat?.projects[indexPath.row].name
       if let number = modelGitStat?.projects[indexPath.row].commitCount {
@@ -697,14 +694,14 @@ var controller: UIViewController {
       return cell
     }
     if collectionView == collectionViewAwards {
-
+      
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCell.reusedId, for: indexPath) as! AwardCell
       cell.nameLabel.text = modelAwards?.data[indexPath.row].name
       if let pic_url_base64 = modelAwards?.data[indexPath.row].image {
         let image = UIImage(base64: pic_url_base64)
         cell.awardImageView.image = image
       }
-
+      
       cell.descriptionLabel.text = modelAwards?.data[indexPath.row].award_condition_description
       
       if let data = modelAwards?.data[indexPath.row].progress {
@@ -713,8 +710,8 @@ var controller: UIViewController {
       return cell
     }
     return UICollectionViewCell()
-
-  
+    
+    
   }
   
   private func setText() {
@@ -727,7 +724,7 @@ var controller: UIViewController {
   }
   
   private func setImage() {
-   
+    
     if let pic_url = modelProfile?[0].items.pic {
       let url_string = "https://devcabinet.miem.vmnet.top\(pic_url)"
       let url = URL(string: url_string)
@@ -735,7 +732,7 @@ var controller: UIViewController {
         getData(from: url_pic) { data, response, error in
           guard let data = data, error == nil else {
             DispatchQueue.main.async() { [weak self] in
-            self!.profileImageView.image = Brandbook.Images.Icons.userProfileIcon
+              self!.profileImageView.image = Brandbook.Images.Icons.userProfileIcon
             }
             return
             
@@ -763,7 +760,7 @@ var controller: UIViewController {
   func refresh() {
     refreshAction()
     refreshInfo()
-
+    
   }
   
   func refreshInfo() {
@@ -807,17 +804,17 @@ var controller: UIViewController {
   }
   
   private func measureFrameForText(_ text: String) -> CGRect{
-      let size = CGSize(width: 200, height: 1000)
-      let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-      return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+    let size = CGSize(width: 200, height: 1000)
+    let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
   }
   
   private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-      URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+    
     switch collectionView {
     case collectionViewGit:
       return modelGitStat?.projects.count ?? 0
@@ -829,16 +826,16 @@ var controller: UIViewController {
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//    if collectionView == collectionViewAwards {
-//    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
-//    }
+    //    if collectionView == collectionViewAwards {
+    //    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+    //    }
     switch collectionView {
     case collectionViewAwards:
       return CGSize(width: Brandbook.Heights.awardCell, height: Brandbook.Heights.awardCell)
-    
+      
     case collectionViewGit:
       return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
-     
+      
     default:
       return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
     }
@@ -846,7 +843,7 @@ var controller: UIViewController {
   
   
   func open(project_name: String, name: String, email: [String], studentComment: String, leaderComment: String, group: String, role: String, leader: String) {
-
+    
     let vc = ApplicationMoreInfo(project_name: project_name, name: name, email: email, studentComment: studentComment, leaderComment: leaderComment, group: group, role: role, leader: leader)
     vc.view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
     let popupVC = PopupViewController(contentController: vc, popupWidth: self.view.bounds.width-2*padding, popupHeight: 300)
@@ -861,15 +858,15 @@ private let small = Brandbook.Paddings.small
 
 extension ProfileScreenLoad {
   static func height(text: String?, font: UIFont, width: CGFloat) -> CGRect {
-      var currentHeight: CGRect!
-      var label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
-      label.text = text
-      label.font = font
-      label.numberOfLines = 0
-      label.sizeToFit()
-      label.lineBreakMode = .byWordWrapping
+    var currentHeight: CGRect!
+    var label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+    label.text = text
+    label.font = font
+    label.numberOfLines = 0
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     currentHeight = label.frame
-      label.removeFromSuperview()
-      return currentHeight
+    label.removeFromSuperview()
+    return currentHeight
   }
 }

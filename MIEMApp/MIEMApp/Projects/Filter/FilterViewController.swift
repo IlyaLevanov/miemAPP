@@ -22,7 +22,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   let token: Property<String>
   
   
-
+  
   var group:BEMCheckBoxGroup!
   
   init(bottomInset: Variable<CGFloat>, types: [String], status: [String], parentVC: ProjectsScreenLoad, token: Property<String>) {
@@ -31,9 +31,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     self.status = status
     self.parentVC = parentVC
     self.token = token
-//    self.types = ["прогр", "нир"]
-//    self.status = ["готов"]
-  
+    
     super.init(nibName: nil, bundle: nil)
     picker.delegate = self
     picker.dataSource = self
@@ -45,8 +43,8 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     fatalError("init(coder:) has not been implemented")
   }
   var controller: UIViewController {
-     self
-   }
+    self
+  }
   
   let filterLabel: UILabel = {
     let label = UILabel()
@@ -86,9 +84,6 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     return picker
   }()
   
-  
-  
-  
   let statusPickerLabel: UILabel = {
     let label = UILabel()
     label.text = "Статус проекта"
@@ -99,18 +94,18 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     return label
   }()
   
- let statusTextField: UITextField = {
-   let textField = UITextField()
-   textField.attributedPlaceholder = NSAttributedString(string: "Любой", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-   textField.addTarget(self, action: #selector(statusPickerHandle), for: .touchDown)
-   textField.translatesAutoresizingMaskIntoConstraints = false
-   textField.backgroundColor = Brandbook.Colors.lightGray
-   textField.layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
-   textField.textAlignment = NSTextAlignment.center
-   textField.clipsToBounds = true
-   textField.layer.cornerRadius = 6
-   return textField
- }()
+  let statusTextField: UITextField = {
+    let textField = UITextField()
+    textField.attributedPlaceholder = NSAttributedString(string: "Любой", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+    textField.addTarget(self, action: #selector(statusPickerHandle), for: .touchDown)
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    textField.backgroundColor = Brandbook.Colors.lightGray
+    textField.layoutMargins = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+    textField.textAlignment = NSTextAlignment.center
+    textField.clipsToBounds = true
+    textField.layer.cornerRadius = 6
+    return textField
+  }()
   
   let tinderButton: UIButton = {
     let button = UIButton(type: .system)
@@ -239,7 +234,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
   }
   
- 
+  
   override func viewWillLayoutSubviews() {
     controller.view.frame = CGRect(x: 0, y:UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350)
   }
@@ -251,11 +246,9 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
       self.vacancyFlag = true
     }
   }
-
+  
   
   func setUp() {
-    
-    
     controller.view.backgroundColor = .white
     controller.view.layer.cornerRadius = 16
     controller.view.clipsToBounds = true
@@ -272,7 +265,6 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     controller.view.addSubview(statusPickerLabel)
     statusPickerLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: padding).isActive = true
-//    statusPickerLabel.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -padding).isActive = true
     statusPickerLabel.leftAnchor.constraint(equalTo: typePickerLabel.rightAnchor, constant: padding).isActive = true
     
     
@@ -286,7 +278,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     controller.view.addSubview(statusTextField)
     statusTextField.topAnchor.constraint(equalTo: typePickerLabel.bottomAnchor,constant: small).isActive = true
     statusTextField.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -padding).isActive = true
-   
+    
     statusTextField.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width-3*padding)/2).isActive = true
     statusTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
     
@@ -302,7 +294,7 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     vacancyLable.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -padding).isActive = true
     vacancyLable.heightAnchor.constraint(equalToConstant: 30).isActive = true
     
-
+    
     controller.view.addSubview(tinderButton)
     tinderButton.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor, constant: -bottomInset.value).isActive = true
     tinderButton.heightAnchor.constraint(equalToConstant: self.measureFrameForText("Hello").height + padding).isActive = true
@@ -311,13 +303,13 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     controller.view.addSubview(showResultsButton)
     showResultsButton.bottomAnchor.constraint(equalTo: tinderButton
-      .topAnchor, constant: -padding).isActive = true
+                                                .topAnchor, constant: -padding).isActive = true
     showResultsButton.leftAnchor.constraint(equalTo: controller.view.leftAnchor, constant: small).isActive = true
     showResultsButton.rightAnchor.constraint(equalTo: controller.view.rightAnchor, constant: -small).isActive = true
     showResultsButton.heightAnchor.constraint(equalToConstant: measureFrameForText("Hello").height + padding).isActive = true
     
   }
- 
+  
   @objc
   func openTinderButton() {
     self.openTinderView()
@@ -336,15 +328,14 @@ class FilterViewController: UIViewController, UIPickerViewDelegate, UIPickerView
   
   private func openTinderView() {
     let tinderViewController = TinderViewController(token: self.token)
-//    tinderViewController.view.backgroundColor = Brandbook.Colors.darkGreen
     self.modalPresentationStyle = .popover
     self.present(tinderViewController, animated: true, completion: nil)
   }
   
   private func measureFrameForText(_ text: String) -> CGRect{
     let size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-      let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-      return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
+    let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+    return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16)], context: nil)
   }
   
 }

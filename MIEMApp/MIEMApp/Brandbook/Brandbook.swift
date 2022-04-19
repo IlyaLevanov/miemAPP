@@ -32,38 +32,30 @@ enum Brandbook {
     static let system_gray3 = UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1)
     @available(iOS 13.0, *)
     static let dark_light = UIColor { traitCollection in
-      // 2
       switch traitCollection.userInterfaceStyle {
       case .dark:
-        // 3
         return UIColor(white: 0.3, alpha: 1.0)
       default:
-        // 4
         return UIColor(white: 1.0, alpha: 1.0)
       }
     }
+    
     @available(iOS 13.0, *)
     static let dark_light_text = UIColor { traitCollection in
-      // 2
       switch traitCollection.userInterfaceStyle {
       case .dark:
-        // 3
         return UIColor(white: 1.0, alpha: 1.0)
       default:
-        // 4
         return UIColor(white: 0.0, alpha: 1.0)
       }
     }
     
     @available(iOS 13.0, *)
     static let dark_light_text_gray = UIColor { traitCollection in
-      // 2
       switch traitCollection.userInterfaceStyle {
       case .dark:
-        // 3
         return UIColor(white: 1.0, alpha: 1.0)
       default:
-        // 4
         return UIColor(white: 0.4, alpha: 1.0)
       }
     }

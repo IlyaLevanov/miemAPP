@@ -20,7 +20,6 @@ class MoreProjectScreenLoad: UIViewController {
     self
   }
   
-  
   var scrollView = UIScrollView()
   var stackView = UIStackView()
   var idLabel = UILabel()
@@ -126,10 +125,8 @@ class MoreProjectScreenLoad: UIViewController {
     self.configureVacanciesStackView()
     once = true
     
-    
   }
   
-  //есть заглушка
   func configureIdLabel() {
     scrollView.addSubview(idLabel)
     if #available(iOS 13.0, *) {
@@ -149,7 +146,6 @@ class MoreProjectScreenLoad: UIViewController {
     idLabel.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
   }
   
-  //есть заглушка
   func configureProjectNameLabel() {
     scrollView.addSubview(projectName)
     if #available(iOS 13.0, *) {
@@ -171,7 +167,6 @@ class MoreProjectScreenLoad: UIViewController {
     projectName.topAnchor.constraint(equalTo: idLabel.bottomAnchor).isActive = true
   }
   
-  //есть заглушка
   func configureSatusLabel() {
     scrollView.addSubview(statusLabel)
     if #available(iOS 13.0, *) {
@@ -205,7 +200,6 @@ class MoreProjectScreenLoad: UIViewController {
     }
   }
   
-  //есть заглушка
   func configureMailButton() {
     scrollView.addSubview(mailButton)
     if #available(iOS 13.0, *) {
@@ -232,8 +226,8 @@ class MoreProjectScreenLoad: UIViewController {
   func configureTeamLabel() {
     scrollView.addSubview(teamLabel)
     if #available(iOS 13.0, *) {
-    teamLabel.backgroundColor = Brandbook.Colors.dark_light
-    
+      teamLabel.backgroundColor = Brandbook.Colors.dark_light
+      
       teamLabel.textColor = Brandbook.Colors.dark_light_text
     } else {
       // Fallback on earlier versions
@@ -253,141 +247,102 @@ class MoreProjectScreenLoad: UIViewController {
   private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
     URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
   }
-//<<<<<<< HEAD
-//
-//  //есть заглушка
-//  func configureStackView(){
-//    scrollView.addSubview(stackView)
-//    if #available(iOS 13.0, *) {
-//      stackView.backgroundColor = Brandbook.Colors.dark_light
-//    } else {
-//      // Fallback on earlier versions
-//    }
-//    stackView.axis = .vertical
-//    stackView.distribution = .equalSpacing
-//    stackView.spacing = 15
-//
-//    var arrayOfNames = [String]()
-//    var arrayOfDescriptions = [String]()
-//    var arrayOfPics = [String]()
-//
-//    if let model = modelTeam {
-//      for i in model.leaders {
-//        arrayOfNames.append(i.first_name + " " + i.last_name)
-//      }
-//      for i in model.activeMembers {
-//        arrayOfNames.append(i.first_name + " " + i.last_name)
-//      }
-//      for i in model.leaders {
-//        arrayOfDescriptions.append(i.role)
-//      }
-//      for i in model.activeMembers {
-//        arrayOfDescriptions.append(i.role)
-//      }
-//      for i in model.leaders {
-//        arrayOfPics.append(i.pic)
-//      }
-//      for i in model.activeMembers {
-//        arrayOfPics.append(i.pic)
-//      }
-//=======
-    
-    //есть заглушка
-    func configureStackView(){
-      if count == 0 {
-        scrollView.addSubview(stackView)
-        if #available(iOS 13.0, *) {
-          stackView.backgroundColor = Brandbook.Colors.dark_light
-        } else {
-          // Fallback on earlier versions
-          stackView.backgroundColor = .white
+  
+  func configureStackView(){
+    if count == 0 {
+      scrollView.addSubview(stackView)
+      if #available(iOS 13.0, *) {
+        stackView.backgroundColor = Brandbook.Colors.dark_light
+      } else {
+        // Fallback on earlier versions
+        stackView.backgroundColor = .white
+      }
+      stackView.axis = .vertical
+      stackView.distribution = .equalSpacing
+      stackView.spacing = 15
+      var arrayOfNames = [String]()
+      var arrayOfDescriptions = [String]()
+      var arrayOfPics = [String]()
+      if let model = modelTeam {
+        for i in model.leaders {
+          arrayOfNames.append(i.first_name + " " + i.last_name)
         }
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 15
-        var arrayOfNames = [String]()
-        var arrayOfDescriptions = [String]()
-        var arrayOfPics = [String]()
-        if let model = modelTeam {
-          for i in model.leaders {
-            arrayOfNames.append(i.first_name + " " + i.last_name)
-          }
-          for i in model.activeMembers {
-            arrayOfNames.append(i.first_name + " " + i.last_name)
-          }
-          for i in model.leaders {
-            arrayOfDescriptions.append(i.role)
-          }
-          for i in model.activeMembers {
-            arrayOfDescriptions.append(i.role)
-          }
-          for i in model.leaders {
-            arrayOfPics.append(i.pic)
-          }
-          for i in model.activeMembers {
-            arrayOfPics.append(i.pic)
-          }
-          count = 1
+        for i in model.activeMembers {
+          arrayOfNames.append(i.first_name + " " + i.last_name)
         }
-        for i in 0..<arrayOfNames.count {
-          let stackViewIn = UIStackView()
-          stackView.addArrangedSubview(stackViewIn)
-          stackViewIn.axis = .horizontal
-          stackViewIn.spacing = 10
-          
-          let url_img = URL(string: arrayOfPics[i])
-          if let url = url_img {
-            getData(from: url) { data, response, error in
-              guard let data = data, error == nil else { return }
-              DispatchQueue.main.async() { [weak self] in
-                
-                
-                let image = UIImage(data: data)
-                let imageView = UIImageView(image: image)
-                imageView.contentMode = .scaleAspectFill
-                imageView.layer.cornerRadius = 30
-                imageView.clipsToBounds = true
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                stackViewIn.addArrangedSubview(imageView)
-                imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
-                imageView.widthAnchor.constraint(equalTo: self?.scrollView.widthAnchor ?? self?.controller.view.widthAnchor as! NSLayoutDimension, multiplier: 0.15).isActive = true
-              }
+        for i in model.leaders {
+          arrayOfDescriptions.append(i.role)
+        }
+        for i in model.activeMembers {
+          arrayOfDescriptions.append(i.role)
+        }
+        for i in model.leaders {
+          arrayOfPics.append(i.pic)
+        }
+        for i in model.activeMembers {
+          arrayOfPics.append(i.pic)
+        }
+        count = 1
+      }
+      for i in 0..<arrayOfNames.count {
+        let stackViewIn = UIStackView()
+        stackView.addArrangedSubview(stackViewIn)
+        stackViewIn.axis = .horizontal
+        stackViewIn.spacing = 10
+        
+        let url_img = URL(string: arrayOfPics[i])
+        if let url = url_img {
+          getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { [weak self] in
+              
+              
+              let image = UIImage(data: data)
+              let imageView = UIImageView(image: image)
+              imageView.contentMode = .scaleAspectFill
+              imageView.layer.cornerRadius = 30
+              imageView.clipsToBounds = true
+              imageView.translatesAutoresizingMaskIntoConstraints = false
+              stackViewIn.addArrangedSubview(imageView)
+              imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
+              imageView.widthAnchor.constraint(equalTo: self?.scrollView.widthAnchor ?? self?.controller.view.widthAnchor as! NSLayoutDimension, multiplier: 0.15).isActive = true
             }
           }
-          
-          let stackViewInfo = UIStackView()
-          stackViewIn.addArrangedSubview(stackViewInfo)
-          stackViewInfo.axis = .vertical
-          stackViewInfo.distribution = .fillEqually
-          stackViewInfo.spacing = 5
-          
-          let nameOfParticipant = UILabel()
-          stackViewInfo.addArrangedSubview(nameOfParticipant)
-          nameOfParticipant.text = arrayOfNames[i]
-          nameOfParticipant.numberOfLines = 1
-          nameOfParticipant.font = .boldSystemFont(ofSize: 16)
-          nameOfParticipant.adjustsFontSizeToFitWidth = true
-          nameOfParticipant.minimumScaleFactor = 1
-          
-          
-          let descriptionOfParticipant = UILabel()
-          stackViewInfo.addArrangedSubview(descriptionOfParticipant)
-          descriptionOfParticipant.text = arrayOfDescriptions[i]
-          descriptionOfParticipant.numberOfLines = 0
-          descriptionOfParticipant.sizeToFit()
-          descriptionOfParticipant.lineBreakMode = .byWordWrapping
-          descriptionOfParticipant.font = .systemFont(ofSize: 16)
-          descriptionOfParticipant.adjustsFontSizeToFitWidth = true
-          descriptionOfParticipant.minimumScaleFactor = 1
-          
         }
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20).isActive = true
-        stackView.topAnchor.constraint(equalTo: teamLabel.bottomAnchor, constant: 10).isActive = true
+        let stackViewInfo = UIStackView()
+        stackViewIn.addArrangedSubview(stackViewInfo)
+        stackViewInfo.axis = .vertical
+        stackViewInfo.distribution = .fillEqually
+        stackViewInfo.spacing = 5
+        
+        let nameOfParticipant = UILabel()
+        stackViewInfo.addArrangedSubview(nameOfParticipant)
+        nameOfParticipant.text = arrayOfNames[i]
+        nameOfParticipant.numberOfLines = 1
+        nameOfParticipant.font = .boldSystemFont(ofSize: 16)
+        nameOfParticipant.adjustsFontSizeToFitWidth = true
+        nameOfParticipant.minimumScaleFactor = 1
+        
+        
+        let descriptionOfParticipant = UILabel()
+        stackViewInfo.addArrangedSubview(descriptionOfParticipant)
+        descriptionOfParticipant.text = arrayOfDescriptions[i]
+        descriptionOfParticipant.numberOfLines = 0
+        descriptionOfParticipant.sizeToFit()
+        descriptionOfParticipant.lineBreakMode = .byWordWrapping
+        descriptionOfParticipant.font = .systemFont(ofSize: 16)
+        descriptionOfParticipant.adjustsFontSizeToFitWidth = true
+        descriptionOfParticipant.minimumScaleFactor = 1
+        
       }
+      
+      stackView.translatesAutoresizingMaskIntoConstraints = false
+      stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+      stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -20).isActive = true
+      stackView.topAnchor.constraint(equalTo: teamLabel.bottomAnchor, constant: 10).isActive = true
     }
+  }
   
   func configureInfoLabel() {
     scrollView.addSubview(infoLabel)
@@ -431,7 +386,6 @@ class MoreProjectScreenLoad: UIViewController {
     aimLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 5).isActive = true
   }
   
-  //есть заглушка
   func configureAimTextLabelLabel() {
     scrollView.addSubview(aimTextLabel)
     if #available(iOS 13.0, *) {
@@ -474,7 +428,6 @@ class MoreProjectScreenLoad: UIViewController {
     annotationLabel.topAnchor.constraint(equalTo: aimTextLabel.bottomAnchor, constant: 5).isActive = true
   }
   
-  //есть заглушка
   func configureAnnotationTextLabelLabel() {
     scrollView.addSubview(annotationTextLabel)
     if #available(iOS 13.0, *) {
@@ -517,7 +470,6 @@ class MoreProjectScreenLoad: UIViewController {
     linksLabel.topAnchor.constraint(equalTo: annotationTextLabel.bottomAnchor, constant: 15).isActive = true
   }
   
-  //есть заглушка
   func configureLinksStackView(){
     scrollView.addSubview(linksStackView)
     if #available(iOS 13.0, *) {
@@ -573,7 +525,6 @@ class MoreProjectScreenLoad: UIViewController {
     vacanciesLabel.topAnchor.constraint(equalTo: linksStackView.bottomAnchor, constant: 14).isActive = true
   }
   
-  //есть заглушка
   func configureVacanciesStackView(){
     if !once {
       scrollView.addSubview(vacanciesStackView)
@@ -601,12 +552,10 @@ class MoreProjectScreenLoad: UIViewController {
           desirableSkillsArray.append(i.additionally)
         }
       }
-
       
       for i in 0..<vacancyNames.count {
         
         let vacancyView = VacancyView(mandatorySkills: mandatorySkillsArray[i], desirableSkills: desirableSkillsArray[i], id: modelVacancy?[i].vacancy_id ?? 0, token: self.token)
-//        modelVacancy?[i].id ?? 0
         vacanciesStackView.addArrangedSubview(vacancyView)
         vacancyView.clipsToBounds = true
         vacancyView.backgroundColor = .white
@@ -614,7 +563,6 @@ class MoreProjectScreenLoad: UIViewController {
         vacancyView.layer.borderWidth = 2
         vacancyView.layer.borderColor = UIColor.systemBlue.cgColor
         vacancyView.vacancyNameLabel.text = (vacancyNames[i]) + " - " + String(countVacancies[i])
-        //            vacancyView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.25).isActive = true
       }
       
       vacanciesStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -632,15 +580,11 @@ class MoreProjectScreenLoad: UIViewController {
     UIPasteboard.general.string = mailButton.titleLabel?.text
   }
   
-  //есть заглушка
   @objc func didTapLinkButton(sender : AnyObject) {
     if let url = URL(string: modelHeader?.chat ?? modelHeader?.wiki ?? ""){
       UIApplication.shared.open(url)
     }
-    
   }
-  
-  
   
   class VacancyView: UIView {
     
@@ -700,19 +644,6 @@ class MoreProjectScreenLoad: UIViewController {
       return stackView
     }()
     
-//    var registerButton: UIButton = {
-//      let button = UIButton()
-//      button.backgroundColor = .systemBlue
-//      button.layer.cornerRadius = 10
-//      button.setTitle("Записаться1", for: .normal)
-//      button.setTitleColor(.white, for: .normal)
-//      button.contentHorizontalAlignment = .center
-//      //        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//      button.addTarget(self, action: #selector(didTapRegisterButton), for: .touchDown)
-//      return button
-//    }()
-    
-    
     let vacancyField: UITextView = {
       let field = UITextView()
       field.backgroundColor = Brandbook.Colors.system_gray3
@@ -726,26 +657,25 @@ class MoreProjectScreenLoad: UIViewController {
     }()
     
     var cancelButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemGray
-        button.layer.cornerRadius = 10
-        button.setTitle("Отмена", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.contentHorizontalAlignment = .center
-        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchDown)
-        return button
+      let button = UIButton()
+      button.backgroundColor = .systemGray
+      button.layer.cornerRadius = 10
+      button.setTitle("Отмена", for: .normal)
+      button.setTitleColor(.white, for: .normal)
+      button.contentHorizontalAlignment = .center
+      button.addTarget(self, action: #selector(didTapCancelButton), for: .touchDown)
+      return button
     }()
     
     var applyButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 10
-        button.setTitle("Записаться", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.contentHorizontalAlignment = .center
-  //        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(didTapApplyButton), for: .touchDown)
-        return button
+      let button = UIButton()
+      button.backgroundColor = .systemBlue
+      button.layer.cornerRadius = 10
+      button.setTitle("Записаться", for: .normal)
+      button.setTitleColor(.white, for: .normal)
+      button.contentHorizontalAlignment = .center
+      button.addTarget(self, action: #selector(didTapApplyButton), for: .touchDown)
+      return button
     }()
     
     required init(coder aDecoder: NSCoder) {
@@ -769,13 +699,10 @@ class MoreProjectScreenLoad: UIViewController {
       self.addSubview(desirableLabel)
       self.addSubview(desirableStackView)
       self.addSubview(vacancyField)
-//      self.addSubview(registerButton)
       self.addSubview(applyButton)
       self.addSubview(cancelButton)
       
     }
-    
-    
     
     func configureConstraints() {
       self.translatesAutoresizingMaskIntoConstraints = false
@@ -785,7 +712,6 @@ class MoreProjectScreenLoad: UIViewController {
       configureDesirableLabel()
       configureDesirableStackView()
       configureVacancyTextField()
-//      configureRegisterButton()
       configureApplyButton()
       configureCancelButton()
       
@@ -850,34 +776,17 @@ class MoreProjectScreenLoad: UIViewController {
     }
     
     func configureVacancyTextField() {
-//      vacancyField.isHidden = !hide
       vacancyField.translatesAutoresizingMaskIntoConstraints = false
       vacancyField.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
       vacancyField.topAnchor.constraint(equalTo: desirableStackView.bottomAnchor, constant: 15).isActive = true
       vacancyField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: Brandbook.Paddings.normal).isActive = true
       vacancyField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -Brandbook.Paddings.normal).isActive = true
-//      vacancyField.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -10).isActive = true
       vacancyField.heightAnchor.constraint(equalToConstant: 170).isActive = true
       
     }
     
-//    func configureRegisterButton() {
-////      registerButton.translatesAutoresizingMaskIntoConstraints = false
-////      registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-////      registerButton.topAnchor.constraint(equalTo: vacancyField.bottomAnchor, constant: 15).isActive = true
-////      registerButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-////      registerButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-//
-//      registerButton.translatesAutoresizingMaskIntoConstraints = false
-//      registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//      registerButton.topAnchor.constraint(equalTo: vacancyField.bottomAnchor, constant: 15).isActive = true
-//      registerButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-//    }
-    
     func configureApplyButton() {
-//      applyButton.isHidden = hide
       applyButton.translatesAutoresizingMaskIntoConstraints = false
-//      applyButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 15).isActive = true
       applyButton.topAnchor.constraint(equalTo: vacancyField.bottomAnchor, constant: 15).isActive = true
       applyButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: Brandbook.Paddings.normal).isActive = true
       applyButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
@@ -886,9 +795,7 @@ class MoreProjectScreenLoad: UIViewController {
     }
     
     func configureCancelButton() {
-//      cancelButton.isHidden = hide
       cancelButton.translatesAutoresizingMaskIntoConstraints = false
-//      cancelButton.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 15).isActive = true
       cancelButton.topAnchor.constraint(equalTo: vacancyField.bottomAnchor, constant: 15).isActive = true
       cancelButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -Brandbook.Paddings.normal).isActive = true
       cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
@@ -896,78 +803,34 @@ class MoreProjectScreenLoad: UIViewController {
       
     }
     
-//    var hide = true
-    
     @objc func didTapApplyButton() {
       let text = vacancyField.text
       let vacancy_id = self.id
-
+      
       let urlString = URL(string: "https://devcabinet.miem.vmnet.top/api/student/application/add")
       let session = makeDefaultSession()
       if let token = self.token?.value {
         let headers: HTTPHeaders = ["x-auth-token": token]
         
         let data = ["about_me": text, "vacancy_id": vacancy_id] as [String : Any]
-//        print("POST REQESUT DATA: text=\(text), header = \(headers), vacancy_id = \(vacancy_id)")
         
         guard let body = try? JSONSerialization.data(withJSONObject: data, options: []) else {return}
         if let url = urlString {
-  //        var request = URLRequest(url: url, method: .post, headers: headers)
           var request = URLRequest(url: url)
           request.httpMethod = "POST"
           request.httpBody = body
-
+          
           URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response {
               print(response)
             }
-
           }.resume()
+        }
       }
-      
-      }
-
     }
     
     @objc func didTapCancelButton() {
-//      if hide {
-//        hide = false
-//      } else {
-//        hide = true
-//      }
-//      vacancyField.isHidden = hide
-//      applyButton.isHidden = hide
-//      cancelButton.isHidden = hide
-//      registerButton.isHidden = !hide
-//      configureVacancyTextField()
-//      configureRegisterButton()
-//      reloadInputViews()
       vacancyField.text = nil
     }
-    
-    
-    
-    
-    //есть заглушка
-//    @objc func didTapRegisterButton() {
-//      
-//      if hide {
-//        hide = false
-//      } else {
-//        hide = true
-//      }
-//      vacancyField.isHidden = hide
-//      applyButton.isHidden = hide
-//      cancelButton.isHidden = hide
-////      registerButton.isHidden = !hide
-//      configureVacancyTextField()
-////      configureRegisterButton()
-////      configureApplyButton()
-////      configureCancelButton()
-//      print("vac height = \(vacancyField.heightAnchor.hashValue)")
-//      reloadInputViews()
-//      
-//    }
-    
   }
 }

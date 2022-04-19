@@ -11,10 +11,7 @@ import AppAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
- 
-  
- 
-  
+
   let appGraph = AppGraph()
   var window: UIWindow?
   
@@ -48,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     setUpWindow()
-//    themeWindow.makeKey()
     return true
   }
   

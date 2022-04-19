@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchResultsUpdating {
-
+  
   
   
   private unowned let wireframe: Wireframe
@@ -38,19 +38,19 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     
     
   }
-
+  
   lazy var search: UISearchController = {
-      let search = UISearchController()
-      search.searchBar.placeholder = "Поиск"
-      search.searchResultsUpdater = self
-      
-      search.obscuresBackgroundDuringPresentation = false
-      search.searchBar.sizeToFit()
-      search.searchBar.searchBarStyle = .default
-
-
-      search.searchBar.delegate = self
-      return search
+    let search = UISearchController()
+    search.searchBar.placeholder = "Поиск"
+    search.searchResultsUpdater = self
+    
+    search.obscuresBackgroundDuringPresentation = false
+    search.searchBar.sizeToFit()
+    search.searchBar.searchBarStyle = .default
+    
+    
+    search.searchBar.delegate = self
+    return search
   }()
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -91,7 +91,7 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
   }
   
   override func viewDidAppear(_ animated: Bool) {
-      super.viewDidAppear(animated)
+    super.viewDidAppear(animated)
     
     if !scrolled {
       navigationItem.hidesSearchBarWhenScrolling = true
@@ -117,18 +117,18 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     let searchText = searchController.searchBar.text!
     if !searchText.isEmpty {
       
-        isFiltering = true
-        filteredProjects.removeAll()
-        for project in modelSandbox ?? [] {
+      isFiltering = true
+      filteredProjects.removeAll()
+      for project in modelSandbox ?? [] {
         
-            
-          if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || project.number.contains(searchText)) {
-              filteredProjects.append(project)
-            }
-            
+        
+        if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || project.number.contains(searchText)) {
+          filteredProjects.append(project)
         }
+        
+      }
     }
-
+    
     collectionView?.reloadData()
   }
   
@@ -198,25 +198,17 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
       vacancyData = modelSandbox![indexPath.row].vacancies
       status = modelSandbox![indexPath.row].statusDesc
     }
-    
-//    let moreProjectGraph = MoreProjectsGraph(id: id)
-//    moreProjectGraph.setNeedsUpdate()
-    
-    
-//    self.modalPresentationStyle = .popover
-    
-//    self.present(moreProjectGraph.getScreenLoad(), animated: true, completion: moreProjectGraph.getScreenLoad().reloadViews)
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SandboxCell.reusedId, for: indexPath) as! SandboxCell
     
     var currentProject: ListProjectInfoModel?
-        if isFiltering {
-          currentProject = filteredProjects[indexPath.row]
-        } else {
-          currentProject = modelSandbox?[indexPath.row]
-        }
+    if isFiltering {
+      currentProject = filteredProjects[indexPath.row]
+    } else {
+      currentProject = modelSandbox?[indexPath.row]
+    }
     
     cell.idLabel.text = currentProject?.number
     cell.nameLabel.text = currentProject?.nameRus
@@ -255,7 +247,6 @@ class SandboxSreenLoad: UIViewController, ScreenPayload, UICollectionViewDelegat
     cell.managerTxt.text = "Руководитель: "
     cell.typeTxt.text = "Тип: "
     cell.typeLabel.text = modelSandbox?[indexPath.row].typeDesc
-    //    cell.translatesAutoresizingMaskIntoConstraints = false
     cell.backgroundColor = .white
     
     return cell

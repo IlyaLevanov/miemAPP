@@ -42,7 +42,12 @@ final class TabBarController: UIViewController {
     view.addSubview(statusBar)
     addBottomSheetView()
     view.addSubview(tabBar)
-    statusBar.backgroundColor = .white
+//    statusBar.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      statusBar.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
   }
   
   required init?(coder: NSCoder) {

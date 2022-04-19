@@ -13,9 +13,9 @@ final class ProjectsGraph {
   private let projectsDataSource: ProjectsDataSource
   
   init(wireframe: Wireframe,
-    bottomInset: Variable<CGFloat>,
-    user: Variable<User>,
-    token: Property<String>
+       bottomInset: Variable<CGFloat>,
+       user: Variable<User>,
+       token: Property<String>
   ) {
     projectsDataSource = ProjectsDataSource(user: user, token: token)
     

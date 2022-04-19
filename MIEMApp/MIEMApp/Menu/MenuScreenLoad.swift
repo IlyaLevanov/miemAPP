@@ -27,8 +27,6 @@ final class MenuScreenLoad: UICollectionViewController, UICollectionViewDelegate
     self
   }
   
-  
-  
   init(wireframe: Wireframe, bottomInset: Variable<CGFloat>, model: [MenuItemKind]) {
     self.wireframe = wireframe
     self.bottomInset = bottomInset
@@ -116,14 +114,6 @@ extension MenuScreenLoad: ScrollOffsetProviding {
 private extension MenuItemKind {
   func makeModel(wireframe: Wireframe) -> MenuItemModel {
     switch self {
-//    case .control:
-//      return MenuItemModel(
-//        icon: Brandbook.Images.Icons.controlMenuIcon,
-//        title: "Управление камерами",
-//        action: {
-//          wireframe.showControlScreen()
-//        }
-//      )
     case .about:
       return MenuItemModel(
         icon: Brandbook.Images.Icons.aboutMenuIcon,
@@ -138,8 +128,7 @@ private extension MenuItemKind {
         title: "Проекты",
         action: {
           wireframe.pushProjectListScreen()
-//          wireframe.showProjectsScreen()
-      })
+        })
       
     case .sandbox:
       return MenuItemModel (

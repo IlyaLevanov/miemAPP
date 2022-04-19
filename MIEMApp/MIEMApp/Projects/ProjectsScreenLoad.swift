@@ -91,17 +91,15 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
           filteredProjects.removeAll()
           for project in model ?? [] {
             
-            let idToString = String(project.id)
-            
             if vacancies_filter == true && vacancies_filter != nil {
               
-              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) && project.vacancies > 0 || project.vacancies > 0 && (project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой" || project.vacancies > 0 && (project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой" || project.vacancies > 0 && status_filter == "Любой" && type_filter == "Любой"){
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || ((project.number?.contains(searchText))) ?? (0 != 0)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) && project.vacancies > 0 || project.vacancies > 0 && (project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой" || project.vacancies > 0 && (project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой" || project.vacancies > 0 && status_filter == "Любой" && type_filter == "Любой"){
                 filteredProjects.append(project)
               }
               
             } else {
               
-              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) || ((project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой") || ((project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой") || (status_filter == "Любой" && type_filter == "Любой")) {
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || ((project.number?.contains(searchText))) ?? (0 != 0)) && ((project.typeDesc == type_filter && project.statusDesc == status_filter) || ((project.typeDesc != type_filter && project.statusDesc == status_filter) && type_filter == "Любой") || ((project.typeDesc == type_filter && project.statusDesc != status_filter) && status_filter == "Любой") || (status_filter == "Любой" && type_filter == "Любой")) {
                 filteredProjects.append(project)
               }
             }
@@ -113,17 +111,15 @@ final class ProjectsScreenLoad: UIViewController, ScreenPayload, UICollectionVie
           filteredProjects.removeAll()
           for project in model ?? [] {
             
-            let idToString = String(project.id)
-            
             if vacancies_filter == true && vacancies_filter != nil {
               
-              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) {
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || ((project.number?.contains(searchText))) ?? (0 != 0)) {
                 filteredProjects.append(project)
               }
               
             } else {
               
-              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || idToString.contains(searchText)) {
+              if (project.head.lowercased().contains(searchText.lowercased()) || project.typeDesc.lowercased().contains(searchText.lowercased()) || project.nameRus.lowercased().contains(searchText.lowercased()) || ((project.number?.contains(searchText))) ?? (0 != 0)) {
                 filteredProjects.append(project)
               }
               

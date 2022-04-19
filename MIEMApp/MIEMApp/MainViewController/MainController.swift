@@ -16,7 +16,12 @@ final class MainController: UINavigationController, RootControlling {
   init(tabController: TabBarController) {
     self.tabController = tabController
     super.init(rootViewController: tabController)
-    view.backgroundColor = .white
+//    view.backgroundColor = .white
+    if #available(iOS 13.0, *) {
+      view.backgroundColor = Brandbook.Colors.dark_light
+    } else {
+      // Fallback on earlier versions
+    }
     tutorialController.willMove(toParent: self)
     view.addSubview(tutorialController.view)
     closeTutorial()

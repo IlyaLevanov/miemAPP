@@ -122,7 +122,7 @@ class SandboxCell: UICollectionViewCell {
     
     typeLabel.topAnchor.constraint(equalTo: headLabel.bottomAnchor, constant: padding).isActive = true
     typeLabel.leftAnchor.constraint(equalTo: typeTxt.rightAnchor, constant: small_padding).isActive = true
-
+    
   }
   
   override func layoutSubviews() {

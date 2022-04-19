@@ -21,8 +21,6 @@ final class SandboxGraph {
     sandboxDataSource.setOnUpdate { [unowned self] in
       sandboxLoad.modelSandbox = $0
       sandboxLoad.controller.reloadInputViews()
-      
-      
     }
     
   }

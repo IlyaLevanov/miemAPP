@@ -44,16 +44,9 @@ final class ProfileGraph {
       self.profileLoad.endRefreshAwards()
 
       }
-    
-  
-  
-
   }
   
-    
   func setNeedsUpdate() {
     profileDataSource.setNeedsUpdate()
   }
-    
-    
 }
