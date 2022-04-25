@@ -15,6 +15,7 @@ class GitCell: UICollectionViewCell {
     let label = UILabel()
     label.textAlignment = NSTextAlignment.justified
     label.numberOfLines = 0
+    label.textColor = Brandbook.Colors.beige
     label.sizeToFit()
     label.lineBreakMode = .byWordWrapping
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +26,7 @@ class GitCell: UICollectionViewCell {
     let label = UILabel()
     label.textAlignment = NSTextAlignment.justified
     label.text = "Количество коммитов: "
+    label.textColor = Brandbook.Colors.beige
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -32,6 +34,7 @@ class GitCell: UICollectionViewCell {
   let comitNumber: UILabel = {
     let label = UILabel()
     label.textAlignment = NSTextAlignment.justified
+    label.textColor = Brandbook.Colors.beige
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -56,7 +59,7 @@ class GitCell: UICollectionViewCell {
     comitNumber.leftAnchor.constraint(equalTo: comitNumberText.rightAnchor, constant: small_padding).isActive = true
     
     clipsToBounds = false
-    backgroundColor = Brandbook.Colors.yellowColor
+    backgroundColor = Brandbook.Colors.lightBlue
     layer.cornerRadius = 5
     layer.shadowRadius = 5
     layer.shadowOffset = CGSize(width: 3, height: 3)
