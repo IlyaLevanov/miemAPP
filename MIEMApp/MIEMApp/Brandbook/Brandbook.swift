@@ -59,6 +59,11 @@ enum Brandbook {
         return UIColor(white: 0.4, alpha: 1.0)
       }
     }
+    static let lightBlue = UIColor(red: 26/255, green: 131/255, blue: 157/255, alpha: 1)
+    static let beige = UIColor(red: 243/255, green: 259/255, blue: 250/255, alpha: 1)
+
+ 
+
     
   }
   

@@ -837,7 +837,7 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
       return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
       
     default:
-      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 100)
     }
   }
   
