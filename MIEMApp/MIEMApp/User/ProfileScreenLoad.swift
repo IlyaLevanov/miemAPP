@@ -71,7 +71,6 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     super.viewDidLoad()
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-    //    scrollView.addSubview(refreshControl)
     scrollView.refreshControl = refreshControl
     setupProfileComponents()
     self.delegate = self
@@ -94,6 +93,8 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
       view.backgroundColor = Brandbook.Colors.dark_light
     } else {
       // Fallback on earlier versions
+      view.backgroundColor = .white
+      
     }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -105,6 +106,7 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
       view.backgroundColor = Brandbook.Colors.dark_light
     } else {
       // Fallback on earlier versions
+      view.backgroundColor = .white
     }
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -411,16 +413,10 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
   }
   
   private func setUpCollectionAwards() {
-    //    if awardsInfo {
-    //      setUpCollectionViewAwards()
-    //    } else {
-    //      setUpNoAwardsLabel()
-    //    }
     setUpCollectionViewAwards()
   }
   
   private func setUpCollectionViewAwards() {
-    //
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     
@@ -431,7 +427,6 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     collectionViewAwards?.translatesAutoresizingMaskIntoConstraints = false
     if #available(iOS 13.0, *) {
       collectionViewAwards?.backgroundColor = Brandbook.Colors.dark_light
-      //      collectionViewAwards?.backgroundColor = .blue
     } else {
       // Fallback on earlier versions
     }
@@ -448,7 +443,6 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     activityViewAwards.centerXAnchor.constraint(equalTo: collectionViewAwards!.centerXAnchor).isActive = true
     activityViewAwards.centerYAnchor.constraint(equalTo: collectionViewAwards!.centerYAnchor).isActive = true
     activityViewAwards.startAnimating()
-    
     //    !!!!!
     
   }
@@ -484,7 +478,6 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
   private func setUpProjContainer() {
     stackView.addArrangedSubview(containerViewProj)
     containerViewProj.translatesAutoresizingMaskIntoConstraints = false
-    //    containerViewProj.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: padding).isActive = true
     containerViewProj.topAnchor.constraint(equalTo: containerViewAwards.bottomAnchor, constant: padding).isActive = true
     containerViewProj.leftAnchor.constraint(equalTo: stackView.leftAnchor).isActive = true
     containerViewProj.rightAnchor.constraint(equalTo: stackView.rightAnchor).isActive = true
@@ -647,8 +640,6 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     
   }
   
-  
-  
   func setupProfileComponents() {
     setUpScrollView()
     setUpStackView()
@@ -668,18 +659,14 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     checkProjModel()
     setUpProjects()
     
-    
     setUpApplContainer()
     setUpApplLabel()
     checkProjAppl()
     setUpApplications()
     
-    
     setUpGitContainer()
     setUpGitLabel()
     setUpCollectionGit()
-    
-    
     
   }
   
@@ -826,18 +813,15 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //    if collectionView == collectionViewAwards {
-    //    return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
-    //    }
     switch collectionView {
     case collectionViewAwards:
       return CGSize(width: Brandbook.Heights.awardCell, height: Brandbook.Heights.awardCell)
       
     case collectionViewGit:
-      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 350)
+      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: Brandbook.Heights.gitCell)
       
     default:
-      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: 100)
+      return CGSize(width: UIScreen.main.bounds.width - 2*padding, height: Brandbook.Heights.defaultHeight)
     }
   }
   
@@ -859,7 +843,7 @@ private let small = Brandbook.Paddings.small
 extension ProfileScreenLoad {
   static func height(text: String?, font: UIFont, width: CGFloat) -> CGRect {
     var currentHeight: CGRect!
-    var label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
     label.text = text
     label.font = font
     label.numberOfLines = 0

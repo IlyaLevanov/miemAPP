@@ -39,7 +39,6 @@ struct GitStat: Decodable, Equatable {
 struct ProjectGitModel: Decodable, Equatable {
   let name: String
   let commitCount: Int
-  //  let languages: [String:Double]
 }
 
 struct AwardsModel: Decodable, Equatable {

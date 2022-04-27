@@ -17,6 +17,11 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
     label.font = UIFont.boldSystemFont(ofSize: 16)
     label.sizeToFit()
     label.lineBreakMode = .byWordWrapping
+    if #available(iOS 13.0, *) {
+      label.textColor = Brandbook.Colors.dark_light
+    } else {
+      label.textColor = .black
+    }
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -37,6 +42,11 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
     label.numberOfLines = 0
     label.sizeToFit()
     label.lineBreakMode = .byWordWrapping
+    if #available(iOS 13.0, *) {
+      label.textColor = Brandbook.Colors.dark_light
+    } else {
+      label.textColor = .black
+    }
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -55,6 +65,12 @@ class AwardCell: UICollectionViewCell, ChartViewDelegate {
     label.numberOfLines = 2
     label.sizeToFit()
     label.lineBreakMode = .byWordWrapping
+    if #available(iOS 13.0, *) {
+      label.textColor = Brandbook.Colors.dark_light
+    } else {
+      
+      label.textColor = .black
+    }
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

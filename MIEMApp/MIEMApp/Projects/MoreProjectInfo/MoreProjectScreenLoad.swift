@@ -649,7 +649,7 @@ class MoreProjectScreenLoad: UIViewController {
       field.backgroundColor = Brandbook.Colors.system_gray3
       field.translatesAutoresizingMaskIntoConstraints = false
       field.layer.cornerRadius = 10
-      field.textColor = .white
+      field.textColor = .black
       field.sizeToFit()
       field.font = UIFont.systemFont(ofSize: 16)
       
@@ -805,29 +805,74 @@ class MoreProjectScreenLoad: UIViewController {
     
     @objc func didTapApplyButton() {
       let text = vacancyField.text
+      var message = "Заявка успешно создана"
       let vacancy_id = self.id
-      
-      let urlString = URL(string: "https://devcabinet.miem.vmnet.top/api/student/application/add")
-      let session = makeDefaultSession()
       if let token = self.token?.value {
-        let headers: HTTPHeaders = ["x-auth-token": token]
         
-        let data = ["about_me": text, "vacancy_id": vacancy_id] as [String : Any]
+        let parameters: [String: Any] = ["about_me": text, "vacancy_id": vacancy_id]
+        let url = URL(string: "https://devcabinet.miem.vmnet.top/api/student/application/add")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         
-        guard let body = try? JSONSerialization.data(withJSONObject: data, options: []) else {return}
-        if let url = urlString {
-          var request = URLRequest(url: url)
-          request.httpMethod = "POST"
-          request.httpBody = body
+        request.addValue(token, forHTTPHeaderField: "x-auth-token")
+        do {
           
-          URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-              print(response)
-            }
-          }.resume()
+          request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+          message = error.localizedDescription
+          print(error.localizedDescription)
+          return
         }
+        
+        let task = session.dataTask(with: request) { [self] data, response, error in
+          
+          if let error = error {
+            message = "Ошибка запроса: \(error.localizedDescription)"
+            print(error.localizedDescription)
+            return
+          }
+          
+          
+          guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode)
+                  
+          else {
+            message = "Получен неверный ответ сервера"
+            return
+          }
+          guard let responseData = data else {
+            message = "Получен неверный ответ сервера"
+            return
+          }
+          
+          do {
+            if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? [String: Any] {
+              print(jsonResponse)
+              message = "Заявка успешно создана"
+            } else {
+              message = "Неверный формат данных"
+              throw URLError(.badServerResponse)
+            }
+          } catch let error {
+            message = "\(error.localizedDescription)"
+            print(error.localizedDescription)
+          }
+        }
+        task.resume()
+        alert(message: message)
       }
+      
     }
+    
+    private func alert(message: String) {
+      let alert = UIAlertView()
+      alert.message = message
+      alert.addButton(withTitle: "ОК")
+      alert.show()
+    }
+    
+    
     
     @objc func didTapCancelButton() {
       vacancyField.text = nil

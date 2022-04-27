@@ -135,5 +135,7 @@ enum Brandbook {
   
   enum Heights {
     static let awardCell: CGFloat = 250
+    static let gitCell: CGFloat = 100
+    static let defaultHeight: CGFloat = 300
   }
 }

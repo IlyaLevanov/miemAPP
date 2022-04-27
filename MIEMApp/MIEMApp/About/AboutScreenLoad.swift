@@ -56,6 +56,8 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     let mainText: String = "Мобильное приложение для Кабинета проектной работы МИЭМ."
     let mainLabel = UILabel()
     mainLabel.text = mainText
+    mainLabel.font = UIFont.systemFont(ofSize: 20)
+    mainLabel.textAlignment = .justified
     mainLabel.numberOfLines = 0
     mainLabel.translatesAutoresizingMaskIntoConstraints = false
     controller.view.addSubview(mainLabel)
@@ -77,9 +79,12 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
       let labelSwitch = UILabel()
       labelSwitch.text = "Темная тема"
       labelSwitch.numberOfLines = 0
+      labelSwitch.textAlignment = .justified
+      labelSwitch.font = UIFont.systemFont(ofSize: 18)
       labelSwitch.translatesAutoresizingMaskIntoConstraints = false
       controller.view.addSubview(labelSwitch)
       labelSwitch.rightAnchor.constraint(equalTo: switchTheme.leftAnchor, constant: -Brandbook.Paddings.small).isActive = true
+      labelSwitch.leftAnchor.constraint(equalTo: controller.view.leftAnchor, constant: 2*padding).isActive = true
       labelSwitch.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: Brandbook.Paddings.normal).isActive = true
       labelSwitch.centerYAnchor.constraint(equalTo: switchTheme.centerYAnchor).isActive = true
     }
