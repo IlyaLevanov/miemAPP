@@ -49,8 +49,8 @@ class LikedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     cell.nameLabel.text = currentProject.project_name_rus
     cell.vacancyLbl.text = "Вакансия: "
     cell.vacancyLabel.text = currentProject.vacancy_role
-    cell.selectionStyle = .none
     cell.backgroundColor = .white
+    cell.selectionStyle = .none
     cell.nameLabel.heightAnchor.constraint(equalToConstant: LikedViewController.height(text: cell.nameLabel.text, font: cell.nameLabel.font!, width: cell.frame.width).height).isActive = true
 
     
