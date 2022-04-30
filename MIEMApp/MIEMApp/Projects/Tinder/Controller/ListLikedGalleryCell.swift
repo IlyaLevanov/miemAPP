@@ -16,7 +16,6 @@ class ListLikedGalleryCell: UITableViewCell {
   var count = 0
   
   
- 
   
   let idLabel: UILabel = {
       let label = UILabel()
