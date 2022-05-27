@@ -94,6 +94,8 @@ enum Brandbook {
       static let profileTabBarIcon = UIImage(imageLiteralResourceName: "ProfileTabBarIcon")
       static let sandboxProjectIcon = UIImage(imageLiteralResourceName: "SandboxProjecticon")
       
+      static let navigationIcon = UIImage(imageLiteralResourceName: "NavigationIcon")
+      
       static let tinderBackground2 = UIImage(imageLiteralResourceName: "tinder-back-2")
     }
     

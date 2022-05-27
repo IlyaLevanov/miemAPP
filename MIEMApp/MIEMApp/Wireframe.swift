@@ -58,6 +58,11 @@ final class Wireframe {
     pushScreen(with: .aboutScreen, animated: true)
   }
   
+  func pushNavigationScreen() {
+    pushScreen(with: .navScreen, animated: true)
+    
+  }
+  
   func pushProjectListScreen() {
     pushScreen(with: .projectsScreen, animated: true)
   }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NavigationModule
 
 final class MenuScreenLoad: UICollectionViewController, UICollectionViewDelegateFlowLayout, ScreenPayload {
   private unowned let wireframe: Wireframe
@@ -137,6 +138,27 @@ private extension MenuItemKind {
         action: {
           wireframe.pushSandboxScreen()
         })
+    case .navigation:
+      if #available(iOS 13.0, *) {
+        return MenuItemModel (
+          icon: Brandbook.Images.Icons.navigationIcon,
+          title: "Навигация",
+          action: {
+            print("1")
+            wireframe.pushNavigationScreen()
+            print("2")
+          })
+      } else {
+        return MenuItemModel (
+          icon: Brandbook.Images.Icons.closeIcon,
+          title: "",
+          action: {
+            
+            wireframe.pushAboutScreen()
+            
+          })
+      }
+      
     }
   }
   

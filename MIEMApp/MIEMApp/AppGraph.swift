@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NavigationModule
 
 final class AppGraph {
   let screenRouter: ScreenRouter
@@ -61,14 +62,39 @@ final class AppGraph {
       }
     )
     wireframe.setUpMenu(menuScreen: menuGraph.screen)
-    wireframe.setScreens([
-      authGraph.screen,
-      timetableGraph.screen,
-      projectsGraph.screen,
-      sandboxGraph.screen,
-      profileGraph.screen,
-      Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut))
-    ])
+    
+//    wireframe.setScreens([
+//      authGraph.screen,
+//      timetableGraph.screen,
+//      projectsGraph.screen,
+//      sandboxGraph.screen,
+//      profileGraph.screen,
+//      Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut)),
+//      Screen(id: .navScreen, payload: NavigationScreenLoad(navController: nc))
+//
+//    ])
+    if #available(iOS 13.0, *) {
+      let nc = NavigationModule.NavigationController()
+      wireframe.setScreens([
+        authGraph.screen,
+        timetableGraph.screen,
+        projectsGraph.screen,
+        sandboxGraph.screen,
+        profileGraph.screen,
+        Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut)),
+        Screen(id: .navScreen, payload: NavigationScreenLoad(navController: nc))
+        
+      ])
+    } else {
+      wireframe.setScreens([
+        authGraph.screen,
+        timetableGraph.screen,
+        projectsGraph.screen,
+        sandboxGraph.screen,
+        profileGraph.screen,
+        Screen(id: .aboutScreen, payload: AboutScreenLoad(onExitClicked: authGraph.logOut))
+      ])
+    }
     authGraph.logIn()
   }
   

@@ -39,7 +39,12 @@ final class MenuDataSource {
   
   private func update() {
     isUpdating = true
-    menuItems.value = user.value.isReview ? [.about] : [.projects, .sandbox, .about,]
+    if #available(iOS 13.0, *) {
+      menuItems.value = user.value.isReview ? [.about] : [.projects, .sandbox, .about, .navigation]
+    } else {
+      menuItems.value = user.value.isReview ? [.about] : [.projects, .sandbox, .about,]
+    }
+//    menuItems.value = user.value.isReview ? [.about] : [.projects, .sandbox, .about,]
     onUpdate?(menuItems.value)
     isUpdating = false
   }

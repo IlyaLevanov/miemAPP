@@ -50,19 +50,19 @@ final class AuthScreenLoad: UIViewController, ScreenPayload {
     imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
     imageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     
-    let signInButton = Button("Авторизоваться старый токен")
+    let signInButton = Button("Авторизоваться")
     signInButton.addTarget(self, action: #selector(onSignInClicked), for: .touchUpInside)
     signInButton.translatesAutoresizingMaskIntoConstraints = false
     controller.view.addSubview(signInButton)
     signInButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: padding).isActive = true
     signInButton.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
     
-    let signInButtonCabinet = Button("Авторизоваться новый токен")
-    signInButtonCabinet.addTarget(self, action: #selector(onSignInCabClicked), for: .touchUpInside)
-    signInButtonCabinet.translatesAutoresizingMaskIntoConstraints = false
-    controller.view.addSubview(signInButtonCabinet)
-    signInButtonCabinet.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: padding).isActive = true
-    signInButtonCabinet.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
+//    let signInButtonCabinet = Button("Авторизоваться новый токен")
+//    signInButtonCabinet.addTarget(self, action: #selector(onSignInCabClicked), for: .touchUpInside)
+//    signInButtonCabinet.translatesAutoresizingMaskIntoConstraints = false
+//    controller.view.addSubview(signInButtonCabinet)
+//    signInButtonCabinet.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: padding).isActive = true
+//    signInButtonCabinet.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
     
     
     let userAgreementButton = UIButton(type: .system)

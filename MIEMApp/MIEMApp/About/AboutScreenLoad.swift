@@ -57,7 +57,7 @@ final class AboutScreenLoad: UIViewController, ScreenPayload {
     let mainLabel = UILabel()
     mainLabel.text = mainText
     mainLabel.font = UIFont.systemFont(ofSize: 20)
-    mainLabel.textAlignment = .justified
+    mainLabel.textAlignment = .left
     mainLabel.numberOfLines = 0
     mainLabel.translatesAutoresizingMaskIntoConstraints = false
     controller.view.addSubview(mainLabel)

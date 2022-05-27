@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,9 @@
 		61667B2A273290CB005D4DAF /* ProjectsScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */; };
 		61667B2C273294E5005D4DAF /* ProjectsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */; };
 		618EC715263C423B002D59A4 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618EC714263C423B002D59A4 /* ProfileModel.swift */; };
+		61A274BC283FC78F006A832B /* NavigationModule in Frameworks */ = {isa = PBXBuildFile; productRef = 61A274BB283FC78F006A832B /* NavigationModule */; };
+		61A274BF2840D329006A832B /* NavigationScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A274BE2840D329006A832B /* NavigationScreenLoad.swift */; };
+		61A274C1284102AA006A832B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61A274C0284102A9006A832B /* Assets.xcassets */; };
 		61A29B48261F2E93007D974E /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A29B47261F2E93007D974E /* ProjectCell.swift */; };
 		61AEE58A27D24829008C3907 /* LikedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AEE58927D24829008C3907 /* LikedSettings.swift */; };
 		61B3C5ED27D696CB00784589 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B3C5EC27D696CB00784589 /* UIImageExtensions.swift */; };
@@ -47,7 +50,6 @@
 		61ED0936274531E3006EAE4A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ED0935274531E3006EAE4A /* FilterViewController.swift */; };
 		61ED911A27404C61006BEE2F /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ED911927404C61006BEE2F /* PaddingLabel.swift */; };
 		650CD9DD256142D000BA927A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CD9DC256142D000BA927A /* AppDelegate.swift */; };
-		650CD9E6256142D300BA927A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650CD9E5256142D300BA927A /* Assets.xcassets */; };
 		650CD9E9256142D300BA927A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650CD9E7256142D300BA927A /* LaunchScreen.storyboard */; };
 		650CDA7D2561530F00BA927A /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CDA712561530F00BA927A /* BottomSheetViewController.swift */; };
 		652F9E9A25A8AEB600707999 /* MenuScreenLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F9E9925A8AEB600707999 /* MenuScreenLoad.swift */; };
@@ -106,6 +108,8 @@
 		61667B29273290CB005D4DAF /* ProjectsScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsScreenLoad.swift; sourceTree = "<group>"; };
 		61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsDataSource.swift; sourceTree = "<group>"; };
 		618EC714263C423B002D59A4 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		61A274BE2840D329006A832B /* NavigationScreenLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationScreenLoad.swift; sourceTree = "<group>"; };
+		61A274C0284102A9006A832B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../miemappios/MIEMApp/MIEMApp/Assets.xcassets; sourceTree = "<group>"; };
 		61A29B47261F2E93007D974E /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		61AEE58927D24829008C3907 /* LikedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedSettings.swift; sourceTree = "<group>"; };
 		61B3C5EC27D696CB00784589 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -132,7 +136,6 @@
 		61ED911927404C61006BEE2F /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		650CD9D9256142D000BA927A /* MIEMApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIEMApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650CD9DC256142D000BA927A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		650CD9E5256142D300BA927A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		650CD9E8256142D300BA927A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		650CD9EA256142D300BA927A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		650CDA712561530F00BA927A /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A274BC283FC78F006A832B /* NavigationModule in Frameworks */,
 				364103503FF82B3F090F2C88 /* Pods_MIEMApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +252,14 @@
 				61667B2B273294E5005D4DAF /* ProjectsDataSource.swift */,
 			);
 			path = Projects;
+			sourceTree = "<group>";
+		};
+		61A274BD2840D305006A832B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				61A274BE2840D329006A832B /* NavigationScreenLoad.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		61B6321F2803A45000C25827 /* Theme */ = {
@@ -387,6 +399,7 @@
 				652F9E9825A8AE9F00707999 /* Menu */,
 				6537D0322598D69700079201 /* Core */,
 				6134A62B2573ECE0009D8933 /* About */,
+				61A274BD2840D305006A832B /* Navigation */,
 				6583E0E32562FC89006DCAB8 /* Brandbook */,
 				6583E0D32561DF6D006DCAB8 /* MainViewController */,
 				6583E0BB25616B9F006DCAB8 /* ScreenRouter */,
@@ -394,7 +407,7 @@
 				6583E0D82561EB8B006DCAB8 /* AppGraph.swift */,
 				6583E0EE2562FE7D006DCAB8 /* TabBarModelBuilder.swift */,
 				6583E0DC2561F0DA006DCAB8 /* Wireframe.swift */,
-				650CD9E5256142D300BA927A /* Assets.xcassets */,
+				61A274C0284102A9006A832B /* Assets.xcassets */,
 				650CD9E7256142D300BA927A /* LaunchScreen.storyboard */,
 				650CD9EA256142D300BA927A /* Info.plist */,
 			);
@@ -571,6 +584,9 @@
 			dependencies = (
 			);
 			name = MIEMApp;
+			packageProductDependencies = (
+				61A274BB283FC78F006A832B /* NavigationModule */,
+			);
 			productName = MIEMApp;
 			productReference = 650CD9D9256142D000BA927A /* MIEMApp.app */;
 			productType = "com.apple.product-type.application";
@@ -598,6 +614,9 @@
 				Base,
 			);
 			mainGroup = 650CD9D0256142D000BA927A;
+			packageReferences = (
+				61A274BA283FC78F006A832B /* XCRemoteSwiftPackageReference "navigationmodule" */,
+			);
 			productRefGroup = 650CD9DA256142D000BA927A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -612,8 +631,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A274C1284102AA006A832B /* Assets.xcassets in Resources */,
 				650CD9E9256142D300BA927A /* LaunchScreen.storyboard in Resources */,
-				650CD9E6256142D300BA927A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +759,7 @@
 				652F9EB525AA73D100707999 /* TimetableItemCell.swift in Sources */,
 				61DE9379261F2E4700DAC912 /* ProjectModel.swift in Sources */,
 				61DE936B261F2D8600DAC912 /* ProfileScreenLoad.swift in Sources */,
+				61A274BF2840D329006A832B /* NavigationScreenLoad.swift in Sources */,
 				61BFCB6B275C0E850023A6DA /* MoreProjectGraph.swift in Sources */,
 				61DA00B4276A1CE60057B4FE /* SwipeCardsDataSource.swift in Sources */,
 				652F9EA025A8AEE400707999 /* MenuItemCell.swift in Sources */,
@@ -830,10 +850,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -880,6 +900,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -888,10 +909,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -908,16 +929,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN4CY38HR3;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = MIEMApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2;
+				MARKETING_VERSION = 3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.miem.miemapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -937,16 +957,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YN4CY38HR3;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = MIEMApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2;
+				MARKETING_VERSION = 3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.miem.miemapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -980,6 +999,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		61A274BA283FC78F006A832B /* XCRemoteSwiftPackageReference "navigationmodule" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://git.miem.hse.ru/19469/navigationmodule.git";
+			requirement = {
+				branch = feature/makhmudov;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		61A274BB283FC78F006A832B /* NavigationModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61A274BA283FC78F006A832B /* XCRemoteSwiftPackageReference "navigationmodule" */;
+			productName = NavigationModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 650CD9D1256142D000BA927A /* Project object */;
 }

@@ -211,6 +211,9 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
   
   let emailLabel: UILabel = {
     let label = UILabel()
+    label.numberOfLines = 1
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.textAlignment = NSTextAlignment.center
     label.textColor = Brandbook.Colors.blueStatus
     label.textAlignment = NSTextAlignment.center
@@ -220,6 +223,9 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
   
   let departLabel: UILabel = {
     let label = UILabel()
+    label.numberOfLines = 1
+    label.sizeToFit()
+    label.lineBreakMode = .byWordWrapping
     label.textAlignment = NSTextAlignment.center
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -353,7 +359,7 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     profileStatus.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding).isActive = true
     profileStatus.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 0.7*padding).isActive = true
     profileStatus.widthAnchor.constraint(equalToConstant: 140).isActive = true
-    profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding/2).isActive = true
+    profileStatus.heightAnchor.constraint(equalToConstant: ProfileScreenLoad.height(text: profileStatus.text, font: profileStatus.font, width:  profileStatus.frame.width).height + padding).isActive = true
     
     containerView.addSubview(nameLabel)
     nameLabel.topAnchor.constraint(equalTo: profileStatus.bottomAnchor, constant: padding/2).isActive = true
@@ -384,13 +390,11 @@ class ProfileScreenLoad: UIViewController, ScreenPayload, UICollectionViewDelega
     containerView.addSubview(emailLabel)
     emailLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: padding).isActive = true
     emailLabel.leftAnchor.constraint(equalTo: emailIcon.rightAnchor).isActive = true
-    emailLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(emailLabel.text ?? "").width + padding).isActive = true
     emailLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     
     containerView.addSubview(departLabel)
     departLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: padding).isActive = true
     departLabel.leftAnchor.constraint(equalTo: departIcon.rightAnchor).isActive = true
-    departLabel.widthAnchor.constraint(equalToConstant: measureFrameForText(departLabel.text ?? "").width + padding).isActive = true
     departLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     departLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     
